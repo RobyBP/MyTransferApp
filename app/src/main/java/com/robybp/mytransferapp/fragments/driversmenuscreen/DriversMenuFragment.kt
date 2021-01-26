@@ -1,4 +1,4 @@
-package com.robybp.mytransferapp.fragments
+package com.robybp.mytransferapp.fragments.driversmenuscreen
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.robybp.mytransferapp.R
 
-class HomeScreenFragment: Fragment() {
+class DriversMenuFragment: Fragment() {
 
     companion object{
-        val TAG = "HomeScreenFragment"
+        val TAG = "DriversMenuFragment"
     }
 
     override fun onCreateView(
@@ -18,7 +18,7 @@ class HomeScreenFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_home_screen, container, false)
+        val view = inflater.inflate(R.layout.fragment_drivers_menu, container, false)
         return view
     }
 
