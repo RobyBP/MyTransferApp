@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/homescreen_itemBorder_margin_horizontal"
+    android:layout_marginTop="@dimen/homescreen_itemBorder_margin_vertical"
+    android:layout_marginEnd="@dimen/homescreen_itemBorder_margin_horizontal"
+    android:layout_marginBottom="@dimen/homescreen_itemBorder_margin_vertical"
+    android:background="@drawable/ic_item_border">
+
+    <TextView
+        android:id="@+id/homescreen_name"
+        style="@style/transferpal_primary_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/homescreen_hintText_padding_horizontal"
+        android:paddingTop="@dimen/homescreen_guest_name_padding_top"
+        android:paddingBottom="@dimen/homescreen_guest_name_padding_bottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Kevin Helshop" />
+
+    <TextView
+        android:id="@+id/homescreen_transport_info_hint"
+        style="@style/homescreen_items_guest_information_hint_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/homescreen_hintText_padding_horizontal"
+        android:paddingTop="14dp"
+        android:paddingBottom="@dimen/homescreen_hintText_padding_bottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homescreen_name" />
+
+    <TextView
+        android:id="@+id/homescreen_city_hint"
+        style="@style/homescreen_items_guest_information_hint_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/homescreen_hintText_padding_horizontal"
+        android:paddingBottom="@dimen/homescreen_hintText_padding_bottom"
+        android:text="@string/homescreen_city_hint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homescreen_transport_info_hint" />
+
+    <TextView
+        android:id="@+id/homescreen_date_and_time_hint"
+        style="@style/homescreen_items_guest_information_hint_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/homescreen_hintText_padding_horizontal"
+        android:paddingBottom="@dimen/homescreen_hintText_padding_bottom"
+        android:text="@string/homescreen_date_and_time_hint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homescreen_city_hint" />
+
+    <TextView
+        android:id="@+id/homescreen_transport_info"
+        style="@style/homescreen_items_guest_information_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="46dp"
+        android:paddingBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/homescreen_transport_info_hint"
+        app:layout_constraintStart_toEndOf="@id/homescreen_transport_info_hint"
+        tools:text="asdfafsadf" />
+
+    <TextView
+        android:id="@+id/homescreen_city"
+        style="@style/homescreen_items_guest_information_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="46dp"
+        android:paddingBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/homescreen_city_hint"
+        app:layout_constraintStart_toStartOf="@id/homescreen_transport_info"
+        tools:text="asdfafsadf" />
+
+    <TextView
+        android:id="@+id/homescreen_date_and_time"
+        style="@style/homescreen_items_guest_information_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="46dp"
+        android:paddingBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/homescreen_date_and_time_hint"
+        app:layout_constraintStart_toStartOf="@id/homescreen_transport_info"
+        tools:text="asdfafsadf" />
+
+    <View
+        android:layout_width="@dimen/homescreen_check_icon_width"
+        android:layout_height="@dimen/homescreen_check_icon_height"
+        android:layout_marginTop="@dimen/homescreen_check_icon_margin_top"
+        android:layout_marginEnd="22dp"
+        android:background="@drawable/ic_checkgreen"
+        app:layout_constraintEnd_toStartOf="@+id/homescreen_edit_guest"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/homescreen_edit_guest"
+        android:layout_width="@dimen/homescreen_settings_icon_width"
+        android:layout_height="@dimen/homescreen_settings_icon_height"
+        android:layout_marginTop="@dimen/homescreen_item_editButton_margin_top"
+        android:layout_marginEnd="@dimen/homescreen_item_editButton_margin_end"
+        android:background="@drawable/ic_settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/homescreen_driver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/homescreen_transport_info"
+        android:paddingHorizontal="6dp"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        tools:text="Roby"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

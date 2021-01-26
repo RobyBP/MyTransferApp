@@ -26,6 +26,8 @@
     <string name="messageInfo_arrival_hint">Arrives from: </string>
     <string name="messageInfo_flightNumber_hint">Flight number: </string>
     <string name="messageInfo_busCompany_hint">Bus company: </string>
+    <string name="messageInfo_shipNumber_hint">Line number: </string>
+    <string name="messageInfo_trainNumber_hint">Train number: </string>
     <string name="meansoftransport_meansOfTransport_hint">The guest arrives with:</string>
 
     <string name="airplaneOrBus_messageBody">

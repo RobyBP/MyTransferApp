@@ -38,8 +38,7 @@
         android:background="@drawable/ic_settings"
         app:layout_constraintBottom_toTopOf="@id/homescreen_recyclerview_background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/homescreen_app_icon"
-        />
+        app:layout_constraintTop_toBottomOf="@id/homescreen_app_icon" />
 
 
     <View
@@ -93,14 +92,15 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/homescreen_recyclerview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:fadingEdge="vertical"
         android:fadingEdgeLength="50dp"
         android:fillViewport="false"
-        android:requiresFadingEdge="vertical"
-        android:id="@+id/home_recyclerview"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
         android:overScrollMode="never"
+        android:requiresFadingEdge="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/homescreen_addGuest_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
