@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="homescreen_item_textPadding_start">10dp</dimen>
+    <dimen name="homescreen_item_textPadding_end">10dp</dimen>
+    <dimen name="homescreen_item_textPadding_top">15dp</dimen>
+    <dimen name="homescreen_item_textPadding_bottom">15dp</dimen>
+    <dimen name="homescreen_fab_margin_end">10dp</dimen>
+    <dimen name="homescreen_fab_margin_bottom">10dp</dimen>
+    <dimen name="homescreen_item_editButton_margin_top">5dp</dimen>
+    <dimen name="homescreen_item_editButton_margin_end">5dp</dimen>
+    <dimen name="homescreen_check_icon_margin_top">5dp</dimen>
+    <dimen name="homescreen_guest_name_padding_top">5dp</dimen>
+    <dimen name="homescreen_guest_name_padding_bottom">5dp</dimen>
+    <dimen name="homescreen_check_icon_width">32dp</dimen>
+    <dimen name="homescreen_check_icon_height">32dp</dimen>
+    <dimen name="homescreen_settings_icon_width">32dp</dimen>
+    <dimen name="homescreen_settings_icon_height">32dp</dimen>
+    <dimen name="homescreen_itemBorder_margin_horizontal">19dp</dimen>
+    <dimen name="homescreen_itemBorder_margin_vertical">10dp</dimen>
+    <dimen name="homescreen_hintText_padding_horizontal">4dp</dimen>
+    <dimen name="homescreen_hintText_padding_bottom">1dp</dimen>
+    <dimen name="homescreen_flag_icon_margin_start">17dp</dimen>
+    <dimen name="homescreen_driver_hintText_padding_horizontal">5dp</dimen>
+    <dimen name="homescreen_driver_hintText_padding_bottom">20dp</dimen>
+    <dimen name="homescreen_driverName_background_height">36dp</dimen>
+    <dimen name="homescreen_driverName_bacground_margin_end">19dp</dimen>
+    <dimen name="homescreen_driverName_background_margin_bottom">20dp</dimen>
+    <dimen name="homescreen_title_padding_horizontal">70dp</dimen>
+    <dimen name="homescreen_title_textSize">25dp</dimen>
+    <dimen name="homescreen_titleImage_margin_top">15dp</dimen>
+    <dimen name="homescreen_title_image_margin_end">20dp</dimen>
+    <dimen name="homescreen_recyclerview_background_margin_top">122dp</dimen>
+    <dimen name="homescreen_plane_icon_margin_bottom">5dp</dimen>
+    <dimen name="homescreen_addGuestButtonText_margin_bottom">10dp</dimen>
+    <dimen name="homescreen_add_icon_margin_top">14dp</dimen>
+
+    <dimen name="flag_icon_width">35dp</dimen>
+    <dimen name="flag_icon_height">25dp</dimen>
+    <dimen name="plane_icon_height">55dp</dimen>
+    <dimen name="plane_icon_width">116dp</dimen>
+    <dimen name="add_icon_width">52dp</dimen>
+    <dimen name="add_icon_height">52dp</dimen>
+</resources>
