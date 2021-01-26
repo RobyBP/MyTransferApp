@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#391864">
+
+    <ImageView
+        android:id="@+id/driversmenuscreen_app_icon"
+        android:layout_width="265dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="19dp"
+        android:src="@drawable/app_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/driversmenuscreen_cancel_button"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/ic_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/driversmenuscreen_app_icon" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/driversmenuscreen_recyclerview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/driversmenuscreen_cancel_button"
+        app:layout_constraintBottom_toTopOf="@id/driversmenuscreen_addDriver_button" />
+
+    <Button
+        android:id="@+id/driversmenuscreen_addDriver_button"
+        style="@style/homescreen_items_guest_information_text"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:layout_marginHorizontal="19dp"
+        android:background="@drawable/ic_item_border"
+        android:drawableTop="@drawable/ic_plus"
+        android:paddingTop="20dp"
+        android:text="Add new"
+        android:textAllCaps="false"
+        app:backgroundTint="#C8C8C8"
+        app:layout_constraintBottom_toTopOf="@id/driversmenuscreen_icon_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/driversmenuscreen_top_icon"
+        android:layout_height="38dp"
+        android:layout_marginStart="5dp"
+        android:src="@drawable/plane_takeoff_white"
+        app:layout_constraintBottom_toBottomOf="@id/driversmenuscreen_app_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/driversmenuscreen_app_icon"
+        android:layout_width="0dp" />
+
+    <ImageView
+        android:id="@+id/driversmenuscreen_icon_bottom"
+        android:layout_width="82dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/plane3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
