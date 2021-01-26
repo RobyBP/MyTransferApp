@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#391864">
+
+    <ImageView
+        android:id="@+id/homescreen_flag_icon"
+        android:layout_width="@dimen/flag_icon_width"
+        android:layout_height="@dimen/flag_icon_height"
+        android:layout_marginStart="@dimen/homescreen_flag_icon_margin_start"
+        android:src="@drawable/hrv"
+        app:layout_constraintBottom_toBottomOf="@id/homescreen_app_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/homescreen_app_icon" />
+
+    <TextView
+        android:id="@+id/homescreen_driversMenu_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/homescreen_driver_hintText_padding_horizontal"
+        android:text="@string/homescreen_driver_hint"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/homescreen_settings_icon"
+        app:layout_constraintEnd_toStartOf="@+id/homescreen_settings_icon"
+        app:layout_constraintTop_toTopOf="@+id/homescreen_settings_icon" />
+
+    <View
+        android:id="@+id/homescreen_settings_icon"
+        android:layout_width="@dimen/homescreen_settings_icon_height"
+        android:layout_height="@dimen/homescreen_settings_icon_width"
+        android:layout_marginEnd="27dp"
+        android:layout_marginBottom="27dp"
+        android:background="@drawable/ic_settings"
+        app:layout_constraintBottom_toTopOf="@id/homescreen_recyclerview_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/homescreen_app_icon"
+        />
+
+
+    <View
+        android:id="@+id/homescreen_recyclerview_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/homescreen_recyclerview_background_margin_top"
+        android:background="@drawable/homescreen_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/homescreen_ship_bus_train_icon"
+        android:layout_width="358dp"
+        android:layout_height="71dp"
+        android:layout_marginBottom="4dp"
+        android:src="@drawable/brod_bus_vlak"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/homescreen_app_icon"
+        android:layout_width="265dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="19dp"
+        android:src="@drawable/app_icon"
+        app:layout_constraintBottom_toTopOf="@id/homescreen_settings_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/homescreen_addGuest_button"
+        style="@style/homescreen_items_guest_information_hint_text"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:layout_marginHorizontal="19dp"
+        android:background="@drawable/ic_item_border"
+        android:drawableTop="@drawable/ic_plus"
+        android:paddingTop="20dp"
+        android:text="@string/add_new"
+        android:textAllCaps="false"
+        app:backgroundTint="#C8C8C8"
+        app:layout_constraintBottom_toTopOf="@id/homescreen_ship_bus_train_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:fadingEdge="vertical"
+        android:fadingEdgeLength="50dp"
+        android:fillViewport="false"
+        android:requiresFadingEdge="vertical"
+        android:id="@+id/home_recyclerview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toTopOf="@id/homescreen_addGuest_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/homescreen_recyclerview_background" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
