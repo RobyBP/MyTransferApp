@@ -8,9 +8,10 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.robybp.mytransferapp.MeansOfTransport
 import com.robybp.mytransferapp.R
 import com.robybp.mytransferapp.fragments.driversmenuscreen.DriversMenuFragment
-import com.robybp.mytransferapp.fragments.meansoftransportscreen.MeansOfTransportFragment
+import com.robybp.mytransferapp.models.datamodels.Guest
 import com.robybp.mytransferapp.models.viewmodels.HomeScreenViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -63,12 +64,19 @@ class HomeScreenFragment: Fragment() {
         }
 
         addNewGuestButton.setOnClickListener{
-
-            fragmentManager!!.beginTransaction().apply {
-                replace(R.id.fl_main, MeansOfTransportFragment())
-                addToBackStack(TAG)
-                commit()
-            }
+            model.saveGuest(Guest(
+                name = "Roby",
+                countryOfArrival = "Zagreb",
+                vehicleInfo = "123",
+                meansOfTransport = MeansOfTransport.AIRPLANE.toString(),
+                dateOfArrival = "02/08/2021",
+                timeOfArrival = "12:00",
+                driverName = "Marijan",
+                note = "",
+                daysUntilArrival = 3,
+                guestId = 0,
+                portOrStation = null
+            ))
         }
     }
 
