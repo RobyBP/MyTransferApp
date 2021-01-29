@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#391864">
+
+    <ImageView
+        android:id="@+id/homescreen_flag_icon"
+        android:layout_width="@dimen/flag_icon_width"
+        android:layout_height="@dimen/flag_icon_height"
+        android:layout_marginStart="@dimen/homescreen_flag_icon_margin_start"
+        android:src="@drawable/hrv"
+        app:layout_constraintBottom_toBottomOf="@id/meansoftransportscreen_app_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/meansoftransportscreen_app_icon" />
+
+    <ImageView
+        android:id="@+id/meansoftransportscreen_app_icon"
+        android:layout_width="265dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="19dp"
+        android:src="@drawable/app_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/meansoftransportscreen_hint_text"
+        style="@style/transferpal_primary_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/meansoftransport_meansOfTransport_hint"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/meansoftransportscreen_app_icon" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/homescreen_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/meansoftransportscreen_hint_text">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/meansoftransportscreen_ship_bus_train_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/meansoftransportscreen_plane_button"
+                    style="@style/homescreen_items_guest_information_hint_text"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_marginHorizontal="19dp"
+                    android:layout_marginVertical="11dp"
+                    android:background="@drawable/ic_item_border"
+                    android:drawableTop="@drawable/plane3_drawable"
+                    android:paddingTop="10dp"
+                    android:text="Airplane"
+                    android:textAllCaps="false"
+                    app:backgroundTint="#C8C8C8"
+                    app:layout_constraintBottom_toTopOf="@id/meansoftransportscreen_ship_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/meansoftransportscreen_ship_button"
+                    style="@style/homescreen_items_guest_information_hint_text"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_marginHorizontal="19dp"
+                    android:layout_marginVertical="11dp"
+                    android:background="@drawable/ic_item_border"
+                    android:drawableTop="@drawable/ship_drawable"
+                    android:paddingTop="10dp"
+                    android:text="Ship"
+                    android:textAllCaps="false"
+                    app:backgroundTint="#C8C8C8"
+                    app:layout_constraintBottom_toTopOf="@id/meansoftransportscreen_train_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/meansoftransportscreen_plane_button" />
+
+                <Button
+                    android:id="@+id/meansoftransportscreen_train_button"
+                    style="@style/homescreen_items_guest_information_hint_text"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_marginHorizontal="19dp"
+                    android:layout_marginVertical="11dp"
+                    android:background="@drawable/ic_item_border"
+                    android:drawableTop="@drawable/train_drawable"
+                    android:paddingTop="10dp"
+                    android:text="Train"
+                    android:textAllCaps="false"
+                    app:backgroundTint="#C8C8C8"
+                    app:layout_constraintBottom_toTopOf="@id/meansoftransportscreen_bus_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.921"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/meansoftransportscreen_ship_button" />
+
+                <Button
+                    android:id="@+id/meansoftransportscreen_bus_button"
+                    style="@style/homescreen_items_guest_information_hint_text"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_marginHorizontal="19dp"
+                    android:layout_marginVertical="11dp"
+                    android:background="@drawable/ic_item_border"
+                    android:drawableTop="@drawable/bus_drawable"
+                    android:paddingTop="10dp"
+                    android:text="Bus"
+                    android:textAllCaps="false"
+                    app:backgroundTint="#C8C8C8"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/meansoftransportscreen_train_button" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+        <View
+            android:id="@+id/meansoftransportscreen_ship_bus_train_icon"
+            android:layout_width="358dp"
+            android:layout_height="71dp"
+            android:layout_marginBottom="@dimen/homescreen_plane_icon_margin_bottom"
+            android:background="@drawable/brod_bus_vlak"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
