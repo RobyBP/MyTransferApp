@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import com.robybp.mytransferapp.MeansOfTransport
 import com.robybp.mytransferapp.R
+import com.robybp.mytransferapp.fragments.newguestscreen.NewGuestAirplaneBusFragment
 
-class MeansOfTransportFragment(): Fragment() {
+class MeansOfTransportFragment() : Fragment() {
 
-    companion object{
+    companion object {
         val TAG = "MeansOfTransportFragment"
     }
 
@@ -30,25 +32,39 @@ class MeansOfTransportFragment(): Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        busButton.setOnClickListener{
+
+        val bundle = Bundle()
+        busButton.setOnClickListener {
+            val airplaneBusFragment = NewGuestAirplaneBusFragment()
+            bundle.putString("Vehicle", MeansOfTransport.BUS.toString())
+            airplaneBusFragment.arguments = bundle
+            fragmentManager!!.beginTransaction().apply {
+                replace(R.id.fl_main, airplaneBusFragment)
+                commit()
+            }
+        }
+
+        trainButton.setOnClickListener {
 
         }
 
-        trainButton.setOnClickListener{
-
+        airplaneButton.setOnClickListener {
+            val airplaneBusFragment = NewGuestAirplaneBusFragment()
+            bundle.putString("Vehicle", MeansOfTransport.AIRPLANE.toString())
+            airplaneBusFragment.arguments = bundle
+            fragmentManager!!.beginTransaction().apply {
+                replace(R.id.fl_main, airplaneBusFragment)
+                commit()
+            }
         }
 
-        airplaneButton.setOnClickListener{
-
-        }
-
-        shipButton.setOnClickListener{
+        shipButton.setOnClickListener {
 
         }
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun initialiseViews(view: View){
+    private fun initialiseViews(view: View) {
         busButton = view.findViewById(R.id.meansoftransportscreen_bus_button)
         trainButton = view.findViewById(R.id.meansoftransportscreen_train_button)
         airplaneButton = view.findViewById(R.id.meansoftransportscreen_plane_button)
