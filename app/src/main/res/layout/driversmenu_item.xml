@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/homescreen_itemBorder_margin_horizontal"
+    android:layout_marginTop="@dimen/homescreen_itemBorder_margin_vertical"
+    android:layout_marginEnd="@dimen/homescreen_itemBorder_margin_horizontal"
+    android:layout_marginBottom="@dimen/homescreen_itemBorder_margin_vertical"
+    android:background="@drawable/ic_item_border"
+    android:paddingVertical="12dp">
+
+    <TextView
+        android:id="@+id/driversmenuscreen_driverName_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingHorizontal="10dp"
+        android:text="Driver: "
+        style="@style/homescreen_items_guest_information_hint_text"
+        />
+
+    <EditText
+        android:id="@+id/driversmenuscreen_driverName_editText"
+        style="@style/transferpal_edittext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="13dp"
+        android:imeOptions="actionNext"
+        android:paddingHorizontal="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/driversmenuscreen_driverName_hint"
+        android:layout_marginVertical="3dp"
+        />
+
+    <TextView
+        android:id="@+id/driversmenuscreen_driverPhoneNumber_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/driversmenuscreen_driverName_editText"
+        android:paddingTop="7dp"
+        android:paddingHorizontal="10dp"
+        android:text="Phone number: "
+        style="@style/homescreen_items_guest_information_hint_text"
+        />
+
+    <EditText
+        android:id="@+id/driversmenuscreen_driverPhoneNumber_editText"
+        style="@style/transferpal_edittext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="13dp"
+        android:imeOptions="actionNext"
+        android:paddingHorizontal="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/driversmenuscreen_driverPhoneNumber_hint"
+        android:layout_marginVertical="3dp"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>
