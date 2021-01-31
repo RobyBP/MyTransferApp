@@ -201,8 +201,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_driver_hint"
-                android:focusableInTouchMode="false"/>
+                app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_driver_hint"/>
 
             <TextView
                 android:id="@+id/newguestbusairplanescreen_note_hint"
