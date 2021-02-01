@@ -10,7 +10,7 @@ import io.reactivex.Flowable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class DriversMenuViewModel(application: Application): AndroidViewModel(application) {
+class DriversMenuViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: GuestBookRepository
     val allDrivers: Flowable<List<Driver>>

@@ -1,4 +1,4 @@
-package com.robybp.mytransferapp.fragments.homescreen
+package com.robybp.mytransferapp.screen.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,23 +11,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.robybp.mytransferapp.R
 import com.robybp.mytransferapp.fragments.driversmenuscreen.DriversMenuFragment
 import com.robybp.mytransferapp.fragments.meansoftransportscreen.MeansOfTransportFragment
-import com.robybp.mytransferapp.models.viewmodels.HomeScreenViewModel
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 
-class HomeScreenFragment: Fragment() {
+class HomeFragment : Fragment() {
 
     private lateinit var driversMenuButton: View
     private lateinit var addNewGuestButton: Button
-    private lateinit var model: HomeScreenViewModel
+    private lateinit var model: HomeViewModel
     private lateinit var recyclerview: RecyclerView
-    private val compositeDisposable = CompositeDisposable()
-    private val adapter = HomeScreenAdapter()
-
-    companion object{
-        val TAG = "HomeScreenFragment"
-    }
+    private val compositeDisposable = CompositeDisposable() // TODO: Leaking subscriptions
+    private val adapter = HomeAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,45 +38,38 @@ class HomeScreenFragment: Fragment() {
 
         recyclerview.adapter = adapter
 
-        compositeDisposable.add(
-            model.allGuests
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    adapter.setGuests(it)
-                }
-        )
+        compositeDisposable.add(model.guests.subscribe { adapter.setGuests(it) })
 
         driversMenuButton.setOnClickListener {
             fragmentManager!!.beginTransaction().apply {
                 replace(R.id.fl_main, DriversMenuFragment())
-                addToBackStack(TAG)
+                addToBackStack(DriversMenuFragment.TAG)
                 commit()
             }
         }
 
-        addNewGuestButton.setOnClickListener{
+        addNewGuestButton.setOnClickListener {
 
             fragmentManager!!.beginTransaction().apply {
                 replace(R.id.fl_main, MeansOfTransportFragment())
-                addToBackStack(TAG)
+                addToBackStack(MeansOfTransportFragment.TAG)
                 commit()
             }
         }
     }
 
-    private fun initialiseViews(view: View){
+    private fun initialiseViews(view: View) {
         driversMenuButton = view.findViewById(R.id.homescreen_settings_icon)
         addNewGuestButton = view.findViewById(R.id.homescreen_addGuest_button)
         recyclerview = view.findViewById(R.id.homescreen_recyclerview)
     }
 
-    private fun initialiseViewModels(){
+    private fun initialiseViewModels() {
         model = ViewModelProvider(
             requireActivity(),
             ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
         ).get(
-            HomeScreenViewModel::class.java
+            HomeViewModel::class.java
         )
     }
 }
