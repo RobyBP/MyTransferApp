@@ -1,11 +1,13 @@
-package com.robybp.mytransferapp.models.viewmodels
+package com.robybp.mytransferapp.screen.dateandtimeofarrival
 
-import android.app.Application
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
+import com.robybp.mytransferapp.navigation.RoutingActionsSource
 
-class DateAndTimeViewModel(application: Application): AndroidViewModel(application) {
+class DateAndTimeViewModel(
+    private val routingActionsSource: RoutingActionsSource
+) : ViewModel() {
 
     var dateSetListener: DatePickerDialog.OnDateSetListener? = null
     var year: Int? = null
@@ -16,7 +18,7 @@ class DateAndTimeViewModel(application: Application): AndroidViewModel(applicati
     var hours: Int? = null
     var minutes: Int? = null
 
-    fun restData(){
+    fun restData() {
         year = null
         month = null
         day = null

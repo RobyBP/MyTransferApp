@@ -1,11 +1,11 @@
-package com.robybp.mytransferapp.fragments.timepickerscreen
+package com.robybp.mytransferapp.screen.dateandtimeofarrival.timepicker
 
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import com.robybp.mytransferapp.models.viewmodels.DateAndTimeViewModel
+import com.robybp.mytransferapp.screen.dateandtimeofarrival.DateAndTimeViewModel
 
 class TimePickerFragment(): DialogFragment() {
 

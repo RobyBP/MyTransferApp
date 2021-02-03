@@ -1,4 +1,4 @@
-package com.robybp.mytransferapp.fragments.meansoftransportscreen
+package com.robybp.mytransferapp.screen.meansoftransport
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import com.robybp.mytransferapp.MeansOfTransport
 import com.robybp.mytransferapp.R
-import com.robybp.mytransferapp.fragments.newguestscreen.NewGuestAirplaneBusFragment
+import org.koin.android.ext.android.inject
 
 class MeansOfTransportFragment() : Fragment() {
 
@@ -20,6 +19,7 @@ class MeansOfTransportFragment() : Fragment() {
     private lateinit var trainButton: Button
     private lateinit var airplaneButton: Button
     private lateinit var shipButton: Button
+    private val model: MeansOfTransportViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,15 +33,8 @@ class MeansOfTransportFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        val bundle = Bundle()
         busButton.setOnClickListener {
-            val airplaneBusFragment = NewGuestAirplaneBusFragment()
-            bundle.putString("Vehicle", MeansOfTransport.BUS.toString())
-            airplaneBusFragment.arguments = bundle
-            fragmentManager!!.beginTransaction().apply {
-                replace(R.id.fl_main, airplaneBusFragment)
-                commit()
-            }
+            model.goToNewGuestBusFragment()
         }
 
         trainButton.setOnClickListener {
@@ -49,13 +42,7 @@ class MeansOfTransportFragment() : Fragment() {
         }
 
         airplaneButton.setOnClickListener {
-            val airplaneBusFragment = NewGuestAirplaneBusFragment()
-            bundle.putString("Vehicle", MeansOfTransport.AIRPLANE.toString())
-            airplaneBusFragment.arguments = bundle
-            fragmentManager!!.beginTransaction().apply {
-                replace(R.id.fl_main, airplaneBusFragment)
-                commit()
-            }
+            model.goToNewGuestAirplaneFragment()
         }
 
         shipButton.setOnClickListener {

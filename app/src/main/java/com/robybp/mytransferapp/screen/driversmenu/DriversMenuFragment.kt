@@ -1,4 +1,4 @@
-package com.robybp.mytransferapp.fragments.driversmenuscreen
+package com.robybp.mytransferapp.screen.driversmenu
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -17,20 +17,19 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.robybp.mytransferapp.R
-import com.robybp.mytransferapp.models.datamodels.Driver
-import com.robybp.mytransferapp.models.viewmodels.DriversMenuViewModel
+import com.robybp.mytransferapp.datamodels.Driver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import org.koin.android.ext.android.inject
 
 class DriversMenuFragment : Fragment() {
 
     private lateinit var addNewButton: Button
     private lateinit var exitButton: View
-    private lateinit var model: DriversMenuViewModel
+    private val model: DriversMenuViewModel by inject()
     private lateinit var recyclerView: RecyclerView
 
     private val compositeDisposable = CompositeDisposable()
@@ -48,7 +47,6 @@ class DriversMenuFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_drivers_menu, container, false)
         initialiseViews(view)
-        initialiseViewModels()
         return view
     }
 
@@ -66,15 +64,24 @@ class DriversMenuFragment : Fragment() {
         addNewButton.setOnClickListener {
             openContacts()
         }
+
+        exitButton.setOnClickListener {
+            model.goBack()
+        }
+
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun openContacts(){
+    private fun openContacts() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && requireActivity().checkSelfPermission(
                 Manifest.permission.READ_CONTACTS
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            Toast.makeText(requireContext(), "The app doesn't have the permission to read contacts", Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                requireContext(),
+                "The app doesn't have the permission to read contacts",
+                Toast.LENGTH_LONG
+            ).show()
             return
         }
 
@@ -136,14 +143,5 @@ class DriversMenuFragment : Fragment() {
         exitButton = view.findViewById(R.id.driversmenuscreen_cancel_button)
         recyclerView = view.findViewById(R.id.driversmenuscreen_recyclerview)
         recyclerView.adapter = adapter
-    }
-
-    private fun initialiseViewModels() {
-        model = ViewModelProvider(
-            requireActivity(),
-            ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
-        ).get(
-            DriversMenuViewModel::class.java
-        )
     }
 }

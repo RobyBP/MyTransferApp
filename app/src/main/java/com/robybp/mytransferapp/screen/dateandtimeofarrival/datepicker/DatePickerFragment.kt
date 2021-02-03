@@ -1,4 +1,4 @@
-package com.robybp.mytransferapp.fragments.datepickerscreen
+package com.robybp.mytransferapp.screen.dateandtimeofarrival.datepicker
 
 import android.app.DatePickerDialog
 import android.app.Dialog
@@ -7,7 +7,7 @@ import android.os.Bundle
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import com.robybp.mytransferapp.models.viewmodels.DateAndTimeViewModel
+import com.robybp.mytransferapp.screen.dateandtimeofarrival.DateAndTimeViewModel
 import java.util.*
 
 class DatePickerFragment() : DialogFragment() {

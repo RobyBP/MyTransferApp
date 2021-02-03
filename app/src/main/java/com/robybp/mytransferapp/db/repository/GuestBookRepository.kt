@@ -1,8 +1,8 @@
 package com.robybp.mytransferapp.db.repository
 
 import com.robybp.mytransferapp.dao.GuestBookDao
-import com.robybp.mytransferapp.models.datamodels.Driver
-import com.robybp.mytransferapp.models.datamodels.Guest
+import com.robybp.mytransferapp.datamodels.Driver
+import com.robybp.mytransferapp.datamodels.Guest
 import io.reactivex.Flowable
 
 class GuestBookRepository(private val guestBookDao: GuestBookDao) {

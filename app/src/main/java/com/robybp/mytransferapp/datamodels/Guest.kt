@@ -1,4 +1,4 @@
-package com.robybp.mytransferapp.models.datamodels
+package com.robybp.mytransferapp.datamodels
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

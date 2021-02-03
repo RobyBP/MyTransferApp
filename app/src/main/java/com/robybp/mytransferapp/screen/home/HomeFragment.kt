@@ -6,18 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.robybp.mytransferapp.R
-import com.robybp.mytransferapp.fragments.driversmenuscreen.DriversMenuFragment
-import com.robybp.mytransferapp.fragments.meansoftransportscreen.MeansOfTransportFragment
 import io.reactivex.disposables.CompositeDisposable
+import org.koin.android.ext.android.inject
 
 class HomeFragment : Fragment() {
 
     private lateinit var driversMenuButton: View
     private lateinit var addNewGuestButton: Button
-    private lateinit var model: HomeViewModel
+    private val model: HomeViewModel by inject()
     private lateinit var recyclerview: RecyclerView
     private val compositeDisposable = CompositeDisposable() // TODO: Leaking subscriptions
     private val adapter = HomeAdapter()
@@ -29,7 +27,6 @@ class HomeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home_screen, container, false)
         initialiseViews(view)
-        initialiseViewModels()
         return view
     }
 
@@ -41,20 +38,11 @@ class HomeFragment : Fragment() {
         compositeDisposable.add(model.guests.subscribe { adapter.setGuests(it) })
 
         driversMenuButton.setOnClickListener {
-            fragmentManager!!.beginTransaction().apply {
-                replace(R.id.fl_main, DriversMenuFragment())
-                addToBackStack(DriversMenuFragment.TAG)
-                commit()
-            }
+            model.goToDriversMenu()
         }
 
         addNewGuestButton.setOnClickListener {
-
-            fragmentManager!!.beginTransaction().apply {
-                replace(R.id.fl_main, MeansOfTransportFragment())
-                addToBackStack(MeansOfTransportFragment.TAG)
-                commit()
-            }
+            model.goToMeansOfTransport()
         }
     }
 
@@ -64,12 +52,8 @@ class HomeFragment : Fragment() {
         recyclerview = view.findViewById(R.id.homescreen_recyclerview)
     }
 
-    private fun initialiseViewModels() {
-        model = ViewModelProvider(
-            requireActivity(),
-            ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
-        ).get(
-            HomeViewModel::class.java
-        )
+    override fun onDestroyView() {
+        compositeDisposable.dispose()
+        super.onDestroyView()
     }
 }

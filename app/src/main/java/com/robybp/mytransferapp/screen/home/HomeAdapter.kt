@@ -5,9 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.robybp.mytransferapp.MeansOfTransport
 import com.robybp.mytransferapp.R
-import com.robybp.mytransferapp.models.datamodels.Guest
+import com.robybp.mytransferapp.datamodels.Guest
+import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
 
 // TODO: ListAdapter instead of RecyclerView.Adapter
 class HomeAdapter : RecyclerView.Adapter<HomeScreenViewHolder>() {

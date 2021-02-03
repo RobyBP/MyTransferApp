@@ -1,4 +1,4 @@
-package com.robybp.mytransferapp.fragments.newguestscreen
+package com.robybp.mytransferapp.screen.newguest.airplanebus
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
@@ -13,17 +13,14 @@ import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.robybp.mytransferapp.MeansOfTransport
 import com.robybp.mytransferapp.R
-import com.robybp.mytransferapp.fragments.datepickerscreen.DatePickerFragment
-import com.robybp.mytransferapp.fragments.timepickerscreen.TimePickerFragment
-import com.robybp.mytransferapp.models.datamodels.Guest
-import com.robybp.mytransferapp.models.viewmodels.DateAndTimeViewModel
-import com.robybp.mytransferapp.models.viewmodels.NewGuestAirplaneBusViewModel
-import org.joda.time.Days
-import org.joda.time.LocalDate
+import com.robybp.mytransferapp.datamodels.Guest
+import com.robybp.mytransferapp.screen.dateandtimeofarrival.DateAndTimeViewModel
+import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
+import org.koin.android.ext.android.inject
 import java.text.DateFormat
+import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 import java.util.*
 
 class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListener,
@@ -42,8 +39,8 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
     private lateinit var sendInfoButton: View
     private lateinit var bottomIcon: ImageView
     private lateinit var topIcon: ImageView
-    private lateinit var model: NewGuestAirplaneBusViewModel
-    private lateinit var sharedDateTimePickerViewModel: DateAndTimeViewModel
+    private val model: NewGuestAirplaneBusViewModel by inject()
+    private val sharedDateTimePickerViewModel: DateAndTimeViewModel by inject()
 
     private var listOfInputFields = listOf<EditText>()
 
@@ -58,14 +55,13 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
     ): View? {
         val view = inflater.inflate(R.layout.fragment_new_guest_airplane_bus, container, false)
         initialiseViews(view)
-        initialiseViewModels()
         sharedDateTimePickerViewModel.dateSetListener = this
         sharedDateTimePickerViewModel.timeSetListener = this
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        if (arguments!!["Vehicle"] == MeansOfTransport.AIRPLANE.toString()) {
+        if (requireArguments()["Vehicle"] == MeansOfTransport.AIRPLANE.toString()) {
             topIcon.setImageResource(R.drawable.plane3)
             bottomIcon.setImageResource(R.drawable.plane3)
             flightNumberOrBusCompanyText.setText(R.string.newGuest_flightNumber_hint)
@@ -76,26 +72,30 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
         }
 
         dateOfArrivalEditText.setOnClickListener {
-            val datePicker = DatePickerFragment()
-            datePicker.show(fragmentManager!!, DatePickerFragment.TAG)
+            model.showDatePicker()
         }
 
         arrivalTimeEditText.setOnClickListener {
-            val timePicker = TimePickerFragment()
-            timePicker.show(fragmentManager!!, TimePickerFragment.TAG)
+            model.showTimePicker()
         }
 
         saveButton.setOnClickListener {
-            if(model.crucialFieldsEmpty(listOfInputFields)){
-                Toast.makeText(requireContext(), "Only note field can be empty", Toast.LENGTH_LONG).show()
+            if (model.crucialFieldsEmpty(listOfInputFields)) {
+                Toast.makeText(requireContext(), "Only note field can be empty", Toast.LENGTH_LONG)
+                    .show()
                 return@setOnClickListener
             }
             saveMember()
         }
+
+        cancelButton.setOnClickListener {
+            model.goBack()
+        }
+
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun saveMember(){
+    private fun saveMember() {
         val guest = Guest(
             guestId = 0,
             name = nameEditText.text.toString(),
@@ -105,20 +105,20 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             timeOfArrival = arrivalTimeEditText.text.toString(),
             driverName = driverEditText.text.toString(),
             note = noteEditText.text.toString(),
-            daysUntilArrival = Days.daysBetween(
+            daysUntilArrival = ChronoUnit.DAYS.between(
                 LocalDate.now(),
-                LocalDate(
+                LocalDate.of(
                     sharedDateTimePickerViewModel.year!!,
                     sharedDateTimePickerViewModel.month!! + 1,
                     sharedDateTimePickerViewModel.day!!
                 )
-            ).days,
-            meansOfTransport = arguments!!["Vehicle"].toString(),
+            ).toInt(),
+            meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = null
         )
 
         model.saveGuest(guest)
-        fragmentManager!!.popBackStack()
+        model.goBack()
     }
 
     override fun onDateSet(datePicker: DatePicker?, year: Int, month: Int, day: Int) {
@@ -175,23 +175,6 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             arrivalTimeEditText,
             driverEditText,
             flightNumberOrBusCompanyEditText
-        )
-    }
-
-    private fun initialiseViewModels() {
-
-        model = ViewModelProvider(
-            requireActivity(),
-            ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
-        ).get(
-            NewGuestAirplaneBusViewModel::class.java
-        )
-
-        sharedDateTimePickerViewModel = ViewModelProvider(
-            requireActivity(),
-            ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
-        ).get(
-            DateAndTimeViewModel::class.java
         )
     }
 
