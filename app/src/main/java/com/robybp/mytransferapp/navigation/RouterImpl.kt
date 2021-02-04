@@ -91,7 +91,7 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
     }
 
     override fun showTimePickerDialog() {
-        TimePickerFragment().show(fragmentManager, DatePickerFragment.TAG)
+        TimePickerFragment().show(fragmentManager, TimePickerFragment.TAG)
     }
 
     override fun goBack() {

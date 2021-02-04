@@ -8,11 +8,14 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.robybp.mytransferapp.screen.dateandtimeofarrival.DateAndTimeViewModel
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
 class DatePickerFragment() : DialogFragment() {
 
-    private lateinit var model: DateAndTimeViewModel
+    private val model: DateAndTimeViewModel by sharedViewModel()
 
     companion object {
         val TAG = "DatePickerFragment"
@@ -20,13 +23,6 @@ class DatePickerFragment() : DialogFragment() {
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-
-        model = ViewModelProvider(
-            requireActivity(),
-            ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
-        ).get(
-            DateAndTimeViewModel::class.java
-        )
 
         val year = model.year ?: Calendar.getInstance().get(Calendar.YEAR)
         val month = model.month ?: Calendar.getInstance().get(Calendar.MONTH)

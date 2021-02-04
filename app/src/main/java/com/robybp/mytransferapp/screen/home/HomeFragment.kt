@@ -10,12 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.robybp.mytransferapp.R
 import io.reactivex.disposables.CompositeDisposable
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.compat.ScopeCompat.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
     private lateinit var driversMenuButton: View
     private lateinit var addNewGuestButton: Button
-    private val model: HomeViewModel by inject()
+    private val model: HomeViewModel by viewModel()
     private lateinit var recyclerview: RecyclerView
     private val compositeDisposable = CompositeDisposable() // TODO: Leaking subscriptions
     private val adapter = HomeAdapter()

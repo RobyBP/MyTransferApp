@@ -8,6 +8,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.robybp.mytransferapp.R
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MeansOfTransportFragment() : Fragment() {
 
@@ -19,7 +20,7 @@ class MeansOfTransportFragment() : Fragment() {
     private lateinit var trainButton: Button
     private lateinit var airplaneButton: Button
     private lateinit var shipButton: Button
-    private val model: MeansOfTransportViewModel by inject()
+    private val model: MeansOfTransportViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,

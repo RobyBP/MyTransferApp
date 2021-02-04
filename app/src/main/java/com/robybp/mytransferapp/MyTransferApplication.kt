@@ -46,7 +46,7 @@ class MyTransferApplication : Application() {
 
             viewModel { DriversMenuViewModel(repository = get(), routingActionsSource = get()) }
 
-            viewModel { DateAndTimeViewModel(routingActionsSource = get()) }
+            viewModel { DateAndTimeViewModel() }
 
             viewModel {
                 NewGuestAirplaneBusViewModel(

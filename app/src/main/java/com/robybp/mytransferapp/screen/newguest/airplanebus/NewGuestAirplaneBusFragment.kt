@@ -18,6 +18,8 @@ import com.robybp.mytransferapp.datamodels.Guest
 import com.robybp.mytransferapp.screen.dateandtimeofarrival.DateAndTimeViewModel
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DateFormat
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
@@ -39,8 +41,8 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
     private lateinit var sendInfoButton: View
     private lateinit var bottomIcon: ImageView
     private lateinit var topIcon: ImageView
-    private val model: NewGuestAirplaneBusViewModel by inject()
-    private val sharedDateTimePickerViewModel: DateAndTimeViewModel by inject()
+    private val model: NewGuestAirplaneBusViewModel by viewModel()
+    private val sharedDateTimePickerViewModel: DateAndTimeViewModel by sharedViewModel()
 
     private var listOfInputFields = listOf<EditText>()
 

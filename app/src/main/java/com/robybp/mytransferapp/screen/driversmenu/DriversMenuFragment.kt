@@ -24,12 +24,13 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DriversMenuFragment : Fragment() {
 
     private lateinit var addNewButton: Button
     private lateinit var exitButton: View
-    private val model: DriversMenuViewModel by inject()
+    private val model: DriversMenuViewModel by viewModel()
     private lateinit var recyclerView: RecyclerView
 
     private val compositeDisposable = CompositeDisposable()

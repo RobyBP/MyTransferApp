@@ -6,22 +6,18 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.robybp.mytransferapp.screen.dateandtimeofarrival.DateAndTimeViewModel
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class TimePickerFragment(): DialogFragment() {
 
-    private lateinit var model: DateAndTimeViewModel
+    private val model: DateAndTimeViewModel by sharedViewModel()
 
     companion object{
         val TAG = "TimePickerFragment"
     }
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
-        model = ViewModelProvider(
-            requireActivity(),
-            ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
-        ).get(
-            DateAndTimeViewModel::class.java
-        )
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
         val hours = model.hours ?: 12
         val minutes = model.minutes ?: 0

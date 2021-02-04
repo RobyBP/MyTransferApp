@@ -5,9 +5,7 @@ import android.app.TimePickerDialog
 import androidx.lifecycle.ViewModel
 import com.robybp.mytransferapp.navigation.RoutingActionsSource
 
-class DateAndTimeViewModel(
-    private val routingActionsSource: RoutingActionsSource
-) : ViewModel() {
+class DateAndTimeViewModel() : ViewModel() {
 
     var dateSetListener: DatePickerDialog.OnDateSetListener? = null
     var year: Int? = null
