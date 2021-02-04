@@ -97,7 +97,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
                     .show()
                 return@setOnClickListener
             }
-            saveMember()
+            saveGuest()
         }
 
         cancelButton.setOnClickListener {
@@ -108,7 +108,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun saveMember() {
+    private fun saveGuest() {
         val guest = Guest(
             guestId = 0,
             name = nameEditText.text.toString(),

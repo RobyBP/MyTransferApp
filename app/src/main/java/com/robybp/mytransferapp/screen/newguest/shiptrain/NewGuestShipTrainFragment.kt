@@ -14,12 +14,15 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.robybp.mytransferapp.R
+import com.robybp.mytransferapp.datamodels.Guest
 import com.robybp.mytransferapp.screen.dateandtimeofarrival.DateAndTimeViewModel
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
 import com.robybp.mytransferapp.screen.pickdriver.PickDriverViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DateFormat
+import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 import java.util.*
 
 class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListener,
@@ -44,7 +47,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
     private lateinit var driverEditText: EditText
     private lateinit var noteEditText: EditText
     private var inputFields = listOf<EditText>()
-    val model: NewGuestShipTrainViewModel by viewModel()
+    private val model: NewGuestShipTrainViewModel by viewModel()
     private val sharedDateTimePickerViewModel: DateAndTimeViewModel by sharedViewModel()
     private val sharedPickDriverViewModel: PickDriverViewModel by sharedViewModel()
 
@@ -82,11 +85,17 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
         }
 
         cancelButton.setOnClickListener {
+            sharedDateTimePickerViewModel.restData()
             model.goBack()
         }
 
         saveButton.setOnClickListener {
-
+            if (model.crucialFieldsEmpty(inputFields)) {
+                Toast.makeText(requireContext(), "Only note field can be empty", Toast.LENGTH_LONG)
+                    .show()
+                return@setOnClickListener
+            }
+            saveGuest()
         }
 
         dateOfArrivalEditText.setOnClickListener {
@@ -102,6 +111,33 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
         }
 
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun saveGuest() {
+        val guest = Guest(
+            guestId = 0,
+            name = guestNameEditText.text.toString(),
+            vehicleInfo = shipOrTrainNumberEditText.text.toString(),
+            countryOfArrival = arrivesFromEditText.text.toString(),
+            dateOfArrival = dateOfArrivalEditText.text.toString(),
+            timeOfArrival = arrivalTimeEditText.text.toString(),
+            driverName = driverEditText.text.toString(),
+            note = noteEditText.text.toString(),
+            daysUntilArrival = ChronoUnit.DAYS.between(
+                LocalDate.now(),
+                LocalDate.of(
+                    sharedDateTimePickerViewModel.year!!,
+                    sharedDateTimePickerViewModel.month!! + 1,
+                    sharedDateTimePickerViewModel.day!!
+                )
+            ).toInt(),
+            meansOfTransport = requireArguments()["Vehicle"].toString(),
+            portOrStation = portOrStationEditText.text.toString()
+        )
+
+        model.saveGuest(guest)
+        sharedDateTimePickerViewModel.restData()
+        model.goToHomeScreen()
     }
 
     override fun onDateSet(datePicker: DatePicker?, year: Int, month: Int, day: Int) {
