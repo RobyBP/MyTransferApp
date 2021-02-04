@@ -4,6 +4,7 @@ import com.robybp.mytransferapp.dao.GuestBookDao
 import com.robybp.mytransferapp.datamodels.Driver
 import com.robybp.mytransferapp.datamodels.Guest
 import io.reactivex.Flowable
+import io.reactivex.Maybe
 
 class GuestBookRepository(private val guestBookDao: GuestBookDao) {
 
@@ -12,7 +13,7 @@ class GuestBookRepository(private val guestBookDao: GuestBookDao) {
 
     fun getGuest(id: Int) = guestBookDao.getGuest(id)
 
-    fun getDriver(name: String) = guestBookDao.getDriver(name)
+    fun getDriver(name: String): Maybe<Driver> = guestBookDao.getDriver(name)
 
     suspend fun addGuest(guest: Guest) = guestBookDao.addGuest(guest)
 

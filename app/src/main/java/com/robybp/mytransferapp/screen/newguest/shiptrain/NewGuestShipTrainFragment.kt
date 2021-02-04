@@ -18,6 +18,7 @@ import com.robybp.mytransferapp.datamodels.Guest
 import com.robybp.mytransferapp.screen.dateandtimeofarrival.DateAndTimeViewModel
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
 import com.robybp.mytransferapp.screen.pickdriver.PickDriverViewModel
+import io.reactivex.disposables.CompositeDisposable
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DateFormat
@@ -50,6 +51,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
     private val model: NewGuestShipTrainViewModel by viewModel()
     private val sharedDateTimePickerViewModel: DateAndTimeViewModel by sharedViewModel()
     private val sharedPickDriverViewModel: PickDriverViewModel by sharedViewModel()
+    private val compositeDisposable = CompositeDisposable()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -77,12 +79,8 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
             portOrStationHint.text = getString(R.string.newGuest_trainOnStation_hint)
         }
 
-        parentFragmentManager.addOnBackStackChangedListener {
-            if (sharedPickDriverViewModel.driverName != null) driverEditText.setText(
-                sharedPickDriverViewModel.driverName
-            )
-            sharedPickDriverViewModel.driverName = null
-        }
+        sharedPickDriverViewModel.name.observe(viewLifecycleOwner,
+            { driverEditText.setText(it) })
 
         cancelButton.setOnClickListener {
             sharedDateTimePickerViewModel.restData()
@@ -134,6 +132,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = portOrStationEditText.text.toString()
         )
+
 
         model.saveGuest(guest)
         sharedDateTimePickerViewModel.restData()
@@ -197,5 +196,10 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
             dateOfArrivalEditText,
             driverEditText
         )
+    }
+
+    override fun onDestroyView() {
+        compositeDisposable.dispose()
+        super.onDestroyView()
     }
 }

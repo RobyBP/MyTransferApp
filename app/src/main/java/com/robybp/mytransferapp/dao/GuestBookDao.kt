@@ -4,6 +4,7 @@ import androidx.room.*
 import com.robybp.mytransferapp.datamodels.Driver
 import com.robybp.mytransferapp.datamodels.Guest
 import io.reactivex.Flowable
+import io.reactivex.Maybe
 import io.reactivex.Single
 
 @Dao
@@ -19,7 +20,7 @@ interface GuestBookDao {
     fun getGuest(id: Int): Single<Guest>
 
     @Query("SELECT * FROM drivers WHERE name = :name")
-    fun getDriver(name: String): Single<Driver>
+    fun getDriver(name: String): Maybe<Driver>
 
     @Insert
     suspend fun addGuest(guest: Guest)

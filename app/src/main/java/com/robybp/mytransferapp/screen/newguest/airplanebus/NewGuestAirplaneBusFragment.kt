@@ -6,6 +6,7 @@ import android.app.TimePickerDialog
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,7 @@ import com.robybp.mytransferapp.datamodels.Guest
 import com.robybp.mytransferapp.screen.dateandtimeofarrival.DateAndTimeViewModel
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
 import com.robybp.mytransferapp.screen.pickdriver.PickDriverViewModel
+import io.reactivex.disposables.CompositeDisposable
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DateFormat
@@ -44,6 +46,8 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
     private val model: NewGuestAirplaneBusViewModel by viewModel()
     private val sharedDateTimePickerViewModel: DateAndTimeViewModel by sharedViewModel()
     private val sharedPickDriverViewModel: PickDriverViewModel by sharedViewModel()
+
+    private val compositeDisposable = CompositeDisposable()
 
     private var listOfInputFields = listOf<EditText>()
 
@@ -75,10 +79,9 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             flightNumberOrBusCompanyText.setText(R.string.newGuest_busCompany_hint)
         }
 
-        parentFragmentManager.addOnBackStackChangedListener {
-            if(sharedPickDriverViewModel.driverName != null) driverEditText.setText(sharedPickDriverViewModel.driverName)
-            sharedPickDriverViewModel.driverName = null
-        }
+        sharedPickDriverViewModel.name.observe(viewLifecycleOwner,
+            { driverEditText.setText(it) })
+
         dateOfArrivalEditText.setOnClickListener {
             model.showDatePicker()
         }
@@ -102,7 +105,12 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
 
         cancelButton.setOnClickListener {
             sharedDateTimePickerViewModel.restData()
+            compositeDisposable.dispose()
             model.goBack()
+        }
+
+        sendInfoButton.setOnClickListener {
+            sendInfo()
         }
 
         super.onViewCreated(view, savedInstanceState)
@@ -133,6 +141,69 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
         model.saveGuest(guest)
         sharedDateTimePickerViewModel.restData()
         model.goToHomeScreen()
+    }
+
+    private fun sendInfo() {
+
+        if (model.crucialFieldsEmpty(listOfInputFields)) {
+            Toast.makeText(requireContext(), "Only note field can be empty", Toast.LENGTH_LONG)
+                .show()
+            return
+        }
+        val guest = Guest(
+            guestId = 0,
+            name = nameEditText.text.toString(),
+            vehicleInfo = flightNumberOrBusCompanyEditText.text.toString(),
+            countryOfArrival = arrivesFromEditText.text.toString(),
+            dateOfArrival = dateOfArrivalEditText.text.toString(),
+            timeOfArrival = arrivalTimeEditText.text.toString(),
+            driverName = driverEditText.text.toString(),
+            note = noteEditText.text.toString(),
+            daysUntilArrival = ChronoUnit.DAYS.between(
+                LocalDate.now(),
+                LocalDate.of(
+                    sharedDateTimePickerViewModel.year!!,
+                    sharedDateTimePickerViewModel.month!! + 1,
+                    sharedDateTimePickerViewModel.day!!
+                )
+            ).toInt(),
+            meansOfTransport = requireArguments()["Vehicle"].toString(),
+            portOrStation = null
+        )
+
+        compositeDisposable.add(
+            model.getDriverByName("Dusko")
+                .doOnSuccess { Log.d("driver", it.name + it.phoneNumber) }
+                .subscribe { formatMessage(it.phoneNumber, guest) }
+        )
+    }
+
+    private fun formatMessage(phoneNumber: String, guest: Guest){
+
+        val shipOrTrainNumber =
+            if (guest.meansOfTransport == MeansOfTransport.SHIP.toString()) getString(R.string.messageInfo_busCompany_hint) else getString(
+                R.string.messageInfo_flightNumber_hint
+            )
+        val messageBody = getString(
+            R.string.airplaneOrBus_messageBody,
+            getString(R.string.messageInfo_guestName_hint),
+            guest.name,
+            shipOrTrainNumber,
+            guest.vehicleInfo,
+            getString(R.string.messageInfo_arrival_hint),
+            guest.countryOfArrival,
+            getString(R.string.homescreen_date_and_time_hint),
+            guest.dateOfArrival,
+            guest.timeOfArrival,
+            guest.note
+        )
+
+        phoneNumber.let {
+            model.sendMessage(messageBody, it)
+            compositeDisposable.dispose()
+            model.saveGuest(guest)
+            model.goBack()
+        }
     }
 
     override fun onDateSet(datePicker: DatePicker?, year: Int, month: Int, day: Int) {
