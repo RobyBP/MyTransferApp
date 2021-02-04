@@ -17,7 +17,6 @@ import com.robybp.mytransferapp.R
 import com.robybp.mytransferapp.datamodels.Guest
 import com.robybp.mytransferapp.screen.dateandtimeofarrival.DateAndTimeViewModel
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DateFormat
@@ -81,6 +80,10 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             model.showTimePicker()
         }
 
+        driverEditText.setOnClickListener {
+            model.goToPickDriverFragment()
+        }
+
         saveButton.setOnClickListener {
             if (model.crucialFieldsEmpty(listOfInputFields)) {
                 Toast.makeText(requireContext(), "Only note field can be empty", Toast.LENGTH_LONG)
@@ -91,6 +94,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
         }
 
         cancelButton.setOnClickListener {
+            sharedDateTimePickerViewModel.restData()
             model.goBack()
         }
 
@@ -120,6 +124,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
         )
 
         model.saveGuest(guest)
+        sharedDateTimePickerViewModel.restData()
         model.goBack()
     }
 
@@ -169,6 +174,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
 
         dateOfArrivalEditText.inputType = EditorInfo.TYPE_NULL
         arrivalTimeEditText.inputType = EditorInfo.TYPE_NULL
+        driverEditText.inputType = EditorInfo.TYPE_NULL
 
         listOfInputFields = listOf(
             flightNumberOrBusCompanyEditText,
@@ -178,10 +184,5 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             driverEditText,
             flightNumberOrBusCompanyEditText
         )
-    }
-
-    override fun onDestroyView() {
-        sharedDateTimePickerViewModel.restData()
-        super.onDestroyView()
     }
 }

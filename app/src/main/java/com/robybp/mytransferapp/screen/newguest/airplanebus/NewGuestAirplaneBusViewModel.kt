@@ -32,5 +32,7 @@ class NewGuestAirplaneBusViewModel(
 
     fun showTimePicker() = routingActionsSource.dispatch(Router::showTimePickerDialog)
 
+    fun goToPickDriverFragment() = routingActionsSource.dispatch(Router::goToPickDriver)
+
     fun goBack() = routingActionsSource.dispatch(Router::goBack)
 }

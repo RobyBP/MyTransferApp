@@ -16,6 +16,8 @@ interface Router {
 
     fun goToNewGuestShip()
 
+    fun goToPickDriver()
+
     fun goGuestInfoAirplaneBus()
 
     fun goToGuestInfoTrainShip()

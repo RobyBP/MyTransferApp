@@ -13,6 +13,7 @@ import com.robybp.mytransferapp.screen.driversmenu.DriversMenuViewModel
 import com.robybp.mytransferapp.screen.home.HomeViewModel
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransportViewModel
 import com.robybp.mytransferapp.screen.newguest.airplanebus.NewGuestAirplaneBusViewModel
+import com.robybp.mytransferapp.screen.pickdriver.PickDriverViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
@@ -60,5 +61,7 @@ class MyTransferApplication : Application() {
                     routingActionsSource = get()
                 )
             }
+
+            viewModel { PickDriverViewModel(repository = get(), routingActionsSource = get()) }
         }
 }

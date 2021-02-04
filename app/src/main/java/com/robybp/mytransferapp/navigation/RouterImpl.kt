@@ -10,6 +10,7 @@ import com.robybp.mytransferapp.screen.home.HomeFragment
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransportFragment
 import com.robybp.mytransferapp.screen.newguest.airplanebus.NewGuestAirplaneBusFragment
+import com.robybp.mytransferapp.screen.pickdriver.PickDriverFragment
 
 private const val MAIN_CONTAINER = R.id.fl_main
 
@@ -76,6 +77,14 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
 
     override fun goToNewGuestShip() {
         TODO("Not yet implemented")
+    }
+
+    override fun goToPickDriver() {
+        fragmentManager.beginTransaction().apply {
+            replace(MAIN_CONTAINER, PickDriverFragment())
+            addToBackStack(PickDriverFragment.TAG)
+            commit()
+        }
     }
 
     override fun goGuestInfoAirplaneBus() {
