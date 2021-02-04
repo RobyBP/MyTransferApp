@@ -24,7 +24,7 @@ class PickDriverAdapter(private val clickListener: OnClickListener) : RecyclerVi
         holder.driverName.setText(driverList[position].name)
         holder.phoneNumber.setText(driverList[position].phoneNumber)
         holder.itemView.setOnClickListener {
-            clickListener.onItemClicked()
+            clickListener.onItemClicked(holder.driverName.text.toString())
         }
     }
 
@@ -38,11 +38,11 @@ class PickDriverAdapter(private val clickListener: OnClickListener) : RecyclerVi
     }
 
     interface OnClickListener{
-        fun onItemClicked()
+        fun onItemClicked(name: String)
     }
 
     class PickDriverViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val driverName: EditText = itemView.findViewById(R.id.driversmenuscreen_driverName_editText)
+        val driverName: EditText = itemView.findViewById(R.id.newguestshiptrainscreen_guestName_editText)
         val phoneNumber: EditText =
             itemView.findViewById(R.id.driversmenuscreen_driverPhoneNumber_editText)
 

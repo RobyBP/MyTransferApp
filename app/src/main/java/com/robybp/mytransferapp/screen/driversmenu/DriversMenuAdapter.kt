@@ -12,7 +12,7 @@ import com.robybp.mytransferapp.datamodels.Driver
 class DriversMenuAdapter : RecyclerView.Adapter<DriversMenuAdapter.DriversMenuViewHolder>() {
 
     inner class DriversMenuViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val driverName: EditText = itemView.findViewById(R.id.driversmenuscreen_driverName_editText)
+        val driverName: EditText = itemView.findViewById(R.id.newguestshiptrainscreen_guestName_editText)
         val driverNumber: EditText =
             itemView.findViewById(R.id.driversmenuscreen_driverPhoneNumber_editText)
 

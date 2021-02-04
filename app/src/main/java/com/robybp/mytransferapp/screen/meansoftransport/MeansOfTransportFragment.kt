@@ -39,7 +39,7 @@ class MeansOfTransportFragment() : Fragment() {
         }
 
         trainButton.setOnClickListener {
-
+            model.goToNewGuestTrainFragment()
         }
 
         airplaneButton.setOnClickListener {
@@ -47,7 +47,7 @@ class MeansOfTransportFragment() : Fragment() {
         }
 
         shipButton.setOnClickListener {
-
+            model.goToNewGuestShipFragment()
         }
         super.onViewCreated(view, savedInstanceState)
     }

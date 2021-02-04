@@ -1,4 +1,4 @@
-package com.robybp.mytransferapp.screen.newguest.airplanebus
+package com.robybp.mytransferapp.screen.newguest.shiptrain
 
 import android.widget.EditText
 import androidx.lifecycle.ViewModel
@@ -10,7 +10,7 @@ import com.robybp.mytransferapp.navigation.RoutingActionsSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class NewGuestAirplaneBusViewModel(
+class NewGuestShipTrainViewModel(
     private val repository: GuestBookRepository,
     private val routingActionsSource: RoutingActionsSource
 ) : ViewModel() {
@@ -37,4 +37,5 @@ class NewGuestAirplaneBusViewModel(
     fun goToHomeScreen() = routingActionsSource.dispatch(Router::goToHomeScreen)
 
     fun goBack() = routingActionsSource.dispatch(Router::goBack)
+
 }

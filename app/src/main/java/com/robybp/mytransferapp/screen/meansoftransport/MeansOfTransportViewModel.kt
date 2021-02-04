@@ -11,4 +11,7 @@ class MeansOfTransportViewModel(private val routingActionsSource: RoutingActions
 
     fun goToNewGuestBusFragment() = routingActionsSource.dispatch(Router::goToNewGuestBus)
 
+    fun goToNewGuestTrainFragment() = routingActionsSource.dispatch(Router::goToNewGuestTrain)
+
+    fun goToNewGuestShipFragment() = routingActionsSource.dispatch(Router::goToNewGuestShip)
 }

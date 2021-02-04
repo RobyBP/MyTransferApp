@@ -10,6 +10,7 @@ import com.robybp.mytransferapp.screen.home.HomeFragment
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransportFragment
 import com.robybp.mytransferapp.screen.newguest.airplanebus.NewGuestAirplaneBusFragment
+import com.robybp.mytransferapp.screen.newguest.shiptrain.NewGuestShipTrainFragment
 import com.robybp.mytransferapp.screen.pickdriver.PickDriverFragment
 
 private const val MAIN_CONTAINER = R.id.fl_main
@@ -64,19 +65,29 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
     }
 
     override fun goToNewGuestTrain() {
-//        fragmentManager.beginTransaction().apply {
-//            val bundle = Bundle()
-//            bundle.putString("Vehicle", vehicle)
-//            val newShipTrainFragment = NewGuestAirplaneBusFragment()
-//            newShipTrainFragment.arguments = bundle
-//            replace(MAIN_CONTAINER, newShipTrainFragment)
-//            addToBackStack(NewGuestShipTrainFragment.TAG)
-//            commit()
-//        }
+
+        fragmentManager.beginTransaction().apply {
+            val bundle = Bundle()
+            bundle.putString("Vehicle", MeansOfTransport.TRAIN.toString())
+            val newShipTrainFragment = NewGuestShipTrainFragment()
+            newShipTrainFragment.arguments = bundle
+            replace(MAIN_CONTAINER, newShipTrainFragment)
+            addToBackStack(NewGuestShipTrainFragment.TAG)
+            commit()
+        }
     }
 
     override fun goToNewGuestShip() {
-        TODO("Not yet implemented")
+
+        fragmentManager.beginTransaction().apply {
+            val bundle = Bundle()
+            bundle.putString("Vehicle", MeansOfTransport.SHIP.toString())
+            val newShipTrainFragment = NewGuestShipTrainFragment()
+            newShipTrainFragment.arguments = bundle
+            replace(MAIN_CONTAINER, newShipTrainFragment)
+            addToBackStack(NewGuestShipTrainFragment.TAG)
+            commit()
+        }
     }
 
     override fun goToPickDriver() {

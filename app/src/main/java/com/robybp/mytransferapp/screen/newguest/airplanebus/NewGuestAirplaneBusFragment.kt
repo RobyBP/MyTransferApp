@@ -17,6 +17,7 @@ import com.robybp.mytransferapp.R
 import com.robybp.mytransferapp.datamodels.Guest
 import com.robybp.mytransferapp.screen.dateandtimeofarrival.DateAndTimeViewModel
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
+import com.robybp.mytransferapp.screen.pickdriver.PickDriverViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DateFormat
@@ -42,6 +43,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
     private lateinit var topIcon: ImageView
     private val model: NewGuestAirplaneBusViewModel by viewModel()
     private val sharedDateTimePickerViewModel: DateAndTimeViewModel by sharedViewModel()
+    private val sharedPickDriverViewModel: PickDriverViewModel by sharedViewModel()
 
     private var listOfInputFields = listOf<EditText>()
 
@@ -62,6 +64,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         if (requireArguments()["Vehicle"] == MeansOfTransport.AIRPLANE.toString()) {
             topIcon.setImageResource(R.drawable.plane3)
             bottomIcon.setImageResource(R.drawable.plane3)
@@ -72,6 +75,10 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             flightNumberOrBusCompanyText.setText(R.string.newGuest_busCompany_hint)
         }
 
+        parentFragmentManager.addOnBackStackChangedListener {
+            if(sharedPickDriverViewModel.driverName != null) driverEditText.setText(sharedPickDriverViewModel.driverName)
+            sharedPickDriverViewModel.driverName = null
+        }
         dateOfArrivalEditText.setOnClickListener {
             model.showDatePicker()
         }
@@ -125,7 +132,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
 
         model.saveGuest(guest)
         sharedDateTimePickerViewModel.restData()
-        model.goBack()
+        model.goToHomeScreen()
     }
 
     override fun onDateSet(datePicker: DatePicker?, year: Int, month: Int, day: Int) {
@@ -154,7 +161,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
 
     private fun initialiseViews(view: View) {
 
-        nameEditText = view.findViewById(R.id.driversmenuscreen_driverName_editText)
+        nameEditText = view.findViewById(R.id.newguestbusairplanescreen_guestName_editText)
         flightNumberOrBusCompanyEditText =
             view.findViewById(R.id.newguestbusairplanescreen_flightNumber_editText)
         arrivesFromEditText = view.findViewById(R.id.newguestbusairplanescreen_arrivesFrom_editText)

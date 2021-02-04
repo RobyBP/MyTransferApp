@@ -21,5 +21,7 @@ class DriversMenuViewModel(
         repository.addDriver(driver)
     }
 
+    fun returnToDriversMenu() = routingActionsSource.dispatch(Router::goToDriversMenu)
+
     fun goBack() = routingActionsSource.dispatch(Router::goBack)
 }

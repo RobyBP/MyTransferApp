@@ -8,10 +8,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class PickDriverViewModel(
-    private val repository: GuestBookRepository,
+    repository: GuestBookRepository,
     private val routingActionsSource: RoutingActionsSource
 ) : ViewModel() {
-
+    var driverName: String? = null
     val allDrivers = repository.allDrivers
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())

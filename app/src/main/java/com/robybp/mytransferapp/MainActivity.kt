@@ -21,6 +21,8 @@ class MainActivity : AppCompatActivity(), RoutingActionConsumer {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        if (savedInstanceState == null) mediator.dispatch(Router::goToHomeScreen)
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -39,7 +41,6 @@ class MainActivity : AppCompatActivity(), RoutingActionConsumer {
     override fun onStart() {
         super.onStart()
         mediator.registerActiveConsumer(this)
-        mediator.dispatch(Router::goToHomeScreen)
     }
 
     override fun onStop() {

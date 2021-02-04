@@ -23,7 +23,7 @@
         />
 
     <EditText
-        android:id="@+id/driversmenuscreen_driverName_editText"
+        android:id="@+id/newguestshiptrainscreen_guestName_editText"
         style="@style/transferpal_edittext"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/driversmenuscreen_driverName_editText"
+        app:layout_constraintTop_toBottomOf="@id/newguestshiptrainscreen_guestName_editText"
         android:paddingTop="7dp"
         android:paddingHorizontal="10dp"
         android:text="Phone number: "

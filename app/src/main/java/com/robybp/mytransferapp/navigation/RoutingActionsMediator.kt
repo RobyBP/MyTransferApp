@@ -5,10 +5,11 @@ import java.util.*
 class RoutingActionsMediator : RoutingActionsSource {
 
     private var activeConsumer: RoutingActionConsumer? = null
-    private val actionsQueue = LinkedList<QueuedAction>()
+    private val actionsQueue = LinkedList<(Router) -> Unit>()
 
     override fun registerActiveConsumer(consumer: RoutingActionConsumer) {
         activeConsumer = consumer
+        flushQueue()
     }
 
     override fun deregisterConsumer() {
@@ -16,15 +17,12 @@ class RoutingActionsMediator : RoutingActionsSource {
     }
 
     override fun dispatch(routingAction: (Router) -> Unit) {
-        actionsQueue.add(QueuedAction(routingAction))
-        if (activeConsumer != null) flushQueue()
+        activeConsumer?.onRoutingAction(routingAction) ?: actionsQueue.add(routingAction)
     }
 
     private fun flushQueue() {
         while (!actionsQueue.isEmpty()) {
-            activeConsumer!!.onRoutingAction(actionsQueue.poll().routingAction)
+            activeConsumer!!.onRoutingAction(actionsQueue.poll())
         }
     }
-
-    class QueuedAction(val routingAction: (Router) -> Unit)
 }
