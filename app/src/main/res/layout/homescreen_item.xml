@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="@dimen/homescreen_hintText_padding_horizontal"
         android:paddingBottom="@dimen/homescreen_hintText_padding_bottom"
-        android:text="@string/homescreen_city_hint"
+        android:text="@string/homescreenItem_city_hint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/homescreen_transport_info_hint" />
 
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="@dimen/homescreen_hintText_padding_horizontal"
         android:paddingBottom="@dimen/homescreen_hintText_padding_bottom"
-        android:text="@string/homescreen_date_and_time_hint"
+        android:text="@string/homescreenItem_date_and_time_hint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/homescreen_city_hint" />
 
@@ -85,8 +85,7 @@
         android:paddingHorizontal="46dp"
         android:paddingBottom="1dp"
         app:layout_constraintBottom_toBottomOf="@+id/homescreen_date_and_time_hint"
-        app:layout_constraintStart_toStartOf="@id/homescreen_transport_info"
-        tools:text="asdfafsadf" />
+        app:layout_constraintStart_toStartOf="@id/homescreen_transport_info" />
 
     <View
         android:layout_width="@dimen/homescreen_check_icon_width"
@@ -111,10 +110,10 @@
         android:id="@+id/homescreen_driver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/homescreen_transport_info"
         android:paddingHorizontal="6dp"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
-        tools:text="Roby"/>
+        app:layout_constraintBottom_toBottomOf="@id/homescreen_transport_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Roby" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,21 +3,21 @@
 
     <string name="newGuest_name_hint">Enter guest name</string>
     <string name="newGuest_saveButton">Save Guest</string>
-    <string name="newGuest_flightNumber_hint">Flight number: </string>
-    <string name="newGuest_trainNumber_hint">Train number: </string>
-    <string name="newGuest_shipLineNumber_hint">Line number: </string>
-    <string name="newGuest_busCompany_hint">Bus company: </string>
-    <string name="newGuest_arrivesFrom_hint">Arrives from: </string>
-    <string name="newGuest_dateAndTimeOfArrival_hint">Date and time of arrival: </string>
+    <string name="newGuest_flightNumber_hint">Flight number:</string>
+    <string name="newGuest_trainNumber_hint">Train number:</string>
+    <string name="newGuest_shipLineNumber_hint">Line number:</string>
+    <string name="newGuest_busCompany_hint">Bus company:</string>
+    <string name="newGuest_arrivesFrom_hint">Arrives from:</string>
+    <string name="newGuest_dateAndTimeOfArrival_hint">Date and time of arrival:</string>
     <string name="newGuest_driver_hint">Driver: </string>
     <string name="newGuest_note_hint">Note: </string>
     <string name="newGuest_sendInfo_hint">Send message to driver: </string>
     <string name="newGuest_trainOnStation_hint">On station: </string>
     <string name="newGuest_shipOnPort_hint">In the port: </string>
 
-    <string name="homescreen_city_hint">City: </string>
-    <string name="homescreen_fl_number_hint">Fl. number: </string>
-    <string name="homescreen_date_and_time_hint">Date and time: </string>
+    <string name="homescreenItem_city_hint">City: </string>
+    <string name="homescreenItem_fl_number_hint">Fl. number: </string>
+    <string name="homescreenItem_date_and_time_hint">Date and time: </string>
     <string name="homescreen_button_text">Add new</string>
     <string name="homescreen_driver_hint">Drivers menu</string>
     <string name="homescreen_title">My Transfer App</string>
@@ -28,6 +28,7 @@
     <string name="messageInfo_busCompany_hint">Bus company: </string>
     <string name="messageInfo_shipNumber_hint">Line number: </string>
     <string name="messageInfo_trainNumber_hint">Train number: </string>
+    <string name="messageInfo_dateAndTimeOfArrival">Date and time: </string>
     <string name="meansoftransport_meansOfTransport_hint">The guest arrives with:</string>
 
     <string name="airplaneOrBus_messageBody">

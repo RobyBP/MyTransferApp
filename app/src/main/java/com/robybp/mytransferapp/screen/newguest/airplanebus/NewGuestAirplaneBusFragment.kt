@@ -192,7 +192,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             guest.vehicleInfo,
             getString(R.string.messageInfo_arrival_hint),
             guest.countryOfArrival,
-            getString(R.string.homescreen_date_and_time_hint),
+            getString(R.string.messageInfo_dateAndTimeOfArrival),
             guest.dateOfArrival,
             guest.timeOfArrival,
             guest.note
