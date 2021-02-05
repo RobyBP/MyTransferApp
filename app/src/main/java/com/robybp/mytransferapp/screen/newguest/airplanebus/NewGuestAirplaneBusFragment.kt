@@ -172,7 +172,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
         )
 
         compositeDisposable.add(
-            model.getDriverByName("Dusko")
+            model.getDriverByName(guest.driverName!!)
                 .doOnSuccess { Log.d("driver", it.name + it.phoneNumber) }
                 .subscribe { formatMessage(it.phoneNumber, guest) }
         )
@@ -180,15 +180,15 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
 
     private fun formatMessage(phoneNumber: String, guest: Guest){
 
-        val shipOrTrainNumber =
-            if (guest.meansOfTransport == MeansOfTransport.SHIP.toString()) getString(R.string.messageInfo_busCompany_hint) else getString(
+        val flightNumerOrBusCompany =
+            if (guest.meansOfTransport == MeansOfTransport.BUS.toString()) getString(R.string.messageInfo_busCompany_hint) else getString(
                 R.string.messageInfo_flightNumber_hint
             )
         val messageBody = getString(
             R.string.airplaneOrBus_messageBody,
             getString(R.string.messageInfo_guestName_hint),
             guest.name,
-            shipOrTrainNumber,
+            flightNumerOrBusCompany,
             guest.vehicleInfo,
             getString(R.string.messageInfo_arrival_hint),
             guest.countryOfArrival,

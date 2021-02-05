@@ -46,7 +46,7 @@ class NewGuestShipTrainViewModel(
 
     fun goBack() = routingActionsSource.dispatch(Router::goBack)
 
-    fun sendMessage(phoneNumber: String, messageBody: String){
+    fun sendMessage(messageBody: String, phoneNumber: String) {
         val smsManager = SmsManager.getDefault()
         smsManager.sendTextMessage(phoneNumber, null, messageBody, null, null);
     }

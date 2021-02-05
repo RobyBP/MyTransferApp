@@ -6,6 +6,7 @@ import android.app.TimePickerDialog
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,6 +48,8 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
     private lateinit var arrivalTimeEditText: EditText
     private lateinit var driverEditText: EditText
     private lateinit var noteEditText: EditText
+    private lateinit var sendInfoButton: View
+
     private var inputFields = listOf<EditText>()
     private val model: NewGuestShipTrainViewModel by viewModel()
     private val sharedDateTimePickerViewModel: DateAndTimeViewModel by sharedViewModel()
@@ -84,6 +87,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
 
         cancelButton.setOnClickListener {
             sharedDateTimePickerViewModel.restData()
+            compositeDisposable.dispose()
             model.goBack()
         }
 
@@ -106,6 +110,10 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
 
         driverEditText.setOnClickListener {
             model.goToPickDriverFragment()
+        }
+
+        sendInfoButton.setOnClickListener {
+            sendInfo()
         }
 
         super.onViewCreated(view, savedInstanceState)
@@ -137,6 +145,76 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
         model.saveGuest(guest)
         sharedDateTimePickerViewModel.restData()
         model.goToHomeScreen()
+    }
+
+    private fun sendInfo() {
+
+        if (model.crucialFieldsEmpty(inputFields)) {
+            Toast.makeText(requireContext(), "Only note field can be empty", Toast.LENGTH_LONG)
+                .show()
+            return
+        }
+        val guest = Guest(
+            guestId = 0,
+            name = guestNameEditText.text.toString(),
+            vehicleInfo = shipOrTrainNumberEditText.text.toString(),
+            countryOfArrival = arrivesFromEditText.text.toString(),
+            dateOfArrival = dateOfArrivalEditText.text.toString(),
+            timeOfArrival = arrivalTimeEditText.text.toString(),
+            driverName = driverEditText.text.toString(),
+            note = noteEditText.text.toString(),
+            daysUntilArrival = ChronoUnit.DAYS.between(
+                LocalDate.now(),
+                LocalDate.of(
+                    sharedDateTimePickerViewModel.year!!,
+                    sharedDateTimePickerViewModel.month!! + 1,
+                    sharedDateTimePickerViewModel.day!!
+                )
+            ).toInt(),
+            meansOfTransport = requireArguments()["Vehicle"].toString(),
+            portOrStation = portOrStationEditText.text.toString()
+        )
+
+        compositeDisposable.add(
+            model.getDriverByName(guest.driverName!!)
+                .doOnSuccess { Log.d("driver", it.name + it.phoneNumber) }
+                .subscribe { formatMessage(it.phoneNumber, guest) }
+        )
+    }
+
+    private fun formatMessage(phoneNumber: String, guest: Guest) {
+        val shipOrTrainNumber =
+            if (guest.meansOfTransport == MeansOfTransport.SHIP.toString()) getString(R.string.messageInfo_shipNumber_hint) else getString(
+                R.string.messageInfo_trainNumber_hint
+            )
+
+        val portOrStation =
+            if (guest.meansOfTransport == MeansOfTransport.SHIP.toString()) getString(R.string.newGuest_shipOnPort_hint) else getString(
+                R.string.newGuest_trainOnStation_hint
+            )
+
+        val messageBody = getString(
+            R.string.shipOrTrain_messageBody,
+            getString(R.string.messageInfo_guestName_hint),
+            guest.name,
+            shipOrTrainNumber,
+            guest.vehicleInfo,
+            portOrStation,
+            guest.portOrStation,
+            getString(R.string.messageInfo_arrival_hint),
+            guest.countryOfArrival,
+            getString(R.string.homescreen_date_and_time_hint),
+            guest.dateOfArrival,
+            guest.timeOfArrival,
+            guest.note
+        )
+
+        phoneNumber.let {
+            model.sendMessage(messageBody, it)
+            compositeDisposable.dispose()
+            model.saveGuest(guest)
+            model.goBack()
+        }
     }
 
     override fun onDateSet(datePicker: DatePicker?, year: Int, month: Int, day: Int) {
@@ -182,6 +260,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
         arrivalTimeEditText = view.findViewById(R.id.newguestshiptrainscreen_timeOfArrival_editText)
         driverEditText = view.findViewById(R.id.newguestshiptrainscreen_driver_editText)
         noteEditText = view.findViewById(R.id.newguestshiptrainscreen_note_editText)
+        sendInfoButton = view.findViewById(R.id.newguestshiptrainscreen_sendinfo_button)
 
         driverEditText.inputType = EditorInfo.TYPE_NULL
         dateOfArrivalEditText.inputType = EditorInfo.TYPE_NULL
@@ -198,8 +277,4 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
         )
     }
 
-    override fun onDestroyView() {
-        compositeDisposable.dispose()
-        super.onDestroyView()
-    }
 }
