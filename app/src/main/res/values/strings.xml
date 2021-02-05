@@ -18,6 +18,7 @@
     <string name="homescreenItem_city_hint">City: </string>
     <string name="homescreenItem_fl_number_hint">Fl. number: </string>
     <string name="homescreenItem_date_and_time_hint">Date and time: </string>
+    <string name="homescreenItem_date_and_time_formatText">%s %s</string>
     <string name="homescreen_button_text">Add new</string>
     <string name="homescreen_driver_hint">Drivers menu</string>
     <string name="homescreen_title">My Transfer App</string>

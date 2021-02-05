@@ -1,5 +1,6 @@
 package com.robybp.mytransferapp.screen.home
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import com.robybp.mytransferapp.datamodels.Guest
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
 
 // TODO: ListAdapter instead of RecyclerView.Adapter
-class HomeAdapter : RecyclerView.Adapter<HomeScreenViewHolder>() {
+class HomeAdapter(private val clickListener: OnItemClicked) : RecyclerView.Adapter<HomeScreenViewHolder>() {
 
     private var guests = listOf<Guest>()
 
@@ -37,6 +38,10 @@ class HomeAdapter : RecyclerView.Adapter<HomeScreenViewHolder>() {
         holder.dateAndTimeOfArrival.text =
             guests[holder.adapterPosition].dateOfArrival + " " + guests[holder.adapterPosition].timeOfArrival
         holder.driver.text = guests[holder.adapterPosition].driverName
+
+        holder.itemView.setOnClickListener {
+            clickListener.onViewClicked(guests[position])
+        }
     }
 
     override fun getItemCount(): Int = guests.size
@@ -45,10 +50,14 @@ class HomeAdapter : RecyclerView.Adapter<HomeScreenViewHolder>() {
         this.guests = guests
         notifyDataSetChanged()
     }
+
+    interface OnItemClicked {
+        fun onViewClicked(guest: Guest)
+    }
 }
 
 class HomeScreenViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val transportInfoHint = itemView.findViewById<TextView>(R.id.homescreen_transport_info_hint)
+    val transportInfoHint: TextView = itemView.findViewById(R.id.homescreen_transport_info_hint)
     val guestName: TextView = itemView.findViewById(R.id.homescreen_name)
     val transportInfo: TextView = itemView.findViewById(R.id.homescreen_transport_info)
     val country: TextView = itemView.findViewById(R.id.homescreen_city)

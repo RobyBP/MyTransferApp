@@ -8,19 +8,20 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.robybp.mytransferapp.R
+import com.robybp.mytransferapp.datamodels.Guest
 import io.reactivex.disposables.CompositeDisposable
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.compat.ScopeCompat.viewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), HomeAdapter.OnItemClicked {
 
     private lateinit var driversMenuButton: View
     private lateinit var addNewGuestButton: Button
     private val model: HomeViewModel by viewModel()
     private lateinit var recyclerview: RecyclerView
     private val compositeDisposable = CompositeDisposable() // TODO: Leaking subscriptions
-    private val adapter = HomeAdapter()
+    private val adapter = HomeAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,5 +58,9 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         compositeDisposable.dispose()
         super.onDestroyView()
+    }
+
+    override fun onViewClicked(guest: Guest) {
+        model.goToGuestInfo(guest.meansOfTransport)
     }
 }
