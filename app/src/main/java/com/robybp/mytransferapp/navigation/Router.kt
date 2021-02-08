@@ -18,13 +18,13 @@ interface Router {
 
     fun goToPickDriver()
 
-    fun goToGuestInfoPlane()
+    fun goToGuestInfoPlane(guestId: Int)
 
-    fun goToGuestInfoBus()
+    fun goToGuestInfoBus(guestId: Int)
 
-    fun goToGuestInfoTrain()
+    fun goToGuestInfoTrain(guestId: Int)
 
-    fun goToGuestInfoShip()
+    fun goToGuestInfoShip(guestId: Int)
 
     fun showDatePickerDialog()
 

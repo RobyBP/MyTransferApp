@@ -23,12 +23,28 @@ class HomeViewModel(
 
     fun goToDriversMenu() = routingActionsSource.dispatch(Router::goToDriversMenu)
 
-    fun goToGuestInfo(vehicle: String){
-        when(vehicle){
-            MeansOfTransport.BUS.toString() -> routingActionsSource.dispatch(Router::goToGuestInfoBus)
-            MeansOfTransport.AIRPLANE.toString() -> routingActionsSource.dispatch(Router::goToGuestInfoPlane)
-            MeansOfTransport.SHIP.toString() -> routingActionsSource.dispatch(Router::goToGuestInfoShip)
-            MeansOfTransport.TRAIN.toString() -> routingActionsSource.dispatch(Router::goToGuestInfoTrain)
+    fun goToGuestInfo(guest: Guest) {
+        when (guest.meansOfTransport) {
+            MeansOfTransport.BUS.toString() -> routingActionsSource.dispatch {
+                it.goToGuestInfoBus(
+                    guest.guestId
+                )
+            }
+            MeansOfTransport.AIRPLANE.toString() -> routingActionsSource.dispatch {
+                it.goToGuestInfoPlane(
+                    guest.guestId
+                )
+            }
+            MeansOfTransport.SHIP.toString() -> routingActionsSource.dispatch {
+                it.goToGuestInfoShip(
+                    guest.guestId
+                )
+            }
+            MeansOfTransport.TRAIN.toString() -> routingActionsSource.dispatch {
+                it.goToGuestInfoTrain(
+                    guest.guestId
+                )
+            }
         }
     }
 }

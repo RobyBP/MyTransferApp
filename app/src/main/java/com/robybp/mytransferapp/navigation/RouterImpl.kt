@@ -100,10 +100,11 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
         }
     }
 
-    override fun goToGuestInfoPlane() {
+    override fun goToGuestInfoPlane(guestId: Int) {
         fragmentManager.beginTransaction().apply {
             val bundle = Bundle()
             bundle.putString("Vehicle", MeansOfTransport.AIRPLANE.toString())
+            bundle.putInt("GuestId", guestId)
             val newGuestAirplaneBusFragment = GuestInfoAirplaneBusFragment()
             newGuestAirplaneBusFragment.arguments = bundle
             replace(MAIN_CONTAINER, newGuestAirplaneBusFragment)
@@ -112,10 +113,11 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
         }
     }
 
-    override fun goToGuestInfoBus() {
+    override fun goToGuestInfoBus(guestId: Int) {
         fragmentManager.beginTransaction().apply {
             val bundle = Bundle()
             bundle.putString("Vehicle", MeansOfTransport.BUS.toString())
+            bundle.putInt("GuestId", guestId)
             val newGuestAirplaneBusFragment = GuestInfoAirplaneBusFragment()
             newGuestAirplaneBusFragment.arguments = bundle
             replace(MAIN_CONTAINER, newGuestAirplaneBusFragment)
@@ -124,10 +126,11 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
         }
     }
 
-    override fun goToGuestInfoTrain() {
+    override fun goToGuestInfoTrain(guestId: Int) {
         fragmentManager.beginTransaction().apply {
             val bundle = Bundle()
             bundle.putString("Vehicle", MeansOfTransport.TRAIN.toString())
+            bundle.putInt("GuestId", guestId)
             val newShipTrainFragment = GuestInfoShipTrainFragment()
             newShipTrainFragment.arguments = bundle
             replace(MAIN_CONTAINER, newShipTrainFragment)
@@ -136,10 +139,11 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
         }
     }
 
-    override fun goToGuestInfoShip() {
+    override fun goToGuestInfoShip(guestId: Int) {
         fragmentManager.beginTransaction().apply {
             val bundle = Bundle()
             bundle.putString("Vehicle", MeansOfTransport.SHIP.toString())
+            bundle.putInt("GuestId", guestId)
             val newShipTrainFragment = GuestInfoShipTrainFragment()
             newShipTrainFragment.arguments = bundle
             replace(MAIN_CONTAINER, newShipTrainFragment)

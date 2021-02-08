@@ -10,6 +10,7 @@ import com.robybp.mytransferapp.navigation.RoutingActionsMediator
 import com.robybp.mytransferapp.navigation.RoutingActionsSource
 import com.robybp.mytransferapp.screen.dateandtimeofarrival.DateAndTimeViewModel
 import com.robybp.mytransferapp.screen.driversmenu.DriversMenuViewModel
+import com.robybp.mytransferapp.screen.guestinfo.GuestInfoViewModel
 import com.robybp.mytransferapp.screen.home.HomeViewModel
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransportViewModel
 import com.robybp.mytransferapp.screen.newguest.airplanebus.NewGuestAirplaneBusViewModel
@@ -67,5 +68,6 @@ class MyTransferApplication : Application() {
 
             viewModel { PickDriverViewModel(repository = get(), routingActionsSource = get()) }
 
+            viewModel { GuestInfoViewModel(repository = get(), routingActionsSource = get()) }
         }
 }
