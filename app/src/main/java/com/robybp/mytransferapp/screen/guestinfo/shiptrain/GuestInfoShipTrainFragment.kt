@@ -1,34 +1,46 @@
 package com.robybp.mytransferapp.screen.guestinfo.shiptrain
 
+import android.annotation.SuppressLint
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
+import android.icu.text.SimpleDateFormat
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.robybp.mytransferapp.R
 import com.robybp.mytransferapp.datamodels.Guest
+import com.robybp.mytransferapp.screen.dateandtimeofarrival.DateAndTimeViewModel
 import com.robybp.mytransferapp.screen.guestinfo.GuestInfoViewModel
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
+import com.robybp.mytransferapp.screen.pickdriver.PickDriverViewModel
 import io.reactivex.disposables.CompositeDisposable
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.text.DateFormat
+import java.util.*
 
-class GuestInfoShipTrainFragment: Fragment() {
+class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
+    TimePickerDialog.OnTimeSetListener {
 
-    companion object{
+    companion object {
         const val TAG = "GuestInfoShipTrainFragment"
     }
 
     private val compositeDisposable = CompositeDisposable()
     private val model: GuestInfoViewModel by viewModel()
+    private val sharedPickDriverViewModel: PickDriverViewModel by sharedViewModel()
+    private val sharedDateTimeViewModel: DateAndTimeViewModel by sharedViewModel()
     private lateinit var topIcon: ImageView
     private lateinit var bottomIcon: ImageView
     private lateinit var trainOrShipNumberHint: TextView
     private lateinit var portOrStationHint: TextView
-    private lateinit var saveButton: View
+    private lateinit var saveChangesButton: View
     private lateinit var cancelButton: View
     private lateinit var guestNameEditText: EditText
     private lateinit var shipOrTrainNumberEditText: EditText
@@ -39,6 +51,7 @@ class GuestInfoShipTrainFragment: Fragment() {
     private lateinit var driverEditText: EditText
     private lateinit var noteEditText: EditText
     private lateinit var sendInfoButton: View
+    private var guestId: Int? = null
 
     private var inputFields = listOf<EditText>()
 
@@ -48,6 +61,9 @@ class GuestInfoShipTrainFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view = inflater.inflate(R.layout.fragment_new_guest_ship_train, container, false)
+        sharedDateTimeViewModel.timeSetListener = this
+        sharedDateTimeViewModel.dateSetListener = this
+        sharedPickDriverViewModel.setName(null)
         initialiseViews(view)
         return view
     }
@@ -67,25 +83,91 @@ class GuestInfoShipTrainFragment: Fragment() {
         }
 
         model.queryGuest(requireArguments().getInt("GuestId"))
-            .doOnSuccess{
+            .doOnSuccess {
                 setInfo(it)
             }
             .subscribe()
+
+        sharedPickDriverViewModel.getName().observe(viewLifecycleOwner,
+            { driverEditText.setText(it) })
+
+
+        dateOfArrivalEditText.setOnClickListener {
+            model.showDatePicker()
+        }
+
+        arrivalTimeEditText.setOnClickListener {
+            model.showTimePicker()
+        }
 
         cancelButton.setOnClickListener {
             compositeDisposable.dispose()
             model.goBack()
         }
+
+        saveChangesButton.setOnClickListener {
+            if (model.crucialFieldsEmpty(inputFields)) {
+                Toast.makeText(requireContext(), "Only note field can be empty", Toast.LENGTH_LONG)
+                    .show()
+                return@setOnClickListener
+            }
+            updateGuest()
+        }
+
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun initialiseViews(view: View){
+    private fun updateGuest() {
+        val guest = Guest(
+            guestId!!,
+            name = guestNameEditText.text.toString(),
+            vehicleInfo = shipOrTrainNumberEditText.text.toString(),
+            countryOfArrival = arrivesFromEditText.text.toString(),
+            dateOfArrival = dateOfArrivalEditText.text.toString(),
+            timeOfArrival = arrivalTimeEditText.text.toString(),
+            driverName = driverEditText.text.toString(),
+            note = noteEditText.text.toString(),
+            meansOfTransport = requireArguments()["Vehicle"].toString(),
+            portOrStation = portOrStationEditText.text.toString()
+        )
+
+
+        model.updateGuest(guest)
+        sharedDateTimeViewModel.restData()
+        model.goBack()
+    }
+
+    override fun onDateSet(datePicker: DatePicker?, year: Int, month: Int, day: Int) {
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.YEAR, year)
+        calendar.set(Calendar.MONTH, month)
+        calendar.set(Calendar.DAY_OF_MONTH, day)
+
+        sharedDateTimeViewModel.year = year
+        sharedDateTimeViewModel.month = month
+        sharedDateTimeViewModel.day = day
+        val date = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendar.time)
+        dateOfArrivalEditText.setText(date)
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun onTimeSet(p0: TimePicker?, hours: Int, minutes: Int) {
+        val formater = SimpleDateFormat("HH:mm")
+        val time = "$hours:$minutes"
+        val date = formater.parse(time)
+        sharedDateTimeViewModel.hours = hours
+        sharedDateTimeViewModel.minutes = minutes
+        arrivalTimeEditText.setText(formater.format(date))
+    }
+
+    private fun initialiseViews(view: View) {
         topIcon = view.findViewById(R.id.newguestshiptrainscreen_top_icon)
         bottomIcon = view.findViewById(R.id.newguestshiptrainscreen_icon_bottom)
         trainOrShipNumberHint =
             view.findViewById(R.id.newguestshiptrainscreen_trainOrShipNumber_hint)
         portOrStationHint = view.findViewById(R.id.newguestshiptrainscreen_portOrStation_hint)
-        saveButton = view.findViewById(R.id.newguestshiptrainscreen_save_button)
+        saveChangesButton = view.findViewById(R.id.newguestshiptrainscreen_save_button)
         cancelButton = view.findViewById(R.id.newguestshiptrainscreen_cancel_button)
         guestNameEditText = view.findViewById(R.id.newguestshiptrainscreen_guestName_editText)
         shipOrTrainNumberEditText =
@@ -115,7 +197,8 @@ class GuestInfoShipTrainFragment: Fragment() {
         )
     }
 
-    private fun setInfo(guest: Guest){
+    private fun setInfo(guest: Guest) {
+        guestId = guest.guestId
         guestNameEditText.setText(guest.name)
         arrivesFromEditText.setText(guest.countryOfArrival)
         shipOrTrainNumberEditText.setText(guest.vehicleInfo)
@@ -124,5 +207,10 @@ class GuestInfoShipTrainFragment: Fragment() {
         arrivalTimeEditText.setText(guest.timeOfArrival)
         driverEditText.setText(guest.driverName)
         noteEditText.setText(guest.note)
+    }
+
+    override fun onDestroyView() {
+        compositeDisposable.dispose()
+        super.onDestroyView()
     }
 }

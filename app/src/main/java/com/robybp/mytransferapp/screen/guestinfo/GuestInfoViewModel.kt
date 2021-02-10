@@ -1,5 +1,6 @@
 package com.robybp.mytransferapp.screen.guestinfo
 
+import android.widget.EditText
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.robybp.mytransferapp.datamodels.Guest
@@ -17,6 +18,19 @@ class GuestInfoViewModel(private val repository: GuestBookRepository, private va
         repository.getGuest(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+
+    fun crucialFieldsEmpty(fields: List<EditText>): Boolean {
+        for (field in fields) {
+            if (field.text.isNullOrEmpty()) {
+                return true
+            }
+        }
+        return false
+    }
+
+    fun showDatePicker() = routingActionsSource.dispatch(Router::showDatePickerDialog)
+
+    fun showTimePicker() = routingActionsSource.dispatch(Router::showTimePickerDialog)
 
     fun updateGuest(guest: Guest) = viewModelScope.launch(Dispatchers.IO) {
         repository.updateGuestData(guest)

@@ -14,8 +14,7 @@ class PickDriverViewModel(
     repository: GuestBookRepository,
     private val routingActionsSource: RoutingActionsSource
 ) : ViewModel() {
-    var driverName: String? = null
-    val name = MutableLiveData<String>()
+    private val name = MutableLiveData<String>()
     val allDrivers: Flowable<List<Driver>> = repository.allDrivers
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
@@ -23,5 +22,8 @@ class PickDriverViewModel(
     fun setName(driverName: String?){
         name.value = driverName
     }
+
+    fun getName() = name
+
     fun goBack() = routingActionsSource.dispatch(Router::goBack)
 }

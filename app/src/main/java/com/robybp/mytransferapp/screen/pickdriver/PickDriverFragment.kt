@@ -49,7 +49,6 @@ class PickDriverFragment: Fragment(), PickDriverAdapter.OnClickListener {
     }
 
     override fun onItemClicked(name: String) {
-        model.driverName = name
         model.setName(name)
         model.goBack()
     }

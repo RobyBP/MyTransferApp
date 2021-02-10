@@ -81,7 +81,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
             portOrStationHint.text = getString(R.string.newGuest_trainOnStation_hint)
         }
 
-        sharedPickDriverViewModel.name.observe(viewLifecycleOwner,
+        sharedPickDriverViewModel.getName().observe(viewLifecycleOwner,
             { driverEditText.setText(it) })
 
         cancelButton.setOnClickListener {

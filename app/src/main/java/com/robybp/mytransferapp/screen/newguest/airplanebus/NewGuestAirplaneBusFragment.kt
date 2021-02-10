@@ -78,7 +78,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             flightNumberOrBusCompanyText.setText(R.string.newGuest_busCompany_hint)
         }
 
-        sharedPickDriverViewModel.name.observe(viewLifecycleOwner,
+        sharedPickDriverViewModel.getName().observe(viewLifecycleOwner,
             { driverEditText.setText(it) })
 
         dateOfArrivalEditText.setOnClickListener {
