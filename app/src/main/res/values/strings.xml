@@ -18,10 +18,10 @@
     <string name="homescreenItem_city_hint">City: </string>
     <string name="homescreenItem_fl_number_hint">Fl. number: </string>
     <string name="homescreenItem_date_and_time_hint">Date and time: </string>
-    <string name="homescreenItem_date_and_time_formatText">%s %s</string>
+    <string name="homescreenItem_date_and_time_formatText" translatable="false">%s %s</string>
     <string name="homescreen_button_text">Add new</string>
     <string name="homescreen_driver_hint">Drivers menu</string>
-    <string name="homescreen_title">My Transfer App</string>
+    <string name="homescreen_title" translatable="false">My Transfer App</string>
 
     <string name="messageInfo_guestName_hint">Guest name: </string>
     <string name="messageInfo_arrival_hint">Arrives from: </string>
@@ -32,7 +32,7 @@
     <string name="messageInfo_dateAndTimeOfArrival">Date and time: </string>
     <string name="meansoftransport_meansOfTransport_hint">The guest arrives with:</string>
 
-    <string name="airplaneOrBus_messageBody">
+    <string name="airplaneOrBus_messageBody" translatable="false">
         %s %s
         \n%s%s
         \n%s%s
@@ -40,7 +40,7 @@
         %s
     </string>
 
-    <string name="shipOrTrain_messageBody">
+    <string name="shipOrTrain_messageBody" translatable="false">
         %s%s
         \n%s%s
         \n%s%s

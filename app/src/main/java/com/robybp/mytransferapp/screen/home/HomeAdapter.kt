@@ -1,6 +1,6 @@
 package com.robybp.mytransferapp.screen.home
 
-import android.content.Context
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +11,8 @@ import com.robybp.mytransferapp.datamodels.Guest
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
 
 // TODO: ListAdapter instead of RecyclerView.Adapter
-class HomeAdapter(private val clickListener: OnItemClicked) : RecyclerView.Adapter<HomeScreenViewHolder>() {
+class HomeAdapter(private val clickListener: OnItemClicked) :
+    RecyclerView.Adapter<HomeScreenViewHolder>() {
 
     private var guests = listOf<Guest>()
 
@@ -36,7 +37,11 @@ class HomeAdapter(private val clickListener: OnItemClicked) : RecyclerView.Adapt
         holder.transportInfo.text = guests[holder.adapterPosition].vehicleInfo
         holder.country.text = guests[holder.adapterPosition].countryOfArrival
         holder.dateAndTimeOfArrival.text =
-            guests[holder.adapterPosition].dateOfArrival + " " + guests[holder.adapterPosition].timeOfArrival
+            holder.itemView.resources.getString(
+                R.string.homescreenItem_date_and_time_formatText,
+                guests[holder.adapterPosition].dateOfArrival,
+                guests[holder.adapterPosition].timeOfArrival
+            )
         holder.driver.text = guests[holder.adapterPosition].driverName
 
         holder.itemView.setOnClickListener {
