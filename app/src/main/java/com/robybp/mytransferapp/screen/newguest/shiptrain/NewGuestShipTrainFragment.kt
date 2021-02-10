@@ -23,8 +23,6 @@ import io.reactivex.disposables.CompositeDisposable
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DateFormat
-import java.time.LocalDate
-import java.time.temporal.ChronoUnit
 import java.util.*
 
 class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListener,
@@ -130,14 +128,6 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
             timeOfArrival = arrivalTimeEditText.text.toString(),
             driverName = driverEditText.text.toString(),
             note = noteEditText.text.toString(),
-            daysUntilArrival = ChronoUnit.DAYS.between(
-                LocalDate.now(),
-                LocalDate.of(
-                    sharedDateTimePickerViewModel.year!!,
-                    sharedDateTimePickerViewModel.month!! + 1,
-                    sharedDateTimePickerViewModel.day!!
-                )
-            ).toInt(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = portOrStationEditText.text.toString()
         )
@@ -164,14 +154,6 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
             timeOfArrival = arrivalTimeEditText.text.toString(),
             driverName = driverEditText.text.toString(),
             note = noteEditText.text.toString(),
-            daysUntilArrival = ChronoUnit.DAYS.between(
-                LocalDate.now(),
-                LocalDate.of(
-                    sharedDateTimePickerViewModel.year!!,
-                    sharedDateTimePickerViewModel.month!! + 1,
-                    sharedDateTimePickerViewModel.day!!
-                )
-            ).toInt(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = portOrStationEditText.text.toString()
         )

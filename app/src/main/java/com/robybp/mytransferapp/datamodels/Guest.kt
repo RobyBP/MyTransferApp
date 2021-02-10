@@ -15,6 +15,5 @@ class Guest(
     val timeOfArrival: String,
     val note: String?,
     var driverName: String?,
-    val daysUntilArrival: Int,
     val meansOfTransport: String
 )
