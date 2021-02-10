@@ -64,6 +64,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
         initialiseViews(view)
         sharedDateTimePickerViewModel.dateSetListener = this
         sharedDateTimePickerViewModel.timeSetListener = this
+        sharedPickDriverViewModel.setName(null)
         return view
     }
 
@@ -178,7 +179,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
         )
     }
 
-    private fun formatMessage(phoneNumber: String, guest: Guest){
+    private fun formatMessage(phoneNumber: String, guest: Guest) {
 
         val flightNumerOrBusCompany =
             if (guest.meansOfTransport == MeansOfTransport.BUS.toString()) getString(R.string.messageInfo_busCompany_hint) else getString(
@@ -262,5 +263,10 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             driverEditText,
             flightNumberOrBusCompanyEditText
         )
+    }
+
+    override fun onDestroyView() {
+        compositeDisposable.dispose()
+        super.onDestroyView()
     }
 }

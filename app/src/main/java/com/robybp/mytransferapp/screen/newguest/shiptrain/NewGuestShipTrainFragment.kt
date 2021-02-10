@@ -65,6 +65,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
         sharedDateTimePickerViewModel.dateSetListener = this
         sharedDateTimePickerViewModel.timeSetListener = this
         initialiseViews(view)
+        sharedPickDriverViewModel.setName(null)
         return view
     }
 
@@ -277,4 +278,8 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
         )
     }
 
+    override fun onDestroyView() {
+        compositeDisposable.dispose()
+        super.onDestroyView()
+    }
 }

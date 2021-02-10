@@ -7,7 +7,6 @@ import com.robybp.mytransferapp.db.repository.GuestBookRepository
 import com.robybp.mytransferapp.navigation.Router
 import com.robybp.mytransferapp.navigation.RoutingActionsSource
 import io.reactivex.Flowable
-import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -21,7 +20,7 @@ class PickDriverViewModel(
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
 
-    fun setName(driverName: String){
+    fun setName(driverName: String?){
         name.value = driverName
     }
     fun goBack() = routingActionsSource.dispatch(Router::goBack)

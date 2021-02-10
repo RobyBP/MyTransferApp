@@ -22,7 +22,7 @@ class HomeFragment : Fragment(), HomeAdapter.OnItemClicked {
     private lateinit var addNewGuestButton: Button
     private val model: HomeViewModel by viewModel()
     private lateinit var recyclerview: RecyclerView
-    private val compositeDisposable = CompositeDisposable() // TODO: Leaking subscriptions
+    private val compositeDisposable = CompositeDisposable()
     private val adapter = HomeAdapter(this)
 
     override fun onCreateView(

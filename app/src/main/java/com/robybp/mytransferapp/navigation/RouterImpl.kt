@@ -28,7 +28,8 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
 
     override fun goToDriversMenu() {
         fragmentManager.beginTransaction().apply {
-            replace(MAIN_CONTAINER, DriversMenuFragment())
+            applySlideAnimation()
+            add(MAIN_CONTAINER, DriversMenuFragment())
             addToBackStack(DriversMenuFragment.TAG)
             commit()
         }
@@ -36,7 +37,8 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
 
     override fun goToMeansOfTransport() {
         fragmentManager.beginTransaction().apply {
-            replace(MAIN_CONTAINER, MeansOfTransportFragment())
+            applySlideAnimation()
+            add(MAIN_CONTAINER, MeansOfTransportFragment())
             addToBackStack(MeansOfTransportFragment.TAG)
             commit()
         }
@@ -48,7 +50,8 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
             bundle.putString("Vehicle", MeansOfTransport.AIRPLANE.toString())
             val newGuestAirplaneBusFragment = NewGuestAirplaneBusFragment()
             newGuestAirplaneBusFragment.arguments = bundle
-            replace(MAIN_CONTAINER, newGuestAirplaneBusFragment)
+            applySlideAnimation()
+            add(MAIN_CONTAINER, newGuestAirplaneBusFragment)
             addToBackStack(NewGuestAirplaneBusFragment.TAG)
             commit()
         }
@@ -60,7 +63,8 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
             bundle.putString("Vehicle", MeansOfTransport.BUS.toString())
             val newGuestAirplaneBusFragment = NewGuestAirplaneBusFragment()
             newGuestAirplaneBusFragment.arguments = bundle
-            replace(MAIN_CONTAINER, newGuestAirplaneBusFragment)
+            applySlideAnimation()
+            add(MAIN_CONTAINER, newGuestAirplaneBusFragment)
             addToBackStack(NewGuestAirplaneBusFragment.TAG)
             commit()
         }
@@ -73,7 +77,8 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
             bundle.putString("Vehicle", MeansOfTransport.TRAIN.toString())
             val newShipTrainFragment = NewGuestShipTrainFragment()
             newShipTrainFragment.arguments = bundle
-            replace(MAIN_CONTAINER, newShipTrainFragment)
+            applySlideAnimation()
+            add(MAIN_CONTAINER, newShipTrainFragment)
             addToBackStack(NewGuestShipTrainFragment.TAG)
             commit()
         }
@@ -86,7 +91,8 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
             bundle.putString("Vehicle", MeansOfTransport.SHIP.toString())
             val newShipTrainFragment = NewGuestShipTrainFragment()
             newShipTrainFragment.arguments = bundle
-            replace(MAIN_CONTAINER, newShipTrainFragment)
+            applySlideAnimation()
+            add(MAIN_CONTAINER, newShipTrainFragment)
             addToBackStack(NewGuestShipTrainFragment.TAG)
             commit()
         }
@@ -94,7 +100,8 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
 
     override fun goToPickDriver() {
         fragmentManager.beginTransaction().apply {
-            replace(MAIN_CONTAINER, PickDriverFragment())
+            applySlideAnimation()
+            add(MAIN_CONTAINER, PickDriverFragment())
             addToBackStack(PickDriverFragment.TAG)
             commit()
         }
@@ -107,7 +114,8 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
             bundle.putInt("GuestId", guestId)
             val newGuestAirplaneBusFragment = GuestInfoAirplaneBusFragment()
             newGuestAirplaneBusFragment.arguments = bundle
-            replace(MAIN_CONTAINER, newGuestAirplaneBusFragment)
+            applySlideAnimation()
+            add(MAIN_CONTAINER, newGuestAirplaneBusFragment)
             addToBackStack(GuestInfoAirplaneBusFragment.TAG)
             commit()
         }
@@ -120,7 +128,8 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
             bundle.putInt("GuestId", guestId)
             val newGuestAirplaneBusFragment = GuestInfoAirplaneBusFragment()
             newGuestAirplaneBusFragment.arguments = bundle
-            replace(MAIN_CONTAINER, newGuestAirplaneBusFragment)
+            applySlideAnimation()
+            add(MAIN_CONTAINER, newGuestAirplaneBusFragment)
             addToBackStack(GuestInfoAirplaneBusFragment.TAG)
             commit()
         }
@@ -133,7 +142,8 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
             bundle.putInt("GuestId", guestId)
             val newShipTrainFragment = GuestInfoShipTrainFragment()
             newShipTrainFragment.arguments = bundle
-            replace(MAIN_CONTAINER, newShipTrainFragment)
+            applySlideAnimation()
+            add(MAIN_CONTAINER, newShipTrainFragment)
             addToBackStack(GuestInfoShipTrainFragment.TAG)
             commit()
         }
@@ -146,7 +156,8 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
             bundle.putInt("GuestId", guestId)
             val newShipTrainFragment = GuestInfoShipTrainFragment()
             newShipTrainFragment.arguments = bundle
-            replace(MAIN_CONTAINER, newShipTrainFragment)
+            applySlideAnimation()
+            add(MAIN_CONTAINER, newShipTrainFragment)
             addToBackStack(GuestInfoShipTrainFragment.TAG)
             commit()
         }
