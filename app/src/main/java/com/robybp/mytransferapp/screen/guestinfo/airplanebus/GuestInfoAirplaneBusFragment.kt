@@ -6,6 +6,7 @@ import android.app.TimePickerDialog
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -99,6 +100,10 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
             model.showTimePicker()
         }
 
+        sendInfoButton.setOnClickListener {
+            sendInfo()
+        }
+
         saveChangesButton.setOnClickListener {
             if (model.crucialFieldsEmpty(listOfInputFields)) {
                 Toast.makeText(requireContext(), "Only note field can be empty", Toast.LENGTH_LONG)
@@ -108,6 +113,61 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
             updateGuest()
         }
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun sendInfo() {
+
+        if (model.crucialFieldsEmpty(listOfInputFields)) {
+            Toast.makeText(requireContext(), "Only note field can be empty", Toast.LENGTH_LONG)
+                .show()
+            return
+        }
+        val guest = Guest(
+            guestId!!,
+            name = nameEditText.text.toString(),
+            vehicleInfo = flightNumberOrBusCompanyEditText.text.toString(),
+            countryOfArrival = arrivesFromEditText.text.toString(),
+            dateOfArrival = dateOfArrivalEditText.text.toString(),
+            timeOfArrival = arrivalTimeEditText.text.toString(),
+            driverName = driverEditText.text.toString(),
+            note = noteEditText.text.toString(),
+            meansOfTransport = requireArguments()["Vehicle"].toString(),
+            portOrStation = null
+        )
+
+        compositeDisposable.add(
+            model.getDriverByName(guest.driverName!!)
+                .doOnSuccess { Log.d("driver", it.name + it.phoneNumber) }
+                .subscribe { formatMessage(it.phoneNumber, guest) }
+        )
+    }
+
+    private fun formatMessage(phoneNumber: String, guest: Guest) {
+
+        val flightNumberOrBusCompany =
+            if (guest.meansOfTransport == MeansOfTransport.BUS.toString()) getString(R.string.messageInfo_busCompany_hint) else getString(
+                R.string.messageInfo_flightNumber_hint
+            )
+        val messageBody = getString(
+            R.string.airplaneOrBus_messageBody,
+            getString(R.string.messageInfo_guestName_hint),
+            guest.name,
+            flightNumberOrBusCompany,
+            guest.vehicleInfo,
+            getString(R.string.messageInfo_arrival_hint),
+            guest.countryOfArrival,
+            getString(R.string.messageInfo_dateAndTimeOfArrival),
+            guest.dateOfArrival,
+            guest.timeOfArrival,
+            guest.note
+        )
+
+        phoneNumber.let {
+            model.sendMessage(messageBody, it)
+            compositeDisposable.dispose()
+            model.updateGuest(guest)
+            model.goBack()
+        }
     }
 
     private fun updateGuest(){

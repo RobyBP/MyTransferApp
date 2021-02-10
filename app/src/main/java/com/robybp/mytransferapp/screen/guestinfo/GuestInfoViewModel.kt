@@ -1,12 +1,15 @@
 package com.robybp.mytransferapp.screen.guestinfo
 
+import android.telephony.SmsManager
 import android.widget.EditText
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.robybp.mytransferapp.datamodels.Driver
 import com.robybp.mytransferapp.datamodels.Guest
 import com.robybp.mytransferapp.db.repository.GuestBookRepository
 import com.robybp.mytransferapp.navigation.Router
 import com.robybp.mytransferapp.navigation.RoutingActionsSource
+import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
@@ -26,6 +29,16 @@ class GuestInfoViewModel(private val repository: GuestBookRepository, private va
             }
         }
         return false
+    }
+
+    fun getDriverByName(name: String): Maybe<Driver> =
+        repository.getDriver(name)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+
+    fun sendMessage(messageBody: String, phoneNumber: String){
+        val smsManager = SmsManager.getDefault()
+        smsManager.sendTextMessage(phoneNumber, null, messageBody, null, null)
     }
 
     fun showDatePicker() = routingActionsSource.dispatch(Router::showDatePickerDialog)
