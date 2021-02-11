@@ -1,6 +1,5 @@
 package com.robybp.mytransferapp.screen.home
 
-import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,11 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.robybp.mytransferapp.R
 import com.robybp.mytransferapp.datamodels.Guest
-import com.robybp.mytransferapp.screen.guestinfo.GuestInfoViewModel
 import io.reactivex.disposables.CompositeDisposable
-import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.compat.ScopeCompat.viewModel
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(), HomeAdapter.OnItemClicked {

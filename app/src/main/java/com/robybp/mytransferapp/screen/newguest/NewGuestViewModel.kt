@@ -1,4 +1,4 @@
-package com.robybp.mytransferapp.screen.newguest.airplanebus
+package com.robybp.mytransferapp.screen.newguest
 
 import android.telephony.SmsManager
 import android.widget.EditText
@@ -13,9 +13,10 @@ import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class NewGuestAirplaneBusViewModel(
+class NewGuestViewModel(
     private val repository: GuestBookRepository,
     private val routingActionsSource: RoutingActionsSource
 ) : ViewModel() {
@@ -29,8 +30,8 @@ class NewGuestAirplaneBusViewModel(
         return false
     }
 
-    fun saveGuest(guest: Guest) = viewModelScope.launch(Dispatchers.IO) {
-        repository.addGuest(guest)
+    fun saveGuest(guest: Guest): Job {
+        return viewModelScope.launch(Dispatchers.IO) { repository.addGuest(guest) }
     }
 
     fun getDriverByName(name: String): Maybe<Driver> =
@@ -48,7 +49,7 @@ class NewGuestAirplaneBusViewModel(
 
     fun goBack() = routingActionsSource.dispatch(Router::goBack)
 
-    fun sendMessage(messageBody: String, phoneNumber: String){
+    fun sendMessage(messageBody: String, phoneNumber: String) {
         val smsManager = SmsManager.getDefault()
         smsManager.sendTextMessage(phoneNumber, null, messageBody, null, null)
     }

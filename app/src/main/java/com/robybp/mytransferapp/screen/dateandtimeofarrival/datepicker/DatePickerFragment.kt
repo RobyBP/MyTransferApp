@@ -6,11 +6,8 @@ import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.ViewModelProvider
 import com.robybp.mytransferapp.screen.dateandtimeofarrival.DateAndTimeViewModel
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
 class DatePickerFragment() : DialogFragment() {
@@ -36,7 +33,7 @@ class DatePickerFragment() : DialogFragment() {
             monthDay
         )
 
-        datePicker.datePicker.minDate = System.currentTimeMillis() - 1000
+        //datePicker.datePicker.minDate = System.currentTimeMillis() - 1000
 
         return datePicker
     }

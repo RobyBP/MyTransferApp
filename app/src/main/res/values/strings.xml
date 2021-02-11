@@ -50,4 +50,5 @@
     </string>
     <string name="add_new">Add new</string>
 
+    <string name="notification_description">You have one or more guests arriving in 2 days or less, did you notify the driver?</string>
 </resources>

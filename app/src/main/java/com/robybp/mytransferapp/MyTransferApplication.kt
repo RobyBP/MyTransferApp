@@ -2,6 +2,7 @@ package com.robybp.mytransferapp
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatActivity
+import androidx.work.WorkManager
 import com.robybp.mytransferapp.db.GuestBookDatabase
 import com.robybp.mytransferapp.db.repository.GuestBookRepository
 import com.robybp.mytransferapp.navigation.Router
@@ -13,8 +14,7 @@ import com.robybp.mytransferapp.screen.driversmenu.DriversMenuViewModel
 import com.robybp.mytransferapp.screen.guestinfo.GuestInfoViewModel
 import com.robybp.mytransferapp.screen.home.HomeViewModel
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransportViewModel
-import com.robybp.mytransferapp.screen.newguest.airplanebus.NewGuestAirplaneBusViewModel
-import com.robybp.mytransferapp.screen.newguest.shiptrain.NewGuestShipTrainViewModel
+import com.robybp.mytransferapp.screen.newguest.NewGuestViewModel
 import com.robybp.mytransferapp.screen.pickdriver.PickDriverViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
@@ -45,20 +45,15 @@ class MyTransferApplication : Application() {
                 GuestBookRepository(dao)
             }
 
+            factory<WorkManager> { WorkManager.getInstance(application.applicationContext) }
+
             viewModel { HomeViewModel(repository = get(), routingActionsSource = get()) }
+
+            viewModel { NewGuestViewModel(repository = get(), routingActionsSource = get()) }
 
             viewModel { DriversMenuViewModel(repository = get(), routingActionsSource = get()) }
 
-            viewModel { NewGuestShipTrainViewModel(repository = get(), routingActionsSource = get()) }
-
             viewModel { DateAndTimeViewModel() }
-
-            viewModel {
-                NewGuestAirplaneBusViewModel(
-                    repository = get(),
-                    routingActionsSource = get()
-                )
-            }
 
             viewModel {
                 MeansOfTransportViewModel(

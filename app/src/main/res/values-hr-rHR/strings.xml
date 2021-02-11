@@ -28,4 +28,5 @@
     <string name="messageInfo_dateAndTimeOfArrival">"Datum i vrijeme: "</string>
     <string name="meansoftransport_meansOfTransport_hint">"Gost dolazi sa: "</string>
     <string name="add_new">Dodaj novog</string>
+    <string name="notification_description">Dolaze vam gosti za dva dana ili manje. Jeste li obavjestili vozača?</string>
 </resources>

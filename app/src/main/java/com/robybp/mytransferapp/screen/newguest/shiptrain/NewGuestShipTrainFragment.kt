@@ -14,16 +14,25 @@ import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.WorkRequest
 import com.robybp.mytransferapp.R
 import com.robybp.mytransferapp.datamodels.Guest
 import com.robybp.mytransferapp.screen.dateandtimeofarrival.DateAndTimeViewModel
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
+import com.robybp.mytransferapp.screen.newguest.NewGuestViewModel
 import com.robybp.mytransferapp.screen.pickdriver.PickDriverViewModel
+import com.robybp.mytransferapp.util.NotificationWorker
 import io.reactivex.disposables.CompositeDisposable
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
@@ -49,7 +58,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
     private lateinit var sendInfoButton: View
 
     private var inputFields = listOf<EditText>()
-    private val model: NewGuestShipTrainViewModel by viewModel()
+    private val model: NewGuestViewModel by viewModel()
     private val sharedDateTimePickerViewModel: DateAndTimeViewModel by sharedViewModel()
     private val sharedPickDriverViewModel: PickDriverViewModel by sharedViewModel()
     private val compositeDisposable = CompositeDisposable()
@@ -131,7 +140,28 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = portOrStationEditText.text.toString()
         )
+        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+        val date = LocalDate.parse(guest.dateOfArrival, formatter)
+        val diff = ChronoUnit.DAYS.between(LocalDate.now().plusDays(2), date) * 12
+        val uploadWorkRequest: WorkRequest? =
+            if (ChronoUnit.DAYS.between(
+                    LocalDate.now(),
+                    date
+                ) in 2..3
+            ) OneTimeWorkRequestBuilder<NotificationWorker>().setInitialDelay(
+                12,
+                TimeUnit.HOURS
+            ).build()
+            else OneTimeWorkRequestBuilder<NotificationWorker>().setInitialDelay(
+                diff,
+                TimeUnit.HOURS
+            ).build()
 
+        if (uploadWorkRequest != null) {
+            WorkManager
+                .getInstance(requireContext())
+                .enqueue(uploadWorkRequest)
+        }
 
         model.saveGuest(guest)
         sharedDateTimePickerViewModel.restData()
