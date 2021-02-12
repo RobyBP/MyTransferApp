@@ -21,7 +21,14 @@ class DriversMenuViewModel(
         repository.addDriver(driver)
     }
 
-    fun returnToDriversMenu() = routingActionsSource.dispatch(Router::goToDriversMenu)
-
     fun goBack() = routingActionsSource.dispatch(Router::goBack)
+
+    fun noDuplicates(drivers: List<Driver>, name: String): Boolean {
+        for(driver in drivers){
+            if(name == driver.name){
+                return false
+            }
+        }
+        return true
+    }
 }

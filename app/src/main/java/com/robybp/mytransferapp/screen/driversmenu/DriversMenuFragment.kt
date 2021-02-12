@@ -3,18 +3,19 @@ package com.robybp.mytransferapp.screen.driversmenu
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.ContentResolver
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -23,7 +24,6 @@ import com.robybp.mytransferapp.datamodels.Driver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DriversMenuFragment : Fragment() {
@@ -35,6 +35,7 @@ class DriversMenuFragment : Fragment() {
 
     private val compositeDisposable = CompositeDisposable()
     private val adapter = DriversMenuAdapter()
+    private var drivers = listOf<Driver>()
 
     companion object {
         val TAG = "DriversMenuFragment"
@@ -58,6 +59,7 @@ class DriversMenuFragment : Fragment() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
+                    drivers = it
                     adapter.setDrivers(it)
                 }
         )
@@ -74,7 +76,7 @@ class DriversMenuFragment : Fragment() {
     }
 
     private fun openContacts() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && requireActivity().checkSelfPermission(
+        if (requireActivity().checkSelfPermission(
                 Manifest.permission.READ_CONTACTS
             ) != PackageManager.PERMISSION_GRANTED
         ) {
@@ -125,18 +127,41 @@ class DriversMenuFragment : Fragment() {
                         val name: String =
                             phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
 
-                        model.saveDriver(
+                        if (model.noDuplicates(drivers, name)) model.saveDriver(
                             Driver(
-                                driverId = 0,
-                                name = name,
-                                phoneNumber = contactNumber
+                                0,
+                                name,
+                                contactNumber
                             )
-                        )
+                        ) else showAlertDialog(contactNumber)
                     }
                 }
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun showAlertDialog(phoneNumber: String): Boolean {
+        var isValid = false
+        val dialog = AlertDialog.Builder(requireContext())
+        val et = EditText(requireContext())
+        dialog.setTitle("Please enter different driver name:")
+        dialog.setView(et)
+        dialog.setPositiveButton("Save"){_,_ ->
+            if(!model.noDuplicates(drivers, et.text.toString())){
+                Toast.makeText(requireContext(), "Driver with that name also exists", Toast.LENGTH_LONG).show()
+                isValid = false
+                return@setPositiveButton
+            }else{
+                model.saveDriver(Driver(0, et.text.toString(), phoneNumber))
+            }
+        }
+        dialog.setNegativeButton("Cancel"){_,_ ->
+            isValid = true
+            return@setNegativeButton
+        }
+        dialog.show()
+        return isValid
     }
 
     private fun initialiseViews(view: View) {
