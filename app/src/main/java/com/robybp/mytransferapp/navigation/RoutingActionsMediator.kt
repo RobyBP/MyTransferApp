@@ -22,7 +22,7 @@ class RoutingActionsMediator : RoutingActionsSource {
 
     private fun flushQueue() {
         while (!actionsQueue.isEmpty()) {
-            activeConsumer!!.onRoutingAction(actionsQueue.poll())
+            activeConsumer!!.onRoutingAction(actionsQueue.poll()!!)
         }
     }
 }
