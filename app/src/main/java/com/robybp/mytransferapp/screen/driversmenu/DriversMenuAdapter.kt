@@ -9,12 +9,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.robybp.mytransferapp.R
 import com.robybp.mytransferapp.datamodels.Driver
 
-class DriversMenuAdapter : RecyclerView.Adapter<DriversMenuAdapter.DriversMenuViewHolder>() {
+class DriversMenuAdapter(private val clickListener: OnItemClicked) :
+    RecyclerView.Adapter<DriversMenuAdapter.DriversMenuViewHolder>() {
 
     inner class DriversMenuViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val driverName: EditText = itemView.findViewById(R.id.newguestshiptrainscreen_guestName_editText)
+        val driverName: EditText =
+            itemView.findViewById(R.id.newguestshiptrainscreen_driverName_editText)
         val driverNumber: EditText =
             itemView.findViewById(R.id.driversmenuscreen_driverPhoneNumber_editText)
+        val deleteIcon: View = itemView.findViewById(R.id.delete_icon)
 
         init {
             driverName.inputType = EditorInfo.TYPE_NULL
@@ -33,6 +36,9 @@ class DriversMenuAdapter : RecyclerView.Adapter<DriversMenuAdapter.DriversMenuVi
     override fun onBindViewHolder(holder: DriversMenuViewHolder, position: Int) {
         holder.driverName.setText(driverList[position].name)
         holder.driverNumber.setText(driverList[position].phoneNumber)
+        holder.deleteIcon.setOnClickListener {
+            clickListener.onDeleteIconClicked(driverList[position])
+        }
     }
 
     override fun getItemCount(): Int {
@@ -42,5 +48,9 @@ class DriversMenuAdapter : RecyclerView.Adapter<DriversMenuAdapter.DriversMenuVi
     fun setDrivers(drivers: List<Driver>) {
         driverList = drivers
         notifyDataSetChanged()
+    }
+
+    interface OnItemClicked {
+        fun onDeleteIconClicked(driver: Driver)
     }
 }

@@ -51,4 +51,13 @@
     <string name="add_new">Add new</string>
 
     <string name="notification_description">You have one or more guests arriving in 2 days or less, did you notify the driver?</string>
+    <string name="phone_number">Phone number:</string>
+    <string name="delete_driver_confirmation">Delete driver %s from driver list?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="driver_already_exists">Driver with that name already exists</string>
+    <string name="driver_also_exists">Driver with that name also exists</string>
+    <string name="enter_different_name">Please enter different driver name:</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 </resources>

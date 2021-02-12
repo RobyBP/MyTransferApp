@@ -21,11 +21,15 @@ class DriversMenuViewModel(
         repository.addDriver(driver)
     }
 
+    fun deleteDriver(driver: Driver) = viewModelScope.launch(Dispatchers.IO) {
+        repository.removeDriver(driver)
+    }
+
     fun goBack() = routingActionsSource.dispatch(Router::goBack)
 
     fun noDuplicates(drivers: List<Driver>, name: String): Boolean {
-        for(driver in drivers){
-            if(name == driver.name){
+        for (driver in drivers) {
+            if (name == driver.name) {
                 return false
             }
         }

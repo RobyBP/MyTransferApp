@@ -26,7 +26,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DriversMenuFragment : Fragment() {
+class DriversMenuFragment : Fragment(), DriversMenuAdapter.OnItemClicked {
 
     private lateinit var addNewButton: Button
     private lateinit var exitButton: View
@@ -34,7 +34,7 @@ class DriversMenuFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
 
     private val compositeDisposable = CompositeDisposable()
-    private val adapter = DriversMenuAdapter()
+    private val adapter = DriversMenuAdapter(this)
     private var drivers = listOf<Driver>()
 
     companion object {
@@ -145,18 +145,22 @@ class DriversMenuFragment : Fragment() {
         var isValid = false
         val dialog = AlertDialog.Builder(requireContext())
         val et = EditText(requireContext())
-        dialog.setTitle("Please enter different driver name:")
+        dialog.setTitle(resources.getString(R.string.driver_already_exists))
         dialog.setView(et)
-        dialog.setPositiveButton("Save"){_,_ ->
-            if(!model.noDuplicates(drivers, et.text.toString())){
-                Toast.makeText(requireContext(), "Driver with that name also exists", Toast.LENGTH_LONG).show()
+        dialog.setPositiveButton(resources.getString(R.string.save)) { _, _ ->
+            if (!model.noDuplicates(drivers, et.text.toString())) {
+                Toast.makeText(
+                    requireContext(),
+                    resources.getString(R.string.driver_also_exists),
+                    Toast.LENGTH_LONG
+                ).show()
                 isValid = false
                 return@setPositiveButton
-            }else{
+            } else {
                 model.saveDriver(Driver(0, et.text.toString(), phoneNumber))
             }
         }
-        dialog.setNegativeButton("Cancel"){_,_ ->
+        dialog.setNegativeButton(resources.getString(R.string.cancel)) { _, _ ->
             isValid = true
             return@setNegativeButton
         }
@@ -169,5 +173,17 @@ class DriversMenuFragment : Fragment() {
         exitButton = view.findViewById(R.id.driversmenuscreen_cancel_button)
         recyclerView = view.findViewById(R.id.driversmenuscreen_recyclerview)
         recyclerView.adapter = adapter
+    }
+
+    override fun onDeleteIconClicked(driver: Driver) {
+        val dialog = AlertDialog.Builder(requireContext())
+        dialog.setTitle(resources.getString(R.string.delete_driver_confirmation, driver.name))
+        dialog.setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
+            model.deleteDriver(driver)
+        }
+        dialog.setNegativeButton(resources.getString(R.string.no)) { _, _ ->
+            return@setNegativeButton
+        }
+        dialog.show()
     }
 }

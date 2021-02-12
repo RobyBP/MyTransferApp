@@ -236,7 +236,7 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
         portOrStationHint = view.findViewById(R.id.newguestshiptrainscreen_portOrStation_hint)
         saveChangesButton = view.findViewById(R.id.newguestshiptrainscreen_save_button)
         cancelButton = view.findViewById(R.id.newguestshiptrainscreen_cancel_button)
-        guestNameEditText = view.findViewById(R.id.newguestshiptrainscreen_guestName_editText)
+        guestNameEditText = view.findViewById(R.id.newguestshiptrainscreen_driverName_editText)
         shipOrTrainNumberEditText =
             view.findViewById(R.id.newguestshiptrainscreen_trainOrShipNumber_editText)
         portOrStationEditText =
