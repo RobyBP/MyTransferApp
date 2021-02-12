@@ -141,7 +141,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
         val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
         val date = LocalDate.parse(guest.dateOfArrival, formatter)
         val diff = ChronoUnit.DAYS.between(LocalDate.now().plusDays(2), date) * 12
-        val uploadWorkRequest: WorkRequest? =
+        val uploadWorkRequest: WorkRequest =
             if (ChronoUnit.DAYS.between(
                     LocalDate.now(),
                     date
@@ -155,11 +155,9 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
                 TimeUnit.HOURS
             ).build()
 
-        if (uploadWorkRequest != null) {
-            WorkManager
-                .getInstance(requireContext())
-                .enqueue(uploadWorkRequest)
-        }
+        WorkManager
+            .getInstance(requireContext())
+            .enqueue(uploadWorkRequest)
 
 
         model.saveGuest(guest)
