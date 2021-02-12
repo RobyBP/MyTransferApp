@@ -200,7 +200,7 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
 
 
         model.updateGuest(guest)
-        sharedDateTimeViewModel.restData()
+        sharedDateTimeViewModel.resetData()
         model.goBack()
     }
 

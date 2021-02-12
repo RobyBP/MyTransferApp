@@ -94,7 +94,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
             { driverEditText.setText(it) })
 
         cancelButton.setOnClickListener {
-            sharedDateTimePickerViewModel.restData()
+            sharedDateTimePickerViewModel.resetData()
             compositeDisposable.dispose()
             model.goBack()
         }
@@ -164,7 +164,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
         }
 
         model.saveGuest(guest)
-        sharedDateTimePickerViewModel.restData()
+        sharedDateTimePickerViewModel.resetData()
         model.goToHomeScreen()
     }
 

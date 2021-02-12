@@ -185,7 +185,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
         )
 
         model.updateGuest(guest)
-        sharedDateTimeViewModel.restData()
+        sharedDateTimeViewModel.resetData()
         model.goBack()
     }
 

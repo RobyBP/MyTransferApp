@@ -112,7 +112,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
         }
 
         cancelButton.setOnClickListener {
-            sharedDateTimePickerViewModel.restData()
+            sharedDateTimePickerViewModel.resetData()
             compositeDisposable.dispose()
             model.goBack()
         }
@@ -163,8 +163,8 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
 
 
         model.saveGuest(guest)
-        sharedDateTimePickerViewModel.restData()
-        model.goToHomeScreen()
+        sharedDateTimePickerViewModel.resetData()
+        model.goBack()
     }
 
     private fun sendInfo() {
