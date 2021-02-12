@@ -161,6 +161,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
                 .enqueue(uploadWorkRequest)
         }
 
+
         model.saveGuest(guest)
         sharedDateTimePickerViewModel.restData()
         model.goToHomeScreen()
@@ -195,7 +196,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
 
     private fun formatMessage(phoneNumber: String, guest: Guest) {
 
-        val flightNumerOrBusCompany =
+        val flightNuderOrBusCompany =
             if (guest.meansOfTransport == MeansOfTransport.BUS.toString()) getString(R.string.messageInfo_busCompany_hint) else getString(
                 R.string.messageInfo_flightNumber_hint
             )
@@ -203,7 +204,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             R.string.airplaneOrBus_messageBody,
             getString(R.string.messageInfo_guestName_hint),
             guest.name,
-            flightNumerOrBusCompany,
+            flightNuderOrBusCompany,
             guest.vehicleInfo,
             getString(R.string.messageInfo_arrival_hint),
             guest.countryOfArrival,

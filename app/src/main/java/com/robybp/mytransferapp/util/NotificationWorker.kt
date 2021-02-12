@@ -2,23 +2,34 @@ package com.robybp.mytransferapp.util
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import com.robybp.mytransferapp.MainActivity
 import com.robybp.mytransferapp.R
 
 class NotificationWorker(private val appContext: Context, workerParams: WorkerParameters) :
     Worker(appContext, workerParams) {
 
     override fun doWork(): Result {
+
+        val intent = Intent(appContext, MainActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(appContext, 0, intent, 0)
         val builder = NotificationCompat.Builder(appContext, "123")
             .setSmallIcon(R.drawable.hrv)
             .setContentInfo("My Transfer App")
             .setContentText(appContext.resources.getString(R.string.notification_description))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            .setStyle(
+                NotificationCompat.BigTextStyle()
+                    .bigText(appContext.resources.getString(R.string.notification_description))
+            )
             .setAutoCancel(true)
         createNotificationChannel()
         with(NotificationManagerCompat.from(appContext)) {
