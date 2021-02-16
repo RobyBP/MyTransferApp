@@ -204,6 +204,7 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
         model.goBack()
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun onDateSet(datePicker: DatePicker?, year: Int, month: Int, day: Int) {
         val calendar = Calendar.getInstance()
         calendar.set(Calendar.YEAR, year)
@@ -213,8 +214,10 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
         sharedDateTimeViewModel.year = year
         sharedDateTimeViewModel.month = month
         sharedDateTimeViewModel.day = day
-        val date = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendar.time)
-        dateOfArrivalEditText.setText(date)
+        val formatter = SimpleDateFormat("dd/MM/yyyy")
+        val date = calendar.time
+        val stringDate = formatter.format(date)
+        dateOfArrivalEditText.setText(stringDate)
     }
 
     @SuppressLint("SimpleDateFormat")

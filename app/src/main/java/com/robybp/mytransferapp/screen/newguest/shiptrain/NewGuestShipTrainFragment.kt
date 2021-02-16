@@ -143,7 +143,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
         val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
         val date = LocalDate.parse(guest.dateOfArrival, formatter)
         val diff = ChronoUnit.DAYS.between(LocalDate.now().plusDays(2), date) * 12
-        val uploadWorkRequest: WorkRequest? =
+        val uploadWorkRequest: WorkRequest =
             if (ChronoUnit.DAYS.between(
                     LocalDate.now(),
                     date
@@ -157,11 +157,9 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
                 TimeUnit.HOURS
             ).build()
 
-        if (uploadWorkRequest != null) {
-            WorkManager
-                .getInstance(requireContext())
-                .enqueue(uploadWorkRequest)
-        }
+        WorkManager
+            .getInstance(requireContext())
+            .enqueue(uploadWorkRequest)
 
         model.saveGuest(guest)
         sharedDateTimePickerViewModel.resetData()
@@ -230,6 +228,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun onDateSet(datePicker: DatePicker?, year: Int, month: Int, day: Int) {
         val calendar = Calendar.getInstance()
         calendar.set(Calendar.YEAR, year)
@@ -239,19 +238,21 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
         sharedDateTimePickerViewModel.year = year
         sharedDateTimePickerViewModel.month = month
         sharedDateTimePickerViewModel.day = day
-        val date = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendar.time)
-        dateOfArrivalEditText.setText(date)
+        val formatter = SimpleDateFormat("dd/MM/yyyy")
+        val date = calendar.time
+        val stringDate = formatter.format(date)
+        dateOfArrivalEditText.setText(stringDate)
     }
 
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onTimeSet(p0: TimePicker?, hours: Int, minutes: Int) {
-        val formater = SimpleDateFormat("HH:mm")
+        val formatter = SimpleDateFormat("HH:mm")
         val time = "$hours:$minutes"
-        val date = formater.parse(time)
+        val date = formatter.parse(time)
         sharedDateTimePickerViewModel.hours = hours
         sharedDateTimePickerViewModel.minutes = minutes
-        arrivalTimeEditText.setText(formater.format(date))
+        arrivalTimeEditText.setText(formatter.format(date))
     }
 
     private fun initialiseViews(view: View) {

@@ -59,7 +59,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
     private var listOfInputFields = listOf<EditText>()
 
     companion object {
-        val TAG = "NewGuestFragmentAirplaneBus"
+        const val TAG = "NewGuestFragmentAirplaneBus"
     }
 
     override fun onCreateView(
@@ -220,6 +220,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun onDateSet(datePicker: DatePicker?, year: Int, month: Int, day: Int) {
         val calendar = Calendar.getInstance()
         calendar.set(Calendar.YEAR, year)
@@ -229,8 +230,10 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
         sharedDateTimePickerViewModel.year = year
         sharedDateTimePickerViewModel.month = month
         sharedDateTimePickerViewModel.day = day
-        val date = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendar.time)
-        dateOfArrivalEditText.setText(date)
+        val formatter = SimpleDateFormat("dd/MM/yyyy")
+        val date = calendar.time
+        val stringDate = formatter.format(date)
+        dateOfArrivalEditText.setText(stringDate)
     }
 
     @SuppressLint("SimpleDateFormat")
