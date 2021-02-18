@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginHorizontal="19dp"
     android:layout_marginVertical="5dp"
-    android:background="@drawable/ic_item_border"
+    android:background="@drawable/ic_item_border_ripple"
     android:paddingHorizontal="5dp">
 
     <TextView

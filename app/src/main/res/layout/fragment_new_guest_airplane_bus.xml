@@ -9,7 +9,7 @@
         android:id="@+id/newguestbusairplanescreen_top_icon"
         android:layout_width="88dp"
         android:layout_height="38dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="15dp"
         app:layout_constraintBottom_toTopOf="@id/newguestbusairplanescreen_scrollview"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_app_icon" />
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="11dp"
                 android:paddingTop="5dp"
-                android:text="Name:"
+                android:text="@string/messageInfo_guestName_hint"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
