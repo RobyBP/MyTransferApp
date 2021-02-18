@@ -38,4 +38,5 @@
     <string name="save">Spremi</string>
     <string name="cancel">Poništi</string>
     <string name="driver_also_exists">Vozač sa tim imenom također postoji</string>
+    <string name="send_info_to_driver">Pošalji podatke gosta vozaču %s?</string>
 </resources>

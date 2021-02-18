@@ -1,6 +1,7 @@
 package com.robybp.mytransferapp.screen.newguest.airplanebus
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.icu.text.SimpleDateFormat
@@ -27,7 +28,6 @@ import com.robybp.mytransferapp.util.NotificationWorker
 import io.reactivex.disposables.CompositeDisposable
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.text.DateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
@@ -118,10 +118,22 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
         }
 
         sendInfoButton.setOnClickListener {
-            sendInfo()
+            showAlertDialog()
         }
 
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun showAlertDialog() {
+        val dialog = AlertDialog.Builder(requireContext())
+        dialog.setTitle(resources.getString(R.string.send_info_to_driver, driverEditText.text.toString()))
+        dialog.setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
+            sendInfo()
+        }
+        dialog.setNegativeButton(resources.getString(R.string.cancel)) { _, _ ->
+            return@setNegativeButton
+        }
+        dialog.show()
     }
 
     private fun saveGuest() {

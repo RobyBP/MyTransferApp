@@ -1,6 +1,7 @@
 package com.robybp.mytransferapp.screen.guestinfo.airplanebus
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.icu.text.SimpleDateFormat
@@ -23,7 +24,6 @@ import com.robybp.mytransferapp.screen.pickdriver.PickDriverViewModel
 import io.reactivex.disposables.CompositeDisposable
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.text.DateFormat
 import java.util.*
 
 class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListener,
@@ -101,7 +101,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
         }
 
         sendInfoButton.setOnClickListener {
-            sendInfo()
+            showAlertDialog()
         }
 
         saveChangesButton.setOnClickListener {
@@ -113,6 +113,18 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
             updateGuest()
         }
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun showAlertDialog() {
+        val dialog = AlertDialog.Builder(requireContext())
+        dialog.setTitle(resources.getString(R.string.send_info_to_driver, driverEditText.text.toString()))
+        dialog.setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
+            sendInfo()
+        }
+        dialog.setNegativeButton(resources.getString(R.string.cancel)) { _, _ ->
+            return@setNegativeButton
+        }
+        dialog.show()
     }
 
     private fun sendInfo() {
