@@ -56,13 +56,13 @@
         android:id="@+id/homescreen_app_icon"
         android:layout_width="0dp"
         android:layout_height="67dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="19dp"
         android:src="@drawable/app_icon"
         app:layout_constraintBottom_toTopOf="@id/homescreen_settings_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="50dp"
         app:layout_constraintTop_toTopOf="parent" />
 
 
