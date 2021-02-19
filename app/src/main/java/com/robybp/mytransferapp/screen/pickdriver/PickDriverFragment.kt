@@ -55,7 +55,10 @@ class PickDriverFragment : Fragment(), PickDriverAdapter.OnClickListener {
             model.goBack()
         }
 
-        addNewButton.setOnClickListener { }
+        addNewButton.setOnClickListener {
+            openContacts()
+        }
+
         compositeDisposable.add(model.allDrivers.subscribe {
             drivers = it
             adapter.setDrivers(it)

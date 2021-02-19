@@ -38,7 +38,7 @@ class DriversMenuFragment : Fragment(), DriversMenuAdapter.OnItemClicked {
     private var drivers = listOf<Driver>()
 
     companion object {
-        val TAG = "DriversMenuFragment"
+        const val TAG = "DriversMenuFragment"
         private const val PICK_CONTACT_CODE = 123
     }
 
