@@ -104,6 +104,10 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
             showAlertDialog()
         }
 
+        driverEditText.setOnClickListener {
+            model.goToPickDriverFragment()
+        }
+
         saveChangesButton.setOnClickListener {
             if (model.crucialFieldsEmpty(listOfInputFields)) {
                 Toast.makeText(requireContext(), "Only note field can be empty", Toast.LENGTH_LONG)
