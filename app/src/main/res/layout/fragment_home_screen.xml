@@ -65,7 +65,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <Button
         android:id="@+id/homescreen_addGuest_button"
         style="@style/homescreen_items_guest_information_hint_text"
@@ -96,5 +95,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/homescreen_recyclerview_background" />
+
+    <View
+        android:id="@+id/gradient"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:background="@drawable/gradient"
+        app:layout_constraintBottom_toTopOf="@id/homescreen_addGuest_button"
+        app:layout_constraintEnd_toEndOf="@id/homescreen_addGuest_button"
+        app:layout_constraintStart_toStartOf="@id/homescreen_addGuest_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

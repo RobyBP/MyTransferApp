@@ -21,7 +21,7 @@ class NotificationWorker(private val appContext: Context, workerParams: WorkerPa
         val intent = Intent(appContext, MainActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(appContext, 0, intent, 0)
         val builder = NotificationCompat.Builder(appContext, "123")
-            .setSmallIcon(R.drawable.hrv)
+            .setSmallIcon(R.drawable.ic_notification)
             .setContentInfo("My Transfer App")
             .setContentText(appContext.resources.getString(R.string.notification_description))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
