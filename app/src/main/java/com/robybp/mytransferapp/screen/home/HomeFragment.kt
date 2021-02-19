@@ -1,5 +1,6 @@
 package com.robybp.mytransferapp.screen.home
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -61,4 +62,21 @@ class HomeFragment : Fragment(), HomeAdapter.OnItemClicked {
     override fun onViewClicked(guest: Guest) {
         model.goToGuestInfo(guest)
     }
+
+    override fun onTrashCanClicked(guest: Guest) {
+        showAlertDialog(guest)
+    }
+
+    private fun showAlertDialog(guest: Guest) {
+        val dialog = AlertDialog.Builder(requireContext())
+        dialog.setTitle(resources.getString(R.string.delete_guest))
+        dialog.setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
+            model.deleteGuest(guest)
+        }
+        dialog.setNegativeButton(resources.getString(R.string.no)) { _, _ ->
+            return@setNegativeButton
+        }
+        dialog.show()
+    }
 }
+

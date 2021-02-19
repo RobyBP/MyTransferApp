@@ -45,7 +45,7 @@ class HomeViewModel(
                         .isAfter(LocalDate.parse(guest.dateOfArrival, formatter))
                 }
             }
-            .subscribe ({deleteGuests(it)},{ Log.e("Update", "Error deleting guests $it")})
+            .subscribe({ deleteGuests(it) }, { Log.e("Update", "Error deleting guests $it") })
     }
 
     private fun deleteGuests(guests: List<Guest>) = viewModelScope.launch(Dispatchers.IO) {
@@ -57,6 +57,10 @@ class HomeViewModel(
     fun goToMeansOfTransport() = routingActionsSource.dispatch(Router::goToMeansOfTransport)
 
     fun goToDriversMenu() = routingActionsSource.dispatch(Router::goToDriversMenu)
+
+    fun deleteGuest(guest: Guest) = viewModelScope.launch(Dispatchers.IO) {
+        repository.removeGuest(guest)
+    }
 
     fun goToGuestInfo(guest: Guest) {
         when (guest.meansOfTransport) {

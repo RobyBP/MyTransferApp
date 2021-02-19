@@ -1,6 +1,5 @@
 package com.robybp.mytransferapp.screen.home
 
-import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,6 +46,10 @@ class HomeAdapter(private val clickListener: OnItemClicked) :
         holder.itemView.setOnClickListener {
             clickListener.onViewClicked(guests[position])
         }
+
+        holder.deleteButton.setOnClickListener {
+            clickListener.onTrashCanClicked(guests[position])
+        }
     }
 
     override fun getItemCount(): Int = guests.size
@@ -58,6 +61,7 @@ class HomeAdapter(private val clickListener: OnItemClicked) :
 
     interface OnItemClicked {
         fun onViewClicked(guest: Guest)
+        fun onTrashCanClicked(guest: Guest)
     }
 }
 
@@ -68,4 +72,5 @@ class HomeScreenViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val country: TextView = itemView.findViewById(R.id.homescreen_city)
     val dateAndTimeOfArrival: TextView = itemView.findViewById(R.id.homescreen_date_and_time)
     val driver: TextView = itemView.findViewById(R.id.homescreen_driver)
+    val deleteButton: View = itemView.findViewById(R.id.homescreen_delete_guest)
 }

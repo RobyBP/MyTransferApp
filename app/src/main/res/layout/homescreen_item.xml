@@ -85,11 +85,11 @@
         tools:text="20/2/2020 20:30" />
 
     <View
-        android:id="@+id/homescreen_edit_guest"
+        android:id="@+id/homescreen_delete_guest"
         android:layout_width="@dimen/homescreen_settings_icon_width"
         android:layout_height="@dimen/homescreen_settings_icon_height"
         android:layout_marginTop="@dimen/homescreen_item_editButton_margin_top"
-        android:background="@drawable/ic_settings"
+        android:background="@drawable/ic_trash_can"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

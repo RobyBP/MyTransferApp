@@ -56,6 +56,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="driver_already_exists">Driver with that name already exists</string>
+    <string name="delete_guest">Delete guest?</string>
     <string name="send_info_to_driver">Send guest info to %s?</string>
     <string name="driver_also_exists">Driver with that name also exists</string>
     <string name="enter_different_name">Please enter different driver name:</string>
