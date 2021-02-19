@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.robybp.mytransferapp.R
 import com.robybp.mytransferapp.datamodels.Guest
 import io.reactivex.disposables.CompositeDisposable
@@ -15,7 +15,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class HomeFragment : Fragment(), HomeAdapter.OnItemClicked {
 
     private lateinit var driversMenuButton: View
-    private lateinit var addNewGuestButton: Button
+    private lateinit var addNewGuestButton: FloatingActionButton
     private val model: HomeViewModel by viewModel()
     private lateinit var recyclerview: RecyclerView
     private val compositeDisposable = CompositeDisposable()

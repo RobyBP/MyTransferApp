@@ -65,21 +65,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/homescreen_addGuest_button"
-        style="@style/homescreen_items_guest_information_hint_text"
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        android:layout_marginHorizontal="19dp"
-        android:background="@drawable/ic_item_border"
-        android:drawableTop="@drawable/ic_plus"
-        android:paddingTop="20dp"
-        android:text="@string/add_new"
-        android:textAllCaps="false"
-        app:backgroundTint="#C8C8C8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_add"
         app:layout_constraintBottom_toTopOf="@id/homescreen_ship_bus_train_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/homescreen_recyclerview"
@@ -91,7 +84,7 @@
         android:overScrollMode="never"
         android:requiresFadingEdge="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/homescreen_addGuest_button"
+        app:layout_constraintBottom_toTopOf="@+id/homescreen_ship_bus_train_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/homescreen_recyclerview_background" />
@@ -101,8 +94,8 @@
         android:layout_width="0dp"
         android:layout_height="25dp"
         android:background="@drawable/gradient"
-        app:layout_constraintBottom_toTopOf="@id/homescreen_addGuest_button"
-        app:layout_constraintEnd_toEndOf="@id/homescreen_addGuest_button"
-        app:layout_constraintStart_toStartOf="@id/homescreen_addGuest_button" />
+        app:layout_constraintBottom_toTopOf="@+id/homescreen_ship_bus_train_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
