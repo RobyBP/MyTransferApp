@@ -37,7 +37,4 @@ interface GuestBookDao {
     @Update
     suspend fun updateGuestData(guest: Guest)
 
-    @Update
-    suspend fun updateDriverData(driver: Driver)
-
 }

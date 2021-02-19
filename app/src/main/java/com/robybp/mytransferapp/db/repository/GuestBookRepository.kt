@@ -21,8 +21,6 @@ class GuestBookRepository(private val guestBookDao: GuestBookDao) {
 
     suspend fun updateGuestData(guest: Guest) = guestBookDao.updateGuestData(guest)
 
-    suspend fun updateDriverData(driver: Driver) = guestBookDao.updateDriverData(driver)
-
     suspend fun removeGuest(guest: Guest) = guestBookDao.deleteGuest(guest)
 
     suspend fun removeDriver(driver: Driver) = guestBookDao.deleteDriver(driver)
