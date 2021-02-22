@@ -36,7 +36,7 @@ class ApartmentsMenuFragment : Fragment() {
         )
 
         newApartmentButton.setOnClickListener {
-            model.saveGuest()
+            model.goToNewApartment()
         }
         super.onViewCreated(view, savedInstanceState)
     }

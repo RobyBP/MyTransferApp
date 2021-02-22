@@ -15,6 +15,7 @@ import com.robybp.mytransferapp.screen.driversmenu.DriversMenuViewModel
 import com.robybp.mytransferapp.screen.guestinfo.GuestInfoViewModel
 import com.robybp.mytransferapp.screen.home.HomeViewModel
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransportViewModel
+import com.robybp.mytransferapp.screen.newapartment.NewApartmentViewModel
 import com.robybp.mytransferapp.screen.newguest.NewGuestViewModel
 import com.robybp.mytransferapp.screen.pickdriver.PickDriverViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -67,5 +68,7 @@ class MyTransferApplication : Application() {
             viewModel { GuestInfoViewModel(repository = get(), routingActionsSource = get()) }
 
             viewModel { ApartmentsMenuViewModel(repository = get(), routingActionsSource = get()) }
+
+            viewModel { NewApartmentViewModel(repository = get(), routingActionsSource = get()) }
         }
 }
