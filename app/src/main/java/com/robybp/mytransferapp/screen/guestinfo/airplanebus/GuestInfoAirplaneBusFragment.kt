@@ -146,7 +146,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
             dateOfArrival = dateOfArrivalEditText.text.toString(),
             timeOfArrival = arrivalTimeEditText.text.toString(),
             driverName = driverEditText.text.toString(),
-            note = noteEditText.text.toString(),
+            apartmentName = noteEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = null
         )
@@ -175,7 +175,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
             getString(R.string.messageInfo_dateAndTimeOfArrival),
             guest.dateOfArrival,
             guest.timeOfArrival,
-            guest.note
+            guest.apartmentName
         )
 
         phoneNumber.let {
@@ -195,7 +195,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
             dateOfArrival = dateOfArrivalEditText.text.toString(),
             timeOfArrival = arrivalTimeEditText.text.toString(),
             driverName = driverEditText.text.toString(),
-            note = noteEditText.text.toString(),
+            apartmentName = noteEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = null
         )
@@ -273,7 +273,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
         dateOfArrivalEditText.setText(guest.dateOfArrival)
         arrivalTimeEditText.setText(guest.timeOfArrival)
         driverEditText.setText(guest.driverName)
-        noteEditText.setText(guest.note)
+        noteEditText.setText(guest.apartmentName)
     }
 
     override fun onDestroyView() {

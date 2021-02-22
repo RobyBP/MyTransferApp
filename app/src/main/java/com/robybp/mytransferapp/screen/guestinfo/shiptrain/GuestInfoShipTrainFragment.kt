@@ -152,7 +152,7 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
             dateOfArrival = dateOfArrivalEditText.text.toString(),
             timeOfArrival = arrivalTimeEditText.text.toString(),
             driverName = driverEditText.text.toString(),
-            note = noteEditText.text.toString(),
+            apartmentName = noteEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = portOrStationEditText.text.toString()
         )
@@ -188,7 +188,7 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
             getString(R.string.messageInfo_dateAndTimeOfArrival),
             guest.dateOfArrival,
             guest.timeOfArrival,
-            guest.note
+            guest.apartmentName
         )
 
         phoneNumber.let {
@@ -208,7 +208,7 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
             dateOfArrival = dateOfArrivalEditText.text.toString(),
             timeOfArrival = arrivalTimeEditText.text.toString(),
             driverName = driverEditText.text.toString(),
-            note = noteEditText.text.toString(),
+            apartmentName = noteEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = portOrStationEditText.text.toString()
         )
@@ -291,7 +291,7 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
         dateOfArrivalEditText.setText(guest.dateOfArrival)
         arrivalTimeEditText.setText(guest.timeOfArrival)
         driverEditText.setText(guest.driverName)
-        noteEditText.setText(guest.note)
+        noteEditText.setText(guest.apartmentName)
     }
 
     override fun onDestroyView() {

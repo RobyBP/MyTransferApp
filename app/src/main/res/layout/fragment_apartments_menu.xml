@@ -5,32 +5,8 @@
     android:layout_height="match_parent"
     android:background="#391864">
 
-    <TextView
-        android:id="@+id/homescreen_driversMenu_hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/homescreen_driver_hintText_padding_horizontal"
-        android:text="@string/homescreen_driver_hint"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/homescreen_settings_icon"
-        app:layout_constraintEnd_toStartOf="@+id/homescreen_settings_icon"
-        app:layout_constraintTop_toTopOf="@+id/homescreen_settings_icon" />
-
     <View
-        android:id="@+id/homescreen_settings_icon"
-        android:layout_width="@dimen/homescreen_settings_icon_height"
-        android:layout_height="@dimen/homescreen_settings_icon_width"
-        android:layout_marginEnd="27dp"
-        android:layout_marginBottom="27dp"
-        android:background="@drawable/ic_settings"
-        app:layout_constraintBottom_toTopOf="@id/homescreen_recyclerview_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/homescreen_app_icon" />
-
-    <View
-        android:id="@+id/homescreen_recyclerview_background"
+        android:id="@+id/apartmentsmenu_recyclerview_background"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/homescreen_recyclerview_background_margin_top"
@@ -41,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/homescreen_ship_bus_train_icon"
+        android:id="@+id/apartmentsmenu_ship_bus_train_icon"
         android:layout_width="358dp"
         android:layout_height="71dp"
         android:layout_marginBottom="4dp"
@@ -51,30 +27,39 @@
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <View
+        android:id="@+id/homescreen_settings_icon"
+        android:layout_width="@dimen/homescreen_settings_icon_height"
+        android:layout_height="@dimen/homescreen_settings_icon_width"
+        android:background="@drawable/ic_close"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toTopOf="@id/apartmentsmenu_recyclerview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/apartmentsmenu_app_icon" />
+
     <ImageView
-        android:id="@+id/homescreen_app_icon"
+        android:id="@+id/apartmentsmenu_app_icon"
         android:layout_width="0dp"
         android:layout_height="67dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="19dp"
         android:src="@drawable/app_icon"
-        app:layout_constraintBottom_toTopOf="@id/homescreen_settings_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/homescreen_addGuest_button"
+        android:id="@+id/apartmentsmenu_addGuest_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         android:src="@drawable/ic_add"
-        app:layout_constraintBottom_toTopOf="@id/homescreen_ship_bus_train_icon"
+        app:layout_constraintBottom_toTopOf="@id/apartmentsmenu_ship_bus_train_icon"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/homescreen_recyclerview"
+        android:id="@+id/apartmentsmenu_recyclerview"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fadingEdge="vertical"
@@ -83,17 +68,17 @@
         android:overScrollMode="never"
         android:requiresFadingEdge="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/homescreen_ship_bus_train_icon"
+        app:layout_constraintBottom_toTopOf="@+id/apartmentsmenu_ship_bus_train_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/homescreen_recyclerview_background" />
+        app:layout_constraintTop_toTopOf="@id/apartmentsmenu_recyclerview_background" />
 
     <View
         android:id="@+id/gradient"
         android:layout_width="0dp"
         android:layout_height="25dp"
         android:background="@drawable/gradient"
-        app:layout_constraintBottom_toTopOf="@+id/homescreen_ship_bus_train_icon"
+        app:layout_constraintBottom_toTopOf="@+id/apartmentsmenu_ship_bus_train_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

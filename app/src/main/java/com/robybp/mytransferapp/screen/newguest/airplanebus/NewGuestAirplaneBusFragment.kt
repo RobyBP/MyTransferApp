@@ -145,7 +145,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             dateOfArrival = dateOfArrivalEditText.text.toString(),
             timeOfArrival = arrivalTimeEditText.text.toString(),
             driverName = driverEditText.text.toString(),
-            note = noteEditText.text.toString(),
+            apartmentName = noteEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = null
         )
@@ -192,7 +192,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             dateOfArrival = dateOfArrivalEditText.text.toString(),
             timeOfArrival = arrivalTimeEditText.text.toString(),
             driverName = driverEditText.text.toString(),
-            note = noteEditText.text.toString(),
+            apartmentName = noteEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = null
         )
@@ -221,7 +221,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             getString(R.string.messageInfo_dateAndTimeOfArrival),
             guest.dateOfArrival,
             guest.timeOfArrival,
-            guest.note
+            guest.apartmentName
         )
 
         phoneNumber.let {
