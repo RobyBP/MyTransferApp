@@ -54,7 +54,7 @@ class HomeViewModel(
         }
     }
 
-    fun goToMeansOfTransport() = routingActionsSource.dispatch(Router::goToMeansOfTransport)
+    fun goToApartmentsMenu() = routingActionsSource.dispatch(Router::goToApartmentsMenu)
 
     fun goToDriversMenu() = routingActionsSource.dispatch(Router::goToDriversMenu)
 

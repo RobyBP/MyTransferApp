@@ -44,7 +44,7 @@ class HomeFragment : Fragment(), HomeAdapter.OnItemClicked {
         }
 
         addNewGuestButton.setOnClickListener {
-            model.goToMeansOfTransport()
+            model.goToApartmentsMenu()
         }
     }
 

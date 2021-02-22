@@ -28,7 +28,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <View
-        android:id="@+id/homescreen_settings_icon"
+        android:id="@+id/apartmentsmenu_close_icon"
         android:layout_width="@dimen/homescreen_settings_icon_height"
         android:layout_height="@dimen/homescreen_settings_icon_width"
         android:background="@drawable/ic_close"
@@ -50,7 +50,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/apartmentsmenu_addGuest_button"
+        android:id="@+id/apartmentsmenu_addApartment_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"

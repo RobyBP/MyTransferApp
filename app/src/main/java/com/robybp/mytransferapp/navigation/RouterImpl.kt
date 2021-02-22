@@ -3,6 +3,7 @@ package com.robybp.mytransferapp.navigation
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import com.robybp.mytransferapp.R
+import com.robybp.mytransferapp.screen.apartmentsmenu.ApartmentsMenuFragment
 import com.robybp.mytransferapp.screen.dateandtimeofarrival.datepicker.DatePickerFragment
 import com.robybp.mytransferapp.screen.dateandtimeofarrival.timepicker.TimePickerFragment
 import com.robybp.mytransferapp.screen.driversmenu.DriversMenuFragment
@@ -169,6 +170,15 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
 
     override fun showTimePickerDialog() {
         TimePickerFragment().show(fragmentManager, TimePickerFragment.TAG)
+    }
+
+    override fun goToApartmentsMenu() {
+        fragmentManager.beginTransaction().apply {
+            applySlideAnimation()
+            add(MAIN_CONTAINER, ApartmentsMenuFragment())
+            addToBackStack(ApartmentsMenuFragment.TAG)
+            commit()
+        }
     }
 
     override fun goBack() {

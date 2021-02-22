@@ -30,5 +30,7 @@ interface Router {
 
     fun showTimePickerDialog()
 
+    fun goToApartmentsMenu()
+
     fun goBack()
 }
