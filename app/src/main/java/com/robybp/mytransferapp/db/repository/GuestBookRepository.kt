@@ -15,9 +15,9 @@ class GuestBookRepository(private val guestBookDao: GuestBookDao) {
 
     fun getDriver(name: String): Maybe<Driver> = guestBookDao.getDriver(name)
 
-    suspend fun addGuest(guest: Guest) = guestBookDao.addGuest(guest)
+    suspend fun addGuest(guest: Guest) = guestBookDao.saveGuest(guest)
 
-    suspend fun addDriver(driver: Driver) = guestBookDao.addDriver(driver)
+    suspend fun addDriver(driver: Driver) = guestBookDao.saveDriver(driver)
 
     suspend fun updateGuestData(guest: Guest) = guestBookDao.updateGuestData(guest)
 

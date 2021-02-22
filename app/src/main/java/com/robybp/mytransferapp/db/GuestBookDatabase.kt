@@ -28,7 +28,8 @@ abstract class GuestBookDatabase : RoomDatabase() {
                     context.applicationContext,
                     GuestBookDatabase::class.java,
                     "user_task_database"
-                ).build()
+                ).fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 return instance
             }
