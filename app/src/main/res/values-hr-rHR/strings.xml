@@ -40,4 +40,9 @@
     <string name="driver_also_exists">Vozač sa tim imenom također postoji</string>
     <string name="send_info_to_driver">Pošalji podatke gosta vozaču %s?</string>
     <string name="delete_guest">Obrisati gosta?</string>
+    <string name="apartment_name_hint">Apartman:</string>
+    <string name="apartment_city_hint">Grad:</string>
+    <string name="apartment_address_hint">Adresa:</string>
+    <string name="apartment_owner_hint">Vlasnik:</string>
+    <string name="apartment_owner_contact_hint">Broj:</string>
 </resources>

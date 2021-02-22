@@ -62,4 +62,11 @@
     <string name="enter_different_name">Please enter different driver name:</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+    
+    <string name="apartment_name_hint">Apartment:</string>
+    <string name="apartment_city_hint">City:</string>
+    <string name="apartment_address_hint">Address:</string>
+    <string name="apartment_owner_hint">Owner:</string>
+    <string name="apartment_owner_contact_hint">Phone:</string>
+
 </resources>
