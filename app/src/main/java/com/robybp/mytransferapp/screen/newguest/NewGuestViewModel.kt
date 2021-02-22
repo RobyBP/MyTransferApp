@@ -31,7 +31,7 @@ class NewGuestViewModel(
     }
 
     fun saveGuest(guest: Guest): Job {
-        return viewModelScope.launch(Dispatchers.IO) { repository.addGuest(guest) }
+        return viewModelScope.launch(Dispatchers.IO) { repository.saveGuest(guest) }
     }
 
     fun getDriverByName(name: String): Maybe<Driver> =

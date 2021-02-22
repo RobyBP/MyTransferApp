@@ -42,6 +42,6 @@ class PickDriverViewModel(
     }
 
     fun saveDriver(driver: Driver) = viewModelScope.launch(Dispatchers.IO) {
-        repository.addDriver(driver)
+        repository.saveDriver(driver)
     }
 }

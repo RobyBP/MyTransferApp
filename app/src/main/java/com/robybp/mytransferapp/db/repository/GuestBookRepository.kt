@@ -1,6 +1,7 @@
 package com.robybp.mytransferapp.db.repository
 
 import com.robybp.mytransferapp.dao.GuestBookDao
+import com.robybp.mytransferapp.datamodels.Apartment
 import com.robybp.mytransferapp.datamodels.Driver
 import com.robybp.mytransferapp.datamodels.Guest
 import io.reactivex.Flowable
@@ -10,14 +11,19 @@ class GuestBookRepository(private val guestBookDao: GuestBookDao) {
 
     val allGuests: Flowable<List<Guest>> = guestBookDao.getAllGuests()
     val allDrivers: Flowable<List<Driver>> = guestBookDao.getAllDrivers()
+    val allApartments: Flowable<List<Apartment>> = guestBookDao.getAllApartments()
 
     fun getGuest(id: Int) = guestBookDao.getGuest(id)
 
     fun getDriver(name: String): Maybe<Driver> = guestBookDao.getDriver(name)
 
-    suspend fun addGuest(guest: Guest) = guestBookDao.saveGuest(guest)
+    fun getApartment(address: String): Maybe<Apartment> = guestBookDao.getApartment(address)
 
-    suspend fun addDriver(driver: Driver) = guestBookDao.saveDriver(driver)
+    suspend fun saveGuest(guest: Guest) = guestBookDao.saveGuest(guest)
+
+    suspend fun saveDriver(driver: Driver) = guestBookDao.saveDriver(driver)
+
+    suspend fun saveApartment(apartment: Apartment) = guestBookDao.saveApartment(apartment)
 
     suspend fun updateGuestData(guest: Guest) = guestBookDao.updateGuestData(guest)
 
@@ -25,4 +31,5 @@ class GuestBookRepository(private val guestBookDao: GuestBookDao) {
 
     suspend fun removeDriver(driver: Driver) = guestBookDao.deleteDriver(driver)
 
+    suspend fun deleteApartment(apartment: Apartment) = guestBookDao.deleteApartment(apartment)
 }

@@ -32,5 +32,7 @@ interface Router {
 
     fun goToApartmentsMenu()
 
+    fun goToNewApartment()
+
     fun goBack()
 }

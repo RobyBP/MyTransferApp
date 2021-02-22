@@ -12,6 +12,7 @@ import com.robybp.mytransferapp.screen.guestinfo.shiptrain.GuestInfoShipTrainFra
 import com.robybp.mytransferapp.screen.home.HomeFragment
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransportFragment
+import com.robybp.mytransferapp.screen.newapartment.NewApartmentFragment
 import com.robybp.mytransferapp.screen.newguest.airplanebus.NewGuestAirplaneBusFragment
 import com.robybp.mytransferapp.screen.newguest.shiptrain.NewGuestShipTrainFragment
 import com.robybp.mytransferapp.screen.pickdriver.PickDriverFragment
@@ -177,6 +178,15 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
             applySlideAnimation()
             add(MAIN_CONTAINER, ApartmentsMenuFragment())
             addToBackStack(ApartmentsMenuFragment.TAG)
+            commit()
+        }
+    }
+
+    override fun goToNewApartment() {
+        fragmentManager.beginTransaction().apply {
+            applySlideAnimation()
+            add(MAIN_CONTAINER, NewApartmentFragment())
+            addToBackStack(NewApartmentFragment.TAG)
             commit()
         }
     }

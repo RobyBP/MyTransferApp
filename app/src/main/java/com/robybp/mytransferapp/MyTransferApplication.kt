@@ -9,6 +9,7 @@ import com.robybp.mytransferapp.navigation.Router
 import com.robybp.mytransferapp.navigation.RouterImpl
 import com.robybp.mytransferapp.navigation.RoutingActionsMediator
 import com.robybp.mytransferapp.navigation.RoutingActionsSource
+import com.robybp.mytransferapp.screen.apartmentsmenu.ApartmentsMenuViewModel
 import com.robybp.mytransferapp.screen.dateandtimeofarrival.DateAndTimeViewModel
 import com.robybp.mytransferapp.screen.driversmenu.DriversMenuViewModel
 import com.robybp.mytransferapp.screen.guestinfo.GuestInfoViewModel
@@ -64,5 +65,7 @@ class MyTransferApplication : Application() {
             viewModel { PickDriverViewModel(repository = get(), routingActionsSource = get()) }
 
             viewModel { GuestInfoViewModel(repository = get(), routingActionsSource = get()) }
+
+            viewModel { ApartmentsMenuViewModel(repository = get(), routingActionsSource = get()) }
         }
 }

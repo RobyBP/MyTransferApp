@@ -22,7 +22,7 @@ class DriversMenuViewModel(
     val allDrivers: Flowable<List<Driver>> = repository.allDrivers
 
     fun saveDriver(driver: Driver) = viewModelScope.launch(Dispatchers.IO) {
-        repository.addDriver(driver)
+        repository.saveDriver(driver)
     }
 
     fun deleteDriver(driver: Driver) = viewModelScope.launch(Dispatchers.IO) {

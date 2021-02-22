@@ -270,7 +270,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
         arrivalTimeEditText =
             view.findViewById(R.id.newguestbusairplanescreen_timeOfArrival_editText)
         driverEditText = view.findViewById(R.id.newguestbusairplanescreen_driver_editText)
-        noteEditText = view.findViewById(R.id.newguestbusairplanescreen_note_editText)
+        noteEditText = view.findViewById(R.id.newguestbusairplanescreen_phone_editText)
         saveButton = view.findViewById(R.id.newguestbusairplanescreen_save_button)
         flightNumberOrBusCompanyText =
             view.findViewById(R.id.newguestbusairplanescreen_flightNumberOrBusCompany_hint)
