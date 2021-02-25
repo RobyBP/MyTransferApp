@@ -186,6 +186,14 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
         }
     }
 
+    override fun returnToHomeScreen() {
+        var count = fragmentManager.backStackEntryCount
+
+        for(i in 0 until count){
+            fragmentManager.popBackStack()
+        }
+    }
+
     override fun goBack() {
         fragmentManager.popBackStack()
     }

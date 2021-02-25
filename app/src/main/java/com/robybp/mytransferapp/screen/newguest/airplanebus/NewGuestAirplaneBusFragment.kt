@@ -180,7 +180,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
 
         model.saveGuest(guest)
         sharedDateTimePickerViewModel.resetData()
-        model.goBack()
+        model.returnToHOmeScreen()
     }
 
     private fun sendInfo() {
@@ -235,7 +235,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             model.sendMessage(messageBody, it)
             compositeDisposable.dispose()
             model.saveGuest(guest)
-            model.goBack()
+            model.returnToHOmeScreen()
         }
     }
 

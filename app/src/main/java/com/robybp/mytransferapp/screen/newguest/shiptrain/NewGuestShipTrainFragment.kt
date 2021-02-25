@@ -243,7 +243,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
             model.sendMessage(messageBody, it)
             compositeDisposable.dispose()
             model.saveGuest(guest)
-            model.goBack()
+            model.returnToHOmeScreen()
         }
     }
 
