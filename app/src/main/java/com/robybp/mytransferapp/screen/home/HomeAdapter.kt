@@ -43,6 +43,10 @@ class HomeAdapter(private val clickListener: OnItemClicked) :
             )
         holder.driver.text = guests[holder.adapterPosition].driverName
 
+        holder.apartmentName.text = guests[position].apartmentName
+
+        holder.transferTypeHint.text = guests[position].transferType
+
         holder.itemView.setOnClickListener {
             clickListener.onViewClicked(guests[position])
         }
@@ -73,4 +77,6 @@ class HomeScreenViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val dateAndTimeOfArrival: TextView = itemView.findViewById(R.id.homescreen_date_and_time)
     val driver: TextView = itemView.findViewById(R.id.homescreen_driver)
     val deleteButton: View = itemView.findViewById(R.id.homescreen_delete_guest)
+    val transferTypeHint: TextView = itemView.findViewById(R.id.homescreen_transferType_hint)
+    val apartmentName: TextView = itemView.findViewById(R.id.homescreen_apartmentName)
 }
