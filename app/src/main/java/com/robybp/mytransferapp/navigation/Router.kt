@@ -6,7 +6,7 @@ interface Router {
 
     fun goToDriversMenu()
 
-    fun goToMeansOfTransport()
+    fun goToMeansOfTransport(transferType: String)
 
     fun goToNewGuestAirplane()
 

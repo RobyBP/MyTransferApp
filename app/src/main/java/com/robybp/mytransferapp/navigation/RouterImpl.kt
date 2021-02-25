@@ -37,10 +37,14 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
         }
     }
 
-    override fun goToMeansOfTransport() {
+    override fun goToMeansOfTransport(transferType: String) {
+        val bundle = Bundle()
+        val meansOfTransportFragment = MeansOfTransportFragment()
+        bundle.putString("TransferType", transferType)
+        meansOfTransportFragment.arguments = bundle
         fragmentManager.beginTransaction().apply {
             applySlideAnimation()
-            add(MAIN_CONTAINER, MeansOfTransportFragment())
+            add(MAIN_CONTAINER, meansOfTransportFragment)
             addToBackStack(MeansOfTransportFragment.TAG)
             commit()
         }
