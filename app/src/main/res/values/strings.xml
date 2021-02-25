@@ -36,8 +36,8 @@
         %s %s
         \n%s%s
         \n%s%s
-        \n%s\n%s %s\n
-        %s
+        \n%s\n%s %s
+        \n%s %s
     </string>
 
     <string name="shipOrTrain_messageBody" translatable="false">
@@ -45,8 +45,8 @@
         \n%s%s
         \n%s%s
         \n%s%s
-        \n%s\n%s %s\n
-        %s
+        \n%s\n%s %s
+        \n%s %s
     </string>
     <string name="add_new">Add new</string>
 

@@ -48,4 +48,10 @@
     <string name="choose_an_apartment">Odaberite apartman</string>
     <string name="to_apartment">"U apartman: "</string>
     <string name="from_apartment">"Od apartmana: "</string>
+    <string name="apartment_name">Ime apartmana:</string>
+    <string name="address">Adresa:</string>
+    <string name="phone">Broj telefona:</string>
+    <string name="note">Opaska:</string>
+    <string name="city">Grad:</string>
+    <string name="owner">Vlasnik:</string>
 </resources>
