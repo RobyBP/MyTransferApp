@@ -6,15 +6,11 @@ interface Router {
 
     fun goToDriversMenu()
 
-    fun goToMeansOfTransport(transferType: String)
+    fun goToMeansOfTransport(transferType: String, apartmentName: String)
 
-    fun goToNewGuestAirplane()
+    fun goToNewGuestAirplaneBus(meansOfTransport: String, typeOfTransfer: String, apartmentName: String)
 
-    fun goToNewGuestBus()
-
-    fun goToNewGuestTrain()
-
-    fun goToNewGuestShip()
+    fun goToNewGuestShipTrain(meansOfTransport: String, typeOfTransfer: String, apartmentName: String)
 
     fun goToPickDriver()
 
@@ -31,6 +27,8 @@ interface Router {
     fun showTimePickerDialog()
 
     fun goToApartmentsMenu()
+
+    fun goToTransferType(apartmentName: String)
 
     fun goToNewApartment()
 

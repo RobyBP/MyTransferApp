@@ -210,18 +210,17 @@
                     app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_driver_hint" />
 
                 <TextView
-                    android:id="@+id/newguestbusairplanescreen_phone_hint"
+                    android:id="@+id/newguestbusairplanescreen_transferType_hint"
                     style="@style/homescreen_items_guest_information_hint_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="11dp"
                     android:paddingTop="5dp"
-                    android:text="@string/newGuest_note_hint"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_driver_editText" />
 
                 <EditText
-                    android:id="@+id/newguestbusairplanescreen_phone_editText"
+                    android:id="@+id/newguestbusairplanescreen_transferType_editText"
                     style="@style/transferpal_edittext"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -232,7 +231,7 @@
                     app:layout_constraintBottom_toTopOf="@id/newguestbusairplanescreen_sendinfo_button"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_phone_hint" />
+                    app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_transferType_hint" />
 
                 <View
                     android:id="@+id/newguestbusairplanescreen_sendinfo_button"
@@ -243,7 +242,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/newguestbusairplanescreen_sendinfo_hint"
-                    app:layout_constraintTop_toBottomOf="@+id/newguestbusairplanescreen_phone_editText" />
+                    app:layout_constraintTop_toBottomOf="@+id/newguestbusairplanescreen_transferType_editText" />
 
                 <TextView
                     android:id="@+id/newguestbusairplanescreen_sendinfo_hint"

@@ -146,7 +146,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
             dateOfArrival = dateOfArrivalEditText.text.toString(),
             timeOfArrival = arrivalTimeEditText.text.toString(),
             driverName = driverEditText.text.toString(),
-            apartmentName = noteEditText.text.toString(),
+            transferType = noteEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = null
         )
@@ -175,7 +175,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
             getString(R.string.messageInfo_dateAndTimeOfArrival),
             guest.dateOfArrival,
             guest.timeOfArrival,
-            guest.apartmentName
+            guest.transferType
         )
 
         phoneNumber.let {
@@ -195,7 +195,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
             dateOfArrival = dateOfArrivalEditText.text.toString(),
             timeOfArrival = arrivalTimeEditText.text.toString(),
             driverName = driverEditText.text.toString(),
-            apartmentName = noteEditText.text.toString(),
+            transferType = noteEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = null
         )
@@ -242,7 +242,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
         arrivalTimeEditText =
             view.findViewById(R.id.newguestbusairplanescreen_timeOfArrival_editText)
         driverEditText = view.findViewById(R.id.newguestbusairplanescreen_driver_editText)
-        noteEditText = view.findViewById(R.id.newguestbusairplanescreen_phone_editText)
+        noteEditText = view.findViewById(R.id.newguestbusairplanescreen_transferType_editText)
         saveChangesButton = view.findViewById(R.id.newguestbusairplanescreen_save_button)
         flightNumberOrBusCompanyText =
             view.findViewById(R.id.newguestbusairplanescreen_flightNumberOrBusCompany_hint)
@@ -273,7 +273,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
         dateOfArrivalEditText.setText(guest.dateOfArrival)
         arrivalTimeEditText.setText(guest.timeOfArrival)
         driverEditText.setText(guest.driverName)
-        noteEditText.setText(guest.apartmentName)
+        noteEditText.setText(guest.transferType)
     }
 
     override fun onDestroyView() {

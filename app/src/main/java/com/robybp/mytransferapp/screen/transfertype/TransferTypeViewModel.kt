@@ -8,7 +8,7 @@ class TransferTypeViewModel(private val routingActionsSource: RoutingActionsSour
 
     fun goBack() = routingActionsSource.dispatch(Router::goBack)
 
-    fun goToMeansOfTransport(transferType: String) = routingActionsSource.dispatch {
-        it.goToMeansOfTransport(transferType)
+    fun goToMeansOfTransport(transferType: String, apartmentName: String) = routingActionsSource.dispatch {
+        it.goToMeansOfTransport(transferType, apartmentName)
     }
 }

@@ -16,6 +16,7 @@ import com.robybp.mytransferapp.screen.newapartment.NewApartmentFragment
 import com.robybp.mytransferapp.screen.newguest.airplanebus.NewGuestAirplaneBusFragment
 import com.robybp.mytransferapp.screen.newguest.shiptrain.NewGuestShipTrainFragment
 import com.robybp.mytransferapp.screen.pickdriver.PickDriverFragment
+import com.robybp.mytransferapp.screen.transfertype.TransferTypeFragment
 
 private const val MAIN_CONTAINER = R.id.fl_main
 
@@ -37,10 +38,11 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
         }
     }
 
-    override fun goToMeansOfTransport(transferType: String) {
+    override fun goToMeansOfTransport(transferType: String, apartmentName: String) {
         val bundle = Bundle()
         val meansOfTransportFragment = MeansOfTransportFragment()
         bundle.putString("TransferType", transferType)
+        bundle.putString("Apartment", apartmentName)
         meansOfTransportFragment.arguments = bundle
         fragmentManager.beginTransaction().apply {
             applySlideAnimation()
@@ -50,12 +52,14 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
         }
     }
 
-    override fun goToNewGuestAirplane() {
+    override fun goToNewGuestAirplaneBus(meansOfTransport: String, typeOfTransfer: String, apartmentName: String) {
+        val bundle = Bundle()
+        val newGuestAirplaneBusFragment = NewGuestAirplaneBusFragment()
+        bundle.putString("TransferType", typeOfTransfer)
+        bundle.putString("Vehicle", meansOfTransport)
+        bundle.putString("Apartment", apartmentName)
+        newGuestAirplaneBusFragment.arguments = bundle
         fragmentManager.beginTransaction().apply {
-            val bundle = Bundle()
-            bundle.putString("Vehicle", MeansOfTransport.AIRPLANE.toString())
-            val newGuestAirplaneBusFragment = NewGuestAirplaneBusFragment()
-            newGuestAirplaneBusFragment.arguments = bundle
             applySlideAnimation()
             add(MAIN_CONTAINER, newGuestAirplaneBusFragment)
             addToBackStack(NewGuestAirplaneBusFragment.TAG)
@@ -63,42 +67,16 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
         }
     }
 
-    override fun goToNewGuestBus() {
+    override fun goToNewGuestShipTrain(meansOfTransport: String, typeOfTransfer: String, apartmentName: String) {
+        val bundle = Bundle()
+        val newGuestShipTrainFragment = NewGuestShipTrainFragment()
+        bundle.putString("TransferType", typeOfTransfer)
+        bundle.putString("Vehicle", meansOfTransport)
+        bundle.putString("Apartment", apartmentName)
+        newGuestShipTrainFragment.arguments = bundle
         fragmentManager.beginTransaction().apply {
-            val bundle = Bundle()
-            bundle.putString("Vehicle", MeansOfTransport.BUS.toString())
-            val newGuestAirplaneBusFragment = NewGuestAirplaneBusFragment()
-            newGuestAirplaneBusFragment.arguments = bundle
             applySlideAnimation()
-            add(MAIN_CONTAINER, newGuestAirplaneBusFragment)
-            addToBackStack(NewGuestAirplaneBusFragment.TAG)
-            commit()
-        }
-    }
-
-    override fun goToNewGuestTrain() {
-
-        fragmentManager.beginTransaction().apply {
-            val bundle = Bundle()
-            bundle.putString("Vehicle", MeansOfTransport.TRAIN.toString())
-            val newShipTrainFragment = NewGuestShipTrainFragment()
-            newShipTrainFragment.arguments = bundle
-            applySlideAnimation()
-            add(MAIN_CONTAINER, newShipTrainFragment)
-            addToBackStack(NewGuestShipTrainFragment.TAG)
-            commit()
-        }
-    }
-
-    override fun goToNewGuestShip() {
-
-        fragmentManager.beginTransaction().apply {
-            val bundle = Bundle()
-            bundle.putString("Vehicle", MeansOfTransport.SHIP.toString())
-            val newShipTrainFragment = NewGuestShipTrainFragment()
-            newShipTrainFragment.arguments = bundle
-            applySlideAnimation()
-            add(MAIN_CONTAINER, newShipTrainFragment)
+            add(MAIN_CONTAINER, newGuestShipTrainFragment)
             addToBackStack(NewGuestShipTrainFragment.TAG)
             commit()
         }
@@ -182,6 +160,19 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
             applySlideAnimation()
             add(MAIN_CONTAINER, ApartmentsMenuFragment())
             addToBackStack(ApartmentsMenuFragment.TAG)
+            commit()
+        }
+    }
+
+    override fun goToTransferType(apartmentName: String) {
+        val bundle = Bundle()
+        bundle.putString("Apartment", apartmentName)
+        val transferTypeFragment = TransferTypeFragment()
+        transferTypeFragment.arguments = bundle
+        fragmentManager.beginTransaction().apply {
+            applySlideAnimation()
+            add(MAIN_CONTAINER, transferTypeFragment)
+            addToBackStack(TransferTypeFragment.TAG)
             commit()
         }
     }

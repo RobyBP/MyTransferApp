@@ -11,13 +11,13 @@ import com.robybp.mytransferapp.R
 import io.reactivex.disposables.CompositeDisposable
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ApartmentsMenuFragment : Fragment() {
+class ApartmentsMenuFragment : Fragment(), ApartmentsAdapter.ClickListener {
 
     private lateinit var closeButton: View
     private lateinit var recyclerView: RecyclerView
     private lateinit var newApartmentButton: FloatingActionButton
     private val model: ApartmentsMenuViewModel by viewModel()
-    private val adapter: ApartmentsAdapter = ApartmentsAdapter()
+    private val adapter: ApartmentsAdapter = ApartmentsAdapter(this)
     private val compositeDisposable = CompositeDisposable()
 
     companion object {
@@ -52,5 +52,9 @@ class ApartmentsMenuFragment : Fragment() {
     override fun onDestroyView() {
         compositeDisposable.dispose()
         super.onDestroyView()
+    }
+
+    override fun onItemClicked(apartmentName: String) {
+        model.goToTransferType(apartmentName)
     }
 }

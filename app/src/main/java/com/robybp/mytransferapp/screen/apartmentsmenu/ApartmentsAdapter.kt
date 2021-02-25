@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.robybp.mytransferapp.R
 import com.robybp.mytransferapp.datamodels.Apartment
 
-class ApartmentsAdapter: RecyclerView.Adapter<ApartmentsViewHolder>() {
+class ApartmentsAdapter(private val listener: ClickListener) : RecyclerView.Adapter<ApartmentsViewHolder>() {
 
     private var apartments = listOf<Apartment>()
 
@@ -27,6 +27,10 @@ class ApartmentsAdapter: RecyclerView.Adapter<ApartmentsViewHolder>() {
         holder.city.text = apartments[position].city
         holder.owner.text = apartments[position].owner
         holder.ownerContact.text = apartments[position].ownerPhoneNumber
+
+        holder.itemView.setOnClickListener {
+            listener.onItemClicked(apartments[position].name)
+        }
     }
 
     override fun getItemCount(): Int = apartments.size
@@ -34,6 +38,10 @@ class ApartmentsAdapter: RecyclerView.Adapter<ApartmentsViewHolder>() {
     fun setGuests(apartments: List<Apartment>) {
         this.apartments = apartments
         notifyDataSetChanged()
+    }
+
+    interface ClickListener {
+        fun onItemClicked(apartmentName: String)
     }
 
 }

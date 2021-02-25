@@ -7,13 +7,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.robybp.mytransferapp.R
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MeansOfTransportFragment() : Fragment() {
 
     companion object {
-        val TAG = "MeansOfTransportFragment"
+        const val TAG = "MeansOfTransportFragment"
     }
 
     private lateinit var busButton: Button
@@ -35,19 +34,35 @@ class MeansOfTransportFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         busButton.setOnClickListener {
-            model.goToNewGuestBusFragment()
+            model.goToNewGuestAirplaneBus(
+                MeansOfTransport.BUS.toString(),
+                requireArguments().getString("TransferType", ""),
+                requireArguments().getString("Apartment")!!
+            )
         }
 
         trainButton.setOnClickListener {
-            model.goToNewGuestTrainFragment()
+            model.goToNewGuestShipTrain(
+                MeansOfTransport.TRAIN.toString(),
+                requireArguments().getString("TransferType", ""),
+                requireArguments().getString("Apartment")!!
+            )
         }
 
         airplaneButton.setOnClickListener {
-            model.goToNewGuestAirplaneFragment()
+            model.goToNewGuestAirplaneBus(
+                MeansOfTransport.AIRPLANE.toString(),
+                requireArguments().getString("TransferType", ""),
+                requireArguments().getString("Apartment")!!
+            )
         }
 
         shipButton.setOnClickListener {
-            model.goToNewGuestShipFragment()
+            model.goToNewGuestShipTrain(
+                MeansOfTransport.SHIP.toString(),
+                requireArguments().getString("TransferType", ""),
+                requireArguments().getString("Apartment")!!
+            )
         }
         super.onViewCreated(view, savedInstanceState)
     }

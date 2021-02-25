@@ -16,4 +16,8 @@ class ApartmentsMenuViewModel(private val repository: GuestBookRepository, priva
         .observeOn(AndroidSchedulers.mainThread())
 
     fun goToNewApartment() = routingActionsSource.dispatch(Router::goToNewApartment)
+
+    fun goToTransferType(apartmentName: String) = routingActionsSource.dispatch {
+        it.goToTransferType(apartmentName)
+    }
 }
