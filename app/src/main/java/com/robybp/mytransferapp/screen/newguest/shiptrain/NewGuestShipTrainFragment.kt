@@ -292,7 +292,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
             view.findViewById(R.id.newguestshiptrainscreen_dateOfArrival_editText)
         arrivalTimeEditText = view.findViewById(R.id.newguestshiptrainscreen_timeOfArrival_editText)
         driverEditText = view.findViewById(R.id.newguestshiptrainscreen_driver_editText)
-        transferTypeHint = view.findViewById(R.id.newguestbusairplanescreen_transferType_hint)
+        transferTypeHint = view.findViewById(R.id.newguestshiptrainscreen_transferType_hint)
         transferTypeEditText = view.findViewById(R.id.newguestshiptrainscreen_transferType_editText)
         sendInfoButton = view.findViewById(R.id.newguestshiptrainscreen_sendinfo_button)
 

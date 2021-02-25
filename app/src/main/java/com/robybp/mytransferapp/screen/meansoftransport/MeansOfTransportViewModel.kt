@@ -11,6 +11,6 @@ class MeansOfTransportViewModel(private val routingActionsSource: RoutingActions
     }
 
     fun goToNewGuestShipTrain(meansOfTransport: String, typeOfTransport: String, apartmentName: String) = routingActionsSource.dispatch {
-        it.goToNewGuestAirplaneBus(meansOfTransport, typeOfTransport, apartmentName)
+        it.goToNewGuestShipTrain(meansOfTransport, typeOfTransport, apartmentName)
     }
 }
