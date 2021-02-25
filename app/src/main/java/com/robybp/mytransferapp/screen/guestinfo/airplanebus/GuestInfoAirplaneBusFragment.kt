@@ -44,6 +44,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
     private lateinit var arrivalTimeEditText: EditText
     private lateinit var driverEditText: EditText
     private lateinit var noteEditText: EditText
+    private lateinit var transferTypeHint: TextView
     private lateinit var flightNumberOrBusCompanyText: TextView
     private lateinit var cancelButton: View
     private lateinit var saveChangesButton: View
@@ -51,7 +52,6 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
     private lateinit var bottomIcon: ImageView
     private lateinit var topIcon: ImageView
     private var guestId: Int? = null
-
     private var listOfInputFields = listOf<EditText>()
 
     override fun onCreateView(
@@ -86,6 +86,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
                 setInfo(it)
             }
             .subscribe()
+
 
         cancelButton.setOnClickListener {
             compositeDisposable.dispose()
@@ -145,8 +146,9 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
             countryOfArrival = arrivesFromEditText.text.toString(),
             dateOfArrival = dateOfArrivalEditText.text.toString(),
             timeOfArrival = arrivalTimeEditText.text.toString(),
+            transferType = transferTypeHint.text.toString(),
             driverName = driverEditText.text.toString(),
-            transferType = noteEditText.text.toString(),
+            apartmentName = noteEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = null
         )
@@ -175,7 +177,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
             getString(R.string.messageInfo_dateAndTimeOfArrival),
             guest.dateOfArrival,
             guest.timeOfArrival,
-            guest.transferType
+            guest.apartmentName
         )
 
         phoneNumber.let {
@@ -194,8 +196,9 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
             countryOfArrival = arrivesFromEditText.text.toString(),
             dateOfArrival = dateOfArrivalEditText.text.toString(),
             timeOfArrival = arrivalTimeEditText.text.toString(),
+            transferType = transferTypeHint.text.toString(),
             driverName = driverEditText.text.toString(),
-            transferType = noteEditText.text.toString(),
+            apartmentName = noteEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = null
         )
@@ -250,6 +253,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
         topIcon = view.findViewById(R.id.newguestbusairplanescreen_top_icon)
         cancelButton = view.findViewById(R.id.newguestbusairplanescreen_cancel_button)
         sendInfoButton = view.findViewById(R.id.newguestbusairplanescreen_sendinfo_button)
+        transferTypeHint = view.findViewById(R.id.newguestbusairplanescreen_transferType_hint)
 
         dateOfArrivalEditText.inputType = EditorInfo.TYPE_NULL
         arrivalTimeEditText.inputType = EditorInfo.TYPE_NULL
@@ -273,7 +277,8 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
         dateOfArrivalEditText.setText(guest.dateOfArrival)
         arrivalTimeEditText.setText(guest.timeOfArrival)
         driverEditText.setText(guest.driverName)
-        noteEditText.setText(guest.transferType)
+        noteEditText.setText(guest.apartmentName)
+        transferTypeHint.text = guest.transferType
     }
 
     override fun onDestroyView() {

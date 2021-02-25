@@ -45,4 +45,7 @@
     <string name="apartment_address_hint">Adresa:</string>
     <string name="apartment_owner_hint">Vlasnik:</string>
     <string name="apartment_owner_contact_hint">Broj:</string>
+    <string name="choose_an_apartment">Odaberite apartman</string>
+    <string name="to_apartment">"U apartman: "</string>
+    <string name="from_apartment">"Od apartmana: "</string>
 </resources>

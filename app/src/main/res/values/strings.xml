@@ -68,5 +68,8 @@
     <string name="apartment_address_hint">Address:</string>
     <string name="apartment_owner_hint">Owner:</string>
     <string name="apartment_owner_contact_hint">Phone:</string>
+    <string name="choose_an_apartment">Choose an apartment</string>
+    <string name="to_apartment">To apartment:</string>
+    <string name="from_apartment">From apartment:</string>
 
 </resources>

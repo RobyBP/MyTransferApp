@@ -33,11 +33,11 @@ class TransferTypeFragment : Fragment() {
         }
 
         fromApartmentButton.setOnClickListener {
-            model.goToMeansOfTransport("From apartment: ", requireArguments().getString("Apartment")!!)
+            model.goToMeansOfTransport(getString(R.string.to_apartment), requireArguments().getString("Apartment")!!)
         }
 
         toApartmentButton.setOnClickListener {
-            model.goToMeansOfTransport("To apartment:", requireArguments().getString("Apartment")!!)
+            model.goToMeansOfTransport(getString(R.string.to_apartment), requireArguments().getString("Apartment")!!)
         }
 
         super.onViewCreated(view, savedInstanceState)

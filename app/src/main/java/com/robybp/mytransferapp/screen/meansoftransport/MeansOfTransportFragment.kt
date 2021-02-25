@@ -36,7 +36,7 @@ class MeansOfTransportFragment() : Fragment() {
         busButton.setOnClickListener {
             model.goToNewGuestAirplaneBus(
                 MeansOfTransport.BUS.toString(),
-                requireArguments().getString("TransferType", ""),
+                requireArguments().getString("TransferType")!!,
                 requireArguments().getString("Apartment")!!
             )
         }
@@ -44,7 +44,7 @@ class MeansOfTransportFragment() : Fragment() {
         trainButton.setOnClickListener {
             model.goToNewGuestShipTrain(
                 MeansOfTransport.TRAIN.toString(),
-                requireArguments().getString("TransferType", ""),
+                requireArguments().getString("TransferType")!!,
                 requireArguments().getString("Apartment")!!
             )
         }
@@ -52,7 +52,7 @@ class MeansOfTransportFragment() : Fragment() {
         airplaneButton.setOnClickListener {
             model.goToNewGuestAirplaneBus(
                 MeansOfTransport.AIRPLANE.toString(),
-                requireArguments().getString("TransferType", ""),
+                requireArguments().getString("TransferType")!!,
                 requireArguments().getString("Apartment")!!
             )
         }
@@ -60,7 +60,7 @@ class MeansOfTransportFragment() : Fragment() {
         shipButton.setOnClickListener {
             model.goToNewGuestShipTrain(
                 MeansOfTransport.SHIP.toString(),
-                requireArguments().getString("TransferType", ""),
+                requireArguments().getString("TransferType")!!,
                 requireArguments().getString("Apartment")!!
             )
         }

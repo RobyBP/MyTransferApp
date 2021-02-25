@@ -13,7 +13,8 @@ class Guest(
     val portOrStation: String?,
     val dateOfArrival: String,
     val timeOfArrival: String,
-    val transferType: String?,
+    val apartmentName: String?,
+    val transferType: String,
     var driverName: String?,
     val meansOfTransport: String
 )

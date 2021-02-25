@@ -92,16 +92,6 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
 
         transferTypeEditText.setText(requireArguments().getString("Apartment"))
 
-        if (requireArguments()["TransferType"] == "From apartment: ") {
-            topIcon.setImageResource(R.drawable.plane3)
-            bottomIcon.setImageResource(R.drawable.plane3)
-            flightNumberOrBusCompanyText.setText(R.string.newGuest_flightNumber_hint)
-        } else {
-            topIcon.setImageResource(R.drawable.bus)
-            bottomIcon.setImageResource(R.drawable.bus)
-            flightNumberOrBusCompanyText.setText(R.string.newGuest_busCompany_hint)
-        }
-
         sharedPickDriverViewModel.getName().observe(viewLifecycleOwner,
             { driverEditText.setText(it) })
 
@@ -159,8 +149,9 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             countryOfArrival = arrivesFromEditText.text.toString(),
             dateOfArrival = dateOfArrivalEditText.text.toString(),
             timeOfArrival = arrivalTimeEditText.text.toString(),
+            transferType = transferTypeHint.text.toString(),
             driverName = driverEditText.text.toString(),
-            transferType = requireArguments().getString("TransferType") + " " + transferTypeEditText.text.toString(),
+            apartmentName = transferTypeEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = null
         )
@@ -207,7 +198,8 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             dateOfArrival = dateOfArrivalEditText.text.toString(),
             timeOfArrival = arrivalTimeEditText.text.toString(),
             driverName = driverEditText.text.toString(),
-            transferType = transferTypeEditText.text.toString(),
+            transferType = transferTypeHint.text.toString(),
+            apartmentName = transferTypeEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = null
         )
@@ -236,7 +228,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             getString(R.string.messageInfo_dateAndTimeOfArrival),
             guest.dateOfArrival,
             guest.timeOfArrival,
-            guest.transferType
+            guest.apartmentName
         )
 
         phoneNumber.let {

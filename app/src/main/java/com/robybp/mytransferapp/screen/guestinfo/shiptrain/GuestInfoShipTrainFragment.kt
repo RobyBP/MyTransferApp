@@ -50,6 +50,7 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
     private lateinit var dateOfArrivalEditText: EditText
     private lateinit var arrivalTimeEditText: EditText
     private lateinit var driverEditText: EditText
+    private lateinit var transferTypeHint: TextView
     private lateinit var noteEditText: EditText
     private lateinit var sendInfoButton: View
     private var guestId: Int? = null
@@ -91,7 +92,6 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
 
         sharedPickDriverViewModel.getName().observe(viewLifecycleOwner,
             { driverEditText.setText(it) })
-
 
         dateOfArrivalEditText.setOnClickListener {
             model.showDatePicker()
@@ -152,7 +152,8 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
             dateOfArrival = dateOfArrivalEditText.text.toString(),
             timeOfArrival = arrivalTimeEditText.text.toString(),
             driverName = driverEditText.text.toString(),
-            transferType = noteEditText.text.toString(),
+            transferType = transferTypeHint.text.toString(),
+            apartmentName = noteEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = portOrStationEditText.text.toString()
         )
@@ -188,7 +189,7 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
             getString(R.string.messageInfo_dateAndTimeOfArrival),
             guest.dateOfArrival,
             guest.timeOfArrival,
-            guest.transferType
+            guest.apartmentName
         )
 
         phoneNumber.let {
@@ -207,8 +208,9 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
             countryOfArrival = arrivesFromEditText.text.toString(),
             dateOfArrival = dateOfArrivalEditText.text.toString(),
             timeOfArrival = arrivalTimeEditText.text.toString(),
+            transferType = transferTypeHint.text.toString(),
             driverName = driverEditText.text.toString(),
-            transferType = noteEditText.text.toString(),
+            apartmentName = noteEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = portOrStationEditText.text.toString()
         )
@@ -266,6 +268,7 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
         driverEditText = view.findViewById(R.id.newguestshiptrainscreen_driver_editText)
         noteEditText = view.findViewById(R.id.newguestshiptrainscreen_transferType_editText)
         sendInfoButton = view.findViewById(R.id.newguestshiptrainscreen_sendinfo_button)
+        transferTypeHint = view.findViewById(R.id.newguestshiptrainscreen_transferType_hint)
 
         driverEditText.inputType = EditorInfo.TYPE_NULL
         dateOfArrivalEditText.inputType = EditorInfo.TYPE_NULL
@@ -291,7 +294,8 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
         dateOfArrivalEditText.setText(guest.dateOfArrival)
         arrivalTimeEditText.setText(guest.timeOfArrival)
         driverEditText.setText(guest.driverName)
-        noteEditText.setText(guest.transferType)
+        noteEditText.setText(guest.apartmentName)
+        transferTypeHint.text = guest.transferType
     }
 
     override fun onDestroyView() {

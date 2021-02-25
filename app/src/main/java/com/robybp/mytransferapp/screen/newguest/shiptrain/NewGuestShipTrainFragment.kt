@@ -141,7 +141,8 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
             dateOfArrival = dateOfArrivalEditText.text.toString(),
             timeOfArrival = arrivalTimeEditText.text.toString(),
             driverName = driverEditText.text.toString(),
-            transferType = requireArguments().getString("TransferType") + " " + transferTypeEditText.text.toString(),
+            transferType = transferTypeHint.text.toString(),
+            apartmentName = transferTypeEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = portOrStationEditText.text.toString()
         )
@@ -197,9 +198,10 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
             countryOfArrival = arrivesFromEditText.text.toString(),
             dateOfArrival = dateOfArrivalEditText.text.toString(),
             timeOfArrival = arrivalTimeEditText.text.toString(),
+            transferType = transferTypeHint.text.toString(),
             driverName = driverEditText.text.toString(),
-            transferType = transferTypeEditText.text.toString(),
-            meansOfTransport = requireArguments()["Vehicle"].toString(),
+            apartmentName = transferTypeEditText.text.toString(),
+            meansOfTransport = transferTypeEditText.text.toString(),
             portOrStation = portOrStationEditText.text.toString()
         )
 
@@ -234,7 +236,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
             getString(R.string.messageInfo_dateAndTimeOfArrival),
             guest.dateOfArrival,
             guest.timeOfArrival,
-            guest.transferType
+            guest.apartmentName
         )
 
         phoneNumber.let {
