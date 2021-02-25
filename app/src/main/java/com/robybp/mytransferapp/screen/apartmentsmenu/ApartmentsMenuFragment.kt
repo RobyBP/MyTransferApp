@@ -38,6 +38,10 @@ class ApartmentsMenuFragment : Fragment(), ApartmentsAdapter.ClickListener {
         newApartmentButton.setOnClickListener {
             model.goToNewApartment()
         }
+
+        closeButton.setOnClickListener {
+            model.goBack()
+        }
         super.onViewCreated(view, savedInstanceState)
     }
 

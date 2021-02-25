@@ -71,5 +71,11 @@
     <string name="choose_an_apartment">Choose an apartment</string>
     <string name="to_apartment">To apartment:</string>
     <string name="from_apartment">From apartment:</string>
+    <string name="apartment_name">Apartment name:</string>
+    <string name="address">Address:</string>
+    <string name="phone">Phone:</string>
+    <string name="note">Note:</string>
+    <string name="city">City:</string>
+    <string name="owner">Owner</string>
 
 </resources>

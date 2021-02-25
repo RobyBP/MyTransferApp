@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#391864">
+    android:background="#391864"
+    android:focusable="true">
 
     <View
         android:id="@+id/apartmentsmenu_recyclerview_background"
@@ -42,7 +43,7 @@
         android:id="@+id/apartmentsmenu_close_icon"
         android:layout_width="@dimen/homescreen_settings_icon_height"
         android:layout_height="@dimen/homescreen_settings_icon_width"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/ic_close"
         app:layout_constraintBottom_toTopOf="@id/apartmentsmenu_recyclerview"
         app:layout_constraintEnd_toEndOf="parent"

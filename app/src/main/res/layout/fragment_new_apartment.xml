@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="Autofill">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,7 +19,8 @@
             android:layout_marginStart="15dp"
             app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/newapartment_app_icon" />
+            app:layout_constraintTop_toBottomOf="@id/newapartment_app_icon"
+            tools:ignore="ContentDescription" />
 
 
         <ImageView
@@ -31,7 +34,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/newapartment_top_icon"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
         <View
             android:id="@+id/newapartment_cancel_button"
@@ -79,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="11dp"
                     android:paddingTop="5dp"
-                    android:text="Apartment name:"
+                    android:text="@string/apartment_name"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -91,10 +95,12 @@
                     android:layout_marginStart="11dp"
                     android:layout_marginEnd="13dp"
                     android:imeOptions="actionNext"
+                    android:inputType="textCapSentences"
                     android:paddingHorizontal="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/newapartment_apartment_hint" />
+                    app:layout_constraintTop_toBottomOf="@id/newapartment_apartment_hint"
+                    tools:ignore="LabelFor" />
 
                 <TextView
                     android:id="@+id/newapartment_city_hint"
@@ -103,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="11dp"
                     android:paddingTop="5dp"
-                    android:text="City:"
+                    android:text="@string/city"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/newapartment_apartmentName_editText" />
 
@@ -115,10 +121,12 @@
                     android:layout_marginStart="11dp"
                     android:layout_marginEnd="13dp"
                     android:imeOptions="actionNext"
+                    android:inputType="textCapSentences"
                     android:paddingHorizontal="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/newapartment_city_hint" />
+                    app:layout_constraintTop_toBottomOf="@id/newapartment_city_hint"
+                    tools:ignore="LabelFor" />
 
                 <TextView
                     android:id="@+id/newapartment_address_hint"
@@ -127,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="11dp"
                     android:paddingTop="5dp"
-                    android:text="Address:"
+                    android:text="@string/address"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/newapartment_city_editText" />
 
@@ -139,10 +147,12 @@
                     android:layout_marginStart="11dp"
                     android:layout_marginEnd="13dp"
                     android:imeOptions="actionNext"
+                    android:inputType="textCapSentences"
                     android:paddingHorizontal="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/newapartment_address_hint" />
+                    app:layout_constraintTop_toBottomOf="@id/newapartment_address_hint"
+                    tools:ignore="LabelFor" />
 
                 <TextView
                     android:id="@+id/newapartment_owner_hint"
@@ -151,7 +161,7 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="11dp"
                     android:paddingTop="5dp"
-                    android:text="Owner"
+                    android:text="@string/owner"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/newapartment_address_editText" />
 
@@ -164,11 +174,13 @@
                     android:layout_marginStart="11dp"
                     android:layout_marginEnd="13dp"
                     android:imeOptions="actionNext"
+                    android:inputType="textCapWords"
                     android:paddingHorizontal="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/newapartment_owner_hint" />
+                    app:layout_constraintTop_toBottomOf="@id/newapartment_owner_hint"
+                    tools:ignore="LabelFor" />
 
                 <TextView
                     android:id="@+id/newapartment_phone_hint"
@@ -177,7 +189,7 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="11dp"
                     android:paddingTop="5dp"
-                    android:text="Phone:"
+                    android:text="@string/phone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/newapartment_owner_editText" />
 
@@ -189,10 +201,12 @@
                     android:layout_marginStart="11dp"
                     android:layout_marginEnd="13dp"
                     android:imeOptions="actionDone"
+                    android:inputType="phone"
                     android:paddingHorizontal="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/newapartment_phone_hint" />
+                    app:layout_constraintTop_toBottomOf="@id/newapartment_phone_hint"
+                    tools:ignore="LabelFor" />
 
                 <TextView
                     android:id="@+id/newapartment_note_hint"
@@ -201,7 +215,7 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="11dp"
                     android:paddingTop="5dp"
-                    android:text="Note:"
+                    android:text="@string/note"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/newapartment_phone_editText" />
 
@@ -217,7 +231,8 @@
                     app:layout_constraintBottom_toTopOf="@id/newapartment_sendinfo_button"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/newapartment_note_hint" />
+                    app:layout_constraintTop_toBottomOf="@id/newapartment_note_hint"
+                    tools:ignore="LabelFor,TextFields" />
 
                 <View
                     android:id="@+id/newapartment_sendinfo_button"
@@ -249,7 +264,8 @@
                 android:layout_width="82dp"
                 android:layout_height="48dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="8dp"
+                tools:ignore="ContentDescription" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
