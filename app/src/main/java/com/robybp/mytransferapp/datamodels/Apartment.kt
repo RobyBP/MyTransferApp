@@ -11,5 +11,6 @@ data class Apartment(
     val city: String,
     val address: String,
     val owner: String,
-    val ownerPhoneNumber: String
+    val ownerPhoneNumber: String,
+    val note: String?
 )

@@ -25,6 +25,8 @@ class GuestBookRepository(private val guestBookDao: GuestBookDao) {
 
     suspend fun saveApartment(apartment: Apartment) = guestBookDao.saveApartment(apartment)
 
+    suspend fun updateApartmentData(apartment: Apartment) = guestBookDao.updateApartmentData(apartment)
+
     suspend fun updateGuestData(guest: Guest) = guestBookDao.updateGuestData(guest)
 
     suspend fun removeGuest(guest: Guest) = guestBookDao.deleteGuest(guest)

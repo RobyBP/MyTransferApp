@@ -3,6 +3,7 @@ package com.robybp.mytransferapp.navigation
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import com.robybp.mytransferapp.R
+import com.robybp.mytransferapp.screen.apartmentinfo.ApartmentInfoFragment
 import com.robybp.mytransferapp.screen.apartmentsmenu.ApartmentsMenuFragment
 import com.robybp.mytransferapp.screen.dateandtimeofarrival.datepicker.DatePickerFragment
 import com.robybp.mytransferapp.screen.dateandtimeofarrival.timepicker.TimePickerFragment
@@ -186,8 +187,21 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
         }
     }
 
+    override fun goToApartmentInfo(address: String) {
+        val bundle = Bundle()
+        val apartmentInfoFragment = ApartmentInfoFragment()
+        bundle.putString("Address", address)
+        apartmentInfoFragment.arguments = bundle
+        fragmentManager.beginTransaction().apply {
+            applySlideAnimation()
+            add(MAIN_CONTAINER, apartmentInfoFragment)
+            addToBackStack(ApartmentInfoFragment.TAG)
+            commit()
+        }
+    }
+
     override fun returnToHomeScreen() {
-        var count = fragmentManager.backStackEntryCount
+        val count = fragmentManager.backStackEntryCount
 
         for(i in 0 until count){
             fragmentManager.popBackStack()

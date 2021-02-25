@@ -21,5 +21,9 @@ class ApartmentsMenuViewModel(private val repository: GuestBookRepository, priva
         it.goToTransferType(apartmentName)
     }
 
+    fun goToApartmentInfo(apartmentAddress: String) = routingActionsSource.dispatch {
+        it.goToApartmentInfo(apartmentAddress)
+    }
+
     fun goBack() = routingActionsSource.dispatch(Router::goBack)
 }

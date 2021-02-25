@@ -32,6 +32,8 @@ interface Router {
 
     fun goToNewApartment()
 
+    fun goToApartmentInfo(address: String)
+
     fun returnToHomeScreen()
 
     fun goBack()

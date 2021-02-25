@@ -9,7 +9,7 @@ import com.robybp.mytransferapp.datamodels.Apartment
 import com.robybp.mytransferapp.datamodels.Driver
 import com.robybp.mytransferapp.datamodels.Guest
 
-@Database(entities = [Guest::class, Driver::class, Apartment::class], version = 1, exportSchema = false)
+@Database(entities = [Guest::class, Driver::class, Apartment::class], version = 2, exportSchema = false)
 abstract class GuestBookDatabase : RoomDatabase() {
 
     abstract fun guestBookDao(): GuestBookDao
@@ -29,7 +29,8 @@ abstract class GuestBookDatabase : RoomDatabase() {
                     context.applicationContext,
                     GuestBookDatabase::class.java,
                     "user_task_database"
-                ).build()
+                ).fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 return instance
             }

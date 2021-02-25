@@ -61,4 +61,8 @@ class ApartmentsMenuFragment : Fragment(), ApartmentsAdapter.ClickListener {
     override fun onItemClicked(apartmentName: String) {
         model.goToTransferType(apartmentName)
     }
+
+    override fun onSettingsClicked(apartmentAddress: String) {
+        model.goToApartmentInfo(apartmentAddress)
+    }
 }

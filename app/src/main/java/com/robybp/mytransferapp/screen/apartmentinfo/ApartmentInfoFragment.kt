@@ -1,18 +1,17 @@
-package com.robybp.mytransferapp.screen.newapartment
+package com.robybp.mytransferapp.screen.apartmentinfo
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.robybp.mytransferapp.R
 import com.robybp.mytransferapp.datamodels.Apartment
+import io.reactivex.disposables.CompositeDisposable
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class
-NewApartmentFragment : Fragment() {
+class ApartmentInfoFragment : Fragment() {
 
     private lateinit var apartmentNameEditText: EditText
     private lateinit var apartmentCityEditText: EditText
@@ -22,11 +21,12 @@ NewApartmentFragment : Fragment() {
     private lateinit var noteEditText: EditText
     private lateinit var saveButton: View
     private lateinit var cancelButton: View
-    private val model: NewApartmentViewModel by viewModel()
     private var inputFields = listOf<EditText>()
+    private val compositeDisposable = CompositeDisposable()
+    private val model: ApartmentInfoViewModel by viewModel()
 
     companion object {
-        const val TAG = "NewApartmentFragment"
+        const val TAG = "ApartmentInfoFragment"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -37,28 +37,13 @@ NewApartmentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        cancelButton.setOnClickListener { model.goBack() }
+        compositeDisposable.add(
+            model.queryApartmentByAddress(requireArguments().getString("Address")!!).subscribe {
+                setInfo(it)
+            }
+        )
 
-        saveButton.setOnClickListener { validateFieldsAndSaveApartment() }
         super.onViewCreated(view, savedInstanceState)
-    }
-
-    private fun validateFieldsAndSaveApartment() {
-        if (model.crucialFieldsEmpty(inputFields)) Toast.makeText(requireContext(), "Only note field can be empty", Toast.LENGTH_LONG).show()
-        else{
-            model.saveApartment(
-                Apartment(
-                    id = 0,
-                    name = apartmentNameEditText.text.toString(),
-                    city = apartmentCityEditText.text.toString(),
-                    address = apartmentAddressEditText.text.toString(),
-                    owner = ownerEditText.text.toString(),
-                    ownerPhoneNumber = ownerNumberEditText.text.toString(),
-                    note = noteEditText.text.toString()
-                )
-            )
-            model.goBack()
-        }
     }
 
     private fun initialiseViews(view: View) {
@@ -71,5 +56,19 @@ NewApartmentFragment : Fragment() {
         saveButton = view.findViewById(R.id.newapartment_save_button)
         cancelButton = view.findViewById(R.id.newapartment_cancel_button)
         inputFields = listOf(apartmentNameEditText, apartmentCityEditText, apartmentAddressEditText, ownerEditText, ownerNumberEditText)
+    }
+
+    private fun setInfo(apartment: Apartment) {
+        apartmentNameEditText.setText(apartment.name)
+        apartmentCityEditText.setText(apartment.city)
+        apartmentAddressEditText.setText(apartment.address)
+        ownerEditText.setText(apartment.owner)
+        ownerNumberEditText.setText(apartment.ownerPhoneNumber)
+        noteEditText.setText(apartment.note)
+    }
+
+    override fun onDestroyView() {
+        compositeDisposable.dispose()
+        super.onDestroyView()
     }
 }
