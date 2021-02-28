@@ -51,6 +51,8 @@ class NewGuestViewModel(
 
     fun returnToHOmeScreen() = routingActionsSource.dispatch(Router::returnToHomeScreen)
 
+    fun goToPickApartment() = routingActionsSource.dispatch(Router::goToPickApartment)
+
     fun sendMessage(messageBody: String, phoneNumber: String) {
         val smsManager = SmsManager.getDefault()
         smsManager.sendTextMessage(phoneNumber, null, messageBody, null, null)

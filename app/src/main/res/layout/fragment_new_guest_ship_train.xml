@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -95,11 +95,11 @@
                     android:layout_marginStart="11dp"
                     android:layout_marginEnd="13dp"
                     android:imeOptions="actionNext"
+                    android:inputType="textCapWords"
                     android:paddingHorizontal="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/newguestshiptrainscreen_guestName_hint"
-                    android:inputType="textCapWords" />
+                    app:layout_constraintTop_toBottomOf="@id/newguestshiptrainscreen_guestName_hint" />
 
                 <TextView
                     android:id="@+id/newguestshiptrainscreen_trainOrShipNumber_hint"
@@ -119,11 +119,11 @@
                     android:layout_marginStart="11dp"
                     android:layout_marginEnd="13dp"
                     android:imeOptions="actionNext"
+                    android:inputType="textCapSentences"
                     android:paddingHorizontal="10dp"
                     app:layout_constraintEnd_toStartOf="@id/newguestshiptrainscreen_portOrStation_editText"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/newguestshiptrainscreen_trainOrShipNumber_hint"
-                    android:inputType="textCapSentences"
                     tools:ignore="TextFields" />
 
                 <TextView
@@ -142,11 +142,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="13dp"
                     android:imeOptions="actionNext"
+                    android:inputType="textCapSentences"
                     android:paddingHorizontal="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/newguestshiptrainscreen_trainOrShipNumber_editText"
-                    app:layout_constraintTop_toBottomOf="@id/newguestshiptrainscreen_trainOrShipNumber_hint"
-                    android:inputType="textCapSentences" />
+                    app:layout_constraintTop_toBottomOf="@id/newguestshiptrainscreen_trainOrShipNumber_hint" />
 
                 <TextView
                     android:id="@+id/newguestshiptrainscreen_arrivesFrom_hint"
@@ -167,11 +167,11 @@
                     android:layout_marginStart="11dp"
                     android:layout_marginEnd="13dp"
                     android:imeOptions="actionDone"
+                    android:inputType="textCapSentences"
                     android:paddingHorizontal="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/newguestshiptrainscreen_arrivesFrom_hint"
-                    android:inputType="textCapSentences" />
+                    app:layout_constraintTop_toBottomOf="@id/newguestshiptrainscreen_arrivesFrom_hint" />
 
                 <TextView
                     android:id="@+id/newguestshiptrainscreen_dateAndTimeOfArrival_hint"
@@ -234,12 +234,12 @@
                     android:layout_marginEnd="13dp"
                     android:focusableInTouchMode="false"
                     android:imeOptions="actionNext"
+                    android:inputType="textCapWords"
                     android:paddingHorizontal="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/newguestshiptrainscreen_driver_hint"
-                    android:inputType="textCapWords" />
+                    app:layout_constraintTop_toBottomOf="@id/newguestshiptrainscreen_driver_hint" />
 
                 <TextView
                     android:id="@+id/newguestshiptrainscreen_transferType_hint"
@@ -258,13 +258,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="11dp"
                     android:layout_marginEnd="13dp"
+                    android:focusableInTouchMode="false"
                     android:imeOptions="actionDone"
+                    android:inputType="textCapSentences"
                     android:paddingHorizontal="10dp"
                     app:layout_constraintBottom_toTopOf="@id/newguestshiptrainscreen_sendinfo_button"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/newguestshiptrainscreen_transferType_hint"
-                    android:inputType="textCapSentences" />
+                    app:layout_constraintTop_toBottomOf="@id/newguestshiptrainscreen_transferType_hint" />
 
                 <View
                     android:id="@+id/newguestshiptrainscreen_sendinfo_button"

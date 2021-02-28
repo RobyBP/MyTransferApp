@@ -65,6 +65,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
         sharedDateTimeViewModel.timeSetListener = this
         sharedDateTimeViewModel.dateSetListener = this
         sharedPickDriverViewModel.setName(null)
+        sharedPickApartmentViewModel.setApartmentName(null)
         initialiseViews(view)
         return view
     }

@@ -23,6 +23,7 @@ import com.robybp.mytransferapp.datamodels.Guest
 import com.robybp.mytransferapp.screen.dateandtimeofarrival.DateAndTimeViewModel
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
 import com.robybp.mytransferapp.screen.newguest.NewGuestViewModel
+import com.robybp.mytransferapp.screen.pickapartment.PickApartmentViewModel
 import com.robybp.mytransferapp.screen.pickdriver.PickDriverViewModel
 import com.robybp.mytransferapp.util.NotificationWorker
 import io.reactivex.disposables.CompositeDisposable
@@ -44,7 +45,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
     private lateinit var arrivalTimeEditText: EditText
     private lateinit var driverEditText: EditText
     private lateinit var transferTypeHint: TextView
-    private lateinit var transferTypeEditText: EditText
+    private lateinit var apartmentNameEditText: EditText
     private lateinit var flightNumberOrBusCompanyText: TextView
     private lateinit var cancelButton: View
     private lateinit var saveButton: View
@@ -54,6 +55,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
     private val model: NewGuestViewModel by viewModel()
     private val sharedDateTimePickerViewModel: DateAndTimeViewModel by sharedViewModel()
     private val sharedPickDriverViewModel: PickDriverViewModel by sharedViewModel()
+    private val sharedPickApartmentViewModel: PickApartmentViewModel by sharedViewModel()
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -73,6 +75,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
         sharedDateTimePickerViewModel.dateSetListener = this
         sharedDateTimePickerViewModel.timeSetListener = this
         sharedPickDriverViewModel.setName(null)
+        sharedPickApartmentViewModel.setApartmentName(null)
         return view
     }
 
@@ -90,10 +93,13 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
 
         transferTypeHint.text = requireArguments().getString("TransferType")
 
-        transferTypeEditText.setText(requireArguments().getString("Apartment"))
+        apartmentNameEditText.setText(requireArguments().getString("Apartment"))
 
         sharedPickDriverViewModel.getName().observe(viewLifecycleOwner,
             { driverEditText.setText(it) })
+
+        sharedPickApartmentViewModel.getApartmentName().observe(viewLifecycleOwner,
+            { apartmentNameEditText.setText(it) })
 
         dateOfArrivalEditText.setOnClickListener {
             model.showDatePicker()
@@ -107,6 +113,10 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             model.goToPickDriverFragment()
         }
 
+        apartmentNameEditText.setOnClickListener {
+            model.goToPickApartment()
+        }
+
         saveButton.setOnClickListener {
             if (model.crucialFieldsEmpty(listOfInputFields)) {
                 Toast.makeText(requireContext(), "Only note field can be empty", Toast.LENGTH_LONG)
@@ -118,6 +128,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
 
         cancelButton.setOnClickListener {
             sharedDateTimePickerViewModel.resetData()
+            sharedPickApartmentViewModel.setApartmentName(null)
             compositeDisposable.dispose()
             model.goBack()
         }
@@ -151,7 +162,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             timeOfArrival = arrivalTimeEditText.text.toString(),
             transferType = transferTypeHint.text.toString(),
             driverName = driverEditText.text.toString(),
-            apartmentName = transferTypeEditText.text.toString(),
+            apartmentName = apartmentNameEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = null
         )
@@ -180,6 +191,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
 
         model.saveGuest(guest)
         sharedDateTimePickerViewModel.resetData()
+        sharedPickApartmentViewModel.setApartmentName(null)
         model.returnToHOmeScreen()
     }
 
@@ -199,7 +211,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             timeOfArrival = arrivalTimeEditText.text.toString(),
             driverName = driverEditText.text.toString(),
             transferType = transferTypeHint.text.toString(),
-            apartmentName = transferTypeEditText.text.toString(),
+            apartmentName = apartmentNameEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = null
         )
@@ -279,8 +291,8 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             view.findViewById(R.id.newguestbusairplanescreen_timeOfArrival_editText)
         driverEditText = view.findViewById(R.id.newguestbusairplanescreen_driver_editText)
         transferTypeHint = view.findViewById(R.id.newguestbusairplanescreen_transferType_hint)
-        transferTypeEditText = view.findViewById(R.id.newguestbusairplanescreen_transferType_editText)
-        transferTypeEditText.inputType = EditorInfo.TYPE_NULL
+        apartmentNameEditText = view.findViewById(R.id.newguestbusairplanescreen_transferType_editText)
+        apartmentNameEditText.inputType = EditorInfo.TYPE_NULL
         saveButton = view.findViewById(R.id.newguestbusairplanescreen_save_button)
         flightNumberOrBusCompanyText =
             view.findViewById(R.id.newguestbusairplanescreen_flightNumberOrBusCompany_hint)
@@ -292,7 +304,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
         dateOfArrivalEditText.inputType = EditorInfo.TYPE_NULL
         arrivalTimeEditText.inputType = EditorInfo.TYPE_NULL
         driverEditText.inputType = EditorInfo.TYPE_NULL
-        transferTypeEditText.inputType = EditorInfo.TYPE_NULL
+        apartmentNameEditText.inputType = EditorInfo.TYPE_NULL
 
         listOfInputFields = listOf(
             flightNumberOrBusCompanyEditText,

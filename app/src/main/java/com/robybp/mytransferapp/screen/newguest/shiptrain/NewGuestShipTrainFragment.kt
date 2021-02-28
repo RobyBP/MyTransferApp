@@ -23,6 +23,7 @@ import com.robybp.mytransferapp.datamodels.Guest
 import com.robybp.mytransferapp.screen.dateandtimeofarrival.DateAndTimeViewModel
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
 import com.robybp.mytransferapp.screen.newguest.NewGuestViewModel
+import com.robybp.mytransferapp.screen.pickapartment.PickApartmentViewModel
 import com.robybp.mytransferapp.screen.pickdriver.PickDriverViewModel
 import com.robybp.mytransferapp.util.NotificationWorker
 import io.reactivex.disposables.CompositeDisposable
@@ -55,13 +56,14 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
     private lateinit var arrivalTimeEditText: EditText
     private lateinit var driverEditText: EditText
     private lateinit var transferTypeHint: TextView
-    private lateinit var transferTypeEditText: EditText
+    private lateinit var apartmentNameEditText: EditText
     private lateinit var sendInfoButton: View
 
     private var inputFields = listOf<EditText>()
     private val model: NewGuestViewModel by viewModel()
     private val sharedDateTimePickerViewModel: DateAndTimeViewModel by sharedViewModel()
     private val sharedPickDriverViewModel: PickDriverViewModel by sharedViewModel()
+    private val sharedPickApartmentViewModel: PickApartmentViewModel by sharedViewModel()
     private val compositeDisposable = CompositeDisposable()
 
     override fun onCreateView(
@@ -74,6 +76,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
         sharedDateTimePickerViewModel.timeSetListener = this
         initialiseViews(view)
         sharedPickDriverViewModel.setName(null)
+        sharedPickApartmentViewModel.setApartmentName(null)
         return view
     }
 
@@ -93,15 +96,22 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
 
         transferTypeHint.text = requireArguments().getString("TransferType")
 
-        transferTypeEditText.setText(requireArguments().getString("Apartment"))
+        apartmentNameEditText.setText(requireArguments().getString("Apartment"))
 
         sharedPickDriverViewModel.getName().observe(viewLifecycleOwner,
             { driverEditText.setText(it) })
+
+        sharedPickApartmentViewModel.getApartmentName().observe(viewLifecycleOwner,
+            { apartmentNameEditText.setText(it) })
 
         cancelButton.setOnClickListener {
             sharedDateTimePickerViewModel.resetData()
             compositeDisposable.dispose()
             model.goBack()
+        }
+
+        apartmentNameEditText.setOnClickListener {
+            model.goToPickApartment()
         }
 
         saveButton.setOnClickListener {
@@ -142,7 +152,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
             timeOfArrival = arrivalTimeEditText.text.toString(),
             driverName = driverEditText.text.toString(),
             transferType = transferTypeHint.text.toString(),
-            apartmentName = transferTypeEditText.text.toString(),
+            apartmentName = apartmentNameEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = portOrStationEditText.text.toString()
         )
@@ -200,8 +210,8 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
             timeOfArrival = arrivalTimeEditText.text.toString(),
             transferType = transferTypeHint.text.toString(),
             driverName = driverEditText.text.toString(),
-            apartmentName = transferTypeEditText.text.toString(),
-            meansOfTransport = transferTypeEditText.text.toString(),
+            apartmentName = apartmentNameEditText.text.toString(),
+            meansOfTransport = apartmentNameEditText.text.toString(),
             portOrStation = portOrStationEditText.text.toString()
         )
 
@@ -294,13 +304,13 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
         arrivalTimeEditText = view.findViewById(R.id.newguestshiptrainscreen_timeOfArrival_editText)
         driverEditText = view.findViewById(R.id.newguestshiptrainscreen_driver_editText)
         transferTypeHint = view.findViewById(R.id.newguestshiptrainscreen_transferType_hint)
-        transferTypeEditText = view.findViewById(R.id.newguestshiptrainscreen_transferType_editText)
+        apartmentNameEditText = view.findViewById(R.id.newguestshiptrainscreen_transferType_editText)
         sendInfoButton = view.findViewById(R.id.newguestshiptrainscreen_sendinfo_button)
 
         driverEditText.inputType = EditorInfo.TYPE_NULL
         dateOfArrivalEditText.inputType = EditorInfo.TYPE_NULL
         arrivalTimeEditText.inputType = EditorInfo.TYPE_NULL
-        transferTypeEditText.inputType = EditorInfo.TYPE_NULL
+        apartmentNameEditText.inputType = EditorInfo.TYPE_NULL
 
         inputFields = listOf(
             guestNameEditText,
