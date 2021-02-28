@@ -89,7 +89,7 @@
         android:textColor="#000000"
         android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@id/apartmentsmenu_apartment_city_hint"
-        app:layout_constraintStart_toEndOf="@id/apartmentsmenu_apartment_name_hint"
+        app:layout_constraintStart_toEndOf="@id/apartmentsmenu_apartment_city_hint"
         app:layout_constraintTop_toBottomOf="@id/apartmentsmenu_apartment_owner_hint"
         tools:text="Placeholder" />
 
@@ -101,7 +101,7 @@
         android:textColor="#000000"
         android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@id/apartmentsmenu_apartment_address_hint"
-        app:layout_constraintStart_toEndOf="@id/apartmentsmenu_apartment_name_hint"
+        app:layout_constraintStart_toEndOf="@id/apartmentsmenu_apartment_address_hint"
         app:layout_constraintTop_toBottomOf="@id/apartmentsmenu_apartment_owner_hint"
         tools:text="Placeholder" />
 
@@ -113,7 +113,7 @@
         android:textColor="#000000"
         android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@id/apartmentsmenu_apartment_owner_hint"
-        app:layout_constraintStart_toEndOf="@id/apartmentsmenu_apartment_name_hint"
+        app:layout_constraintStart_toEndOf="@id/apartmentsmenu_apartment_owner_hint"
         app:layout_constraintTop_toBottomOf="@id/apartmentsmenu_apartment_owner_hint"
         tools:text="Placeholder" />
 
@@ -124,7 +124,7 @@
         android:layout_marginBottom="8dp"
         android:textColor="#000000"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@id/apartmentsmenu_apartment_name_hint"
+        app:layout_constraintStart_toEndOf="@id/apartmentsmenu_apartment_owner_contact_hint"
         app:layout_constraintTop_toBottomOf="@id/apartmentsmenu_apartment_owner_hint"
         tools:text="Placeholder" />
 

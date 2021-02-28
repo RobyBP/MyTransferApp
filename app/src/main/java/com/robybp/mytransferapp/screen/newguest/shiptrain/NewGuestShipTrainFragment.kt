@@ -300,6 +300,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
         driverEditText.inputType = EditorInfo.TYPE_NULL
         dateOfArrivalEditText.inputType = EditorInfo.TYPE_NULL
         arrivalTimeEditText.inputType = EditorInfo.TYPE_NULL
+        transferTypeEditText.inputType = EditorInfo.TYPE_NULL
 
         inputFields = listOf(
             guestNameEditText,

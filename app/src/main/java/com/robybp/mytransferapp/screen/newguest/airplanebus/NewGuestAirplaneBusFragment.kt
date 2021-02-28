@@ -292,6 +292,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
         dateOfArrivalEditText.inputType = EditorInfo.TYPE_NULL
         arrivalTimeEditText.inputType = EditorInfo.TYPE_NULL
         driverEditText.inputType = EditorInfo.TYPE_NULL
+        transferTypeEditText.inputType = EditorInfo.TYPE_NULL
 
         listOfInputFields = listOf(
             flightNumberOrBusCompanyEditText,

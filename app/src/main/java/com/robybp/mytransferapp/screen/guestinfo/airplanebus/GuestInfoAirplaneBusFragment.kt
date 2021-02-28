@@ -43,7 +43,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
     private lateinit var dateOfArrivalEditText: EditText
     private lateinit var arrivalTimeEditText: EditText
     private lateinit var driverEditText: EditText
-    private lateinit var noteEditText: EditText
+    private lateinit var apartmentNameEditText: EditText
     private lateinit var transferTypeHint: TextView
     private lateinit var flightNumberOrBusCompanyText: TextView
     private lateinit var cancelButton: View
@@ -148,7 +148,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
             timeOfArrival = arrivalTimeEditText.text.toString(),
             transferType = transferTypeHint.text.toString(),
             driverName = driverEditText.text.toString(),
-            apartmentName = noteEditText.text.toString(),
+            apartmentName = apartmentNameEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = null
         )
@@ -199,7 +199,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
             timeOfArrival = arrivalTimeEditText.text.toString(),
             transferType = transferTypeHint.text.toString(),
             driverName = driverEditText.text.toString(),
-            apartmentName = noteEditText.text.toString(),
+            apartmentName = apartmentNameEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = null
         )
@@ -246,7 +246,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
         arrivalTimeEditText =
             view.findViewById(R.id.newguestbusairplanescreen_timeOfArrival_editText)
         driverEditText = view.findViewById(R.id.newguestbusairplanescreen_driver_editText)
-        noteEditText = view.findViewById(R.id.newguestbusairplanescreen_transferType_editText)
+        apartmentNameEditText = view.findViewById(R.id.newguestbusairplanescreen_transferType_editText)
         saveChangesButton = view.findViewById(R.id.newguestbusairplanescreen_save_button)
         flightNumberOrBusCompanyText =
             view.findViewById(R.id.newguestbusairplanescreen_flightNumberOrBusCompany_hint)
@@ -259,6 +259,8 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
         dateOfArrivalEditText.inputType = EditorInfo.TYPE_NULL
         arrivalTimeEditText.inputType = EditorInfo.TYPE_NULL
         driverEditText.inputType = EditorInfo.TYPE_NULL
+        transferTypeHint.inputType = EditorInfo.TYPE_NULL
+        apartmentNameEditText.inputType = EditorInfo.TYPE_NULL
 
         listOfInputFields = listOf(
             flightNumberOrBusCompanyEditText,
@@ -278,7 +280,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
         dateOfArrivalEditText.setText(guest.dateOfArrival)
         arrivalTimeEditText.setText(guest.timeOfArrival)
         driverEditText.setText(guest.driverName)
-        noteEditText.setText(guest.apartmentName)
+        apartmentNameEditText.setText(guest.apartmentName)
         transferTypeHint.text = guest.transferType
     }
 

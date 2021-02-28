@@ -102,7 +102,7 @@
         android:paddingHorizontal="5dp"
         android:paddingBottom="1dp"
         app:layout_constraintBaseline_toBaselineOf="@id/homescreen_transferType_hint"
-        app:layout_constraintStart_toEndOf="@id/homescreen_date_and_time_hint"
+        app:layout_constraintStart_toEndOf="@id/homescreen_transferType_hint"
         tools:text="Paciflora" />
 
     <View

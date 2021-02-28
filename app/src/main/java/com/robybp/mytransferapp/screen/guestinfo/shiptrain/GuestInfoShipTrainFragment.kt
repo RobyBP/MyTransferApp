@@ -51,7 +51,7 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
     private lateinit var arrivalTimeEditText: EditText
     private lateinit var driverEditText: EditText
     private lateinit var transferTypeHint: TextView
-    private lateinit var noteEditText: EditText
+    private lateinit var apartmentNameEditText: EditText
     private lateinit var sendInfoButton: View
     private var guestId: Int? = null
 
@@ -153,7 +153,7 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
             timeOfArrival = arrivalTimeEditText.text.toString(),
             driverName = driverEditText.text.toString(),
             transferType = transferTypeHint.text.toString(),
-            apartmentName = noteEditText.text.toString(),
+            apartmentName = apartmentNameEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = portOrStationEditText.text.toString()
         )
@@ -211,7 +211,7 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
             timeOfArrival = arrivalTimeEditText.text.toString(),
             transferType = transferTypeHint.text.toString(),
             driverName = driverEditText.text.toString(),
-            apartmentName = noteEditText.text.toString(),
+            apartmentName = apartmentNameEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
             portOrStation = portOrStationEditText.text.toString()
         )
@@ -267,13 +267,14 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
             view.findViewById(R.id.newguestshiptrainscreen_dateOfArrival_editText)
         arrivalTimeEditText = view.findViewById(R.id.newguestshiptrainscreen_timeOfArrival_editText)
         driverEditText = view.findViewById(R.id.newguestshiptrainscreen_driver_editText)
-        noteEditText = view.findViewById(R.id.newguestshiptrainscreen_transferType_editText)
+        apartmentNameEditText = view.findViewById(R.id.newguestshiptrainscreen_transferType_editText)
         sendInfoButton = view.findViewById(R.id.newguestshiptrainscreen_sendinfo_button)
         transferTypeHint = view.findViewById(R.id.newguestshiptrainscreen_transferType_hint)
 
         driverEditText.inputType = EditorInfo.TYPE_NULL
         dateOfArrivalEditText.inputType = EditorInfo.TYPE_NULL
         arrivalTimeEditText.inputType = EditorInfo.TYPE_NULL
+        apartmentNameEditText.inputType = EditorInfo.TYPE_NULL
 
         inputFields = listOf(
             guestNameEditText,
@@ -295,7 +296,7 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
         dateOfArrivalEditText.setText(guest.dateOfArrival)
         arrivalTimeEditText.setText(guest.timeOfArrival)
         driverEditText.setText(guest.driverName)
-        noteEditText.setText(guest.apartmentName)
+        apartmentNameEditText.setText(guest.apartmentName)
         transferTypeHint.text = guest.transferType
     }
 
