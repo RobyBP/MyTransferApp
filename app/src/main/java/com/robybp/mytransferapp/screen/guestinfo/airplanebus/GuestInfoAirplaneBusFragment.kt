@@ -121,7 +121,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
 
         saveChangesButton.setOnClickListener {
             if (model.crucialFieldsEmpty(listOfInputFields)) {
-                Toast.makeText(requireContext(), "Only note field can be empty", Toast.LENGTH_LONG)
+                Toast.makeText(requireContext(), "No Fields can be empty", Toast.LENGTH_LONG)
                     .show()
                 return@setOnClickListener
             }

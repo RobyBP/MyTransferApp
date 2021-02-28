@@ -25,4 +25,6 @@ class PickApartmentViewModel(private val repository: GuestBookRepository, privat
     fun getApartmentName() = apartmentName
 
     fun goBack() = routingActionsSource.dispatch(Router::goBack)
+
+    fun goToCreateNewApartment() = routingActionsSource.dispatch(Router::goToNewApartment)
 }

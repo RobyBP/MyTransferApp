@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.robybp.mytransferapp.R
+import com.robybp.mytransferapp.datamodels.Apartment
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import io.reactivex.disposables.CompositeDisposable
 
@@ -35,6 +38,10 @@ class PickApartmentFragment : Fragment(), PickApartmentAdapter.ClickListener {
             model.apartments.subscribe { adapter.setApartments(it) }
         )
 
+        newApartmentButton.setOnClickListener {
+            model.goToCreateNewApartment()
+        }
+
         super.onViewCreated(view, savedInstanceState)
     }
 
@@ -43,7 +50,6 @@ class PickApartmentFragment : Fragment(), PickApartmentAdapter.ClickListener {
         recyclerView = view.findViewById(R.id.apartmentsmenu_recyclerview)
         newApartmentButton = view.findViewById(R.id.apartmentsmenu_addApartment_button)
         recyclerView.adapter = adapter
-
     }
 
     override fun onItemClicked(apartmentName: String) {
