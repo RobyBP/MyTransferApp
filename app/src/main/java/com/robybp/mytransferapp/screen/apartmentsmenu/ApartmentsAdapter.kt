@@ -28,14 +28,14 @@ class ApartmentsAdapter(private val listener: ClickListener) : RecyclerView.Adap
         holder.owner.text = apartments[position].owner
         holder.ownerContact.text = apartments[position].ownerPhoneNumber
 
+        holder.settingsButton.setOnClickListener {
+            listener.onSettingsClicked(apartments[position].address)
+        }
+
         holder.itemView.setOnClickListener {
             listener.onItemClicked(apartments[position].name)
         }
 
-        holder.settingsButton.setOnClickListener {
-            listener.onItemClicked(apartments[position].address)
-        }
-        
     }
 
     override fun getItemCount(): Int = apartments.size

@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.robybp.mytransferapp.R
 import com.robybp.mytransferapp.datamodels.Apartment
 import io.reactivex.disposables.CompositeDisposable
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.properties.Delegates
 
 class ApartmentInfoFragment : Fragment() {
 
@@ -24,6 +26,7 @@ class ApartmentInfoFragment : Fragment() {
     private var inputFields = listOf<EditText>()
     private val compositeDisposable = CompositeDisposable()
     private val model: ApartmentInfoViewModel by viewModel()
+    private var apartmentId by Delegates.notNull<Int>()
 
     companion object {
         const val TAG = "ApartmentInfoFragment"
@@ -40,10 +43,33 @@ class ApartmentInfoFragment : Fragment() {
         compositeDisposable.add(
             model.queryApartmentByAddress(requireArguments().getString("Address")!!).subscribe {
                 setInfo(it)
+                apartmentId = it.id
             }
         )
 
+        saveButton.setOnClickListener {
+            validateFieldsAndUpdateApartment()
+        }
+
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun validateFieldsAndUpdateApartment() {
+        if (model.crucialFieldsEmpty(inputFields)) Toast.makeText(requireContext(), "Only note field can be empty", Toast.LENGTH_LONG).show()
+        else{
+            model.updateApartment(
+                Apartment(
+                    apartmentId,
+                    name = apartmentNameEditText.text.toString(),
+                    city = apartmentCityEditText.text.toString(),
+                    address = apartmentAddressEditText.text.toString(),
+                    owner = ownerEditText.text.toString(),
+                    ownerPhoneNumber = ownerNumberEditText.text.toString(),
+                    note = noteEditText.text.toString()
+                )
+            )
+            model.goBack()
+        }
     }
 
     private fun initialiseViews(view: View) {

@@ -265,7 +265,8 @@
                 android:layout_height="48dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription"
+                android:src="@drawable/ic_house"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

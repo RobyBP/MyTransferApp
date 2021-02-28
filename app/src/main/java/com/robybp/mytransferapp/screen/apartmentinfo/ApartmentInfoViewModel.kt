@@ -1,5 +1,6 @@
 package com.robybp.mytransferapp.screen.apartmentinfo
 
+import android.widget.EditText
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.robybp.mytransferapp.datamodels.Apartment
@@ -20,6 +21,13 @@ class ApartmentInfoViewModel(private val repository: GuestBookRepository, privat
 
     fun updateApartment(apartment: Apartment) = viewModelScope.launch(Dispatchers.IO) {
         repository.updateApartmentData(apartment)
+    }
+
+    fun crucialFieldsEmpty(inputFields: List<EditText>): Boolean {
+        for (field in inputFields) {
+            if (field.text.isNullOrEmpty()) return true
+        }
+        return false
     }
 
     fun goBack() = routingActionsSource.dispatch(Router::goBack)
