@@ -20,6 +20,7 @@ import com.robybp.mytransferapp.datamodels.Guest
 import com.robybp.mytransferapp.screen.dateandtimeofarrival.DateAndTimeViewModel
 import com.robybp.mytransferapp.screen.guestinfo.GuestInfoViewModel
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
+import com.robybp.mytransferapp.screen.pickapartment.PickApartmentViewModel
 import com.robybp.mytransferapp.screen.pickdriver.PickDriverViewModel
 import io.reactivex.disposables.CompositeDisposable
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -37,6 +38,7 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
     private val model: GuestInfoViewModel by viewModel()
     private val sharedPickDriverViewModel: PickDriverViewModel by sharedViewModel()
     private val sharedDateTimeViewModel: DateAndTimeViewModel by sharedViewModel()
+    private val sharedPickApartmentViewModel: PickApartmentViewModel by sharedViewModel()
     private lateinit var topIcon: ImageView
     private lateinit var bottomIcon: ImageView
     private lateinit var trainOrShipNumberHint: TextView
@@ -66,6 +68,7 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
         sharedDateTimeViewModel.timeSetListener = this
         sharedDateTimeViewModel.dateSetListener = this
         sharedPickDriverViewModel.setName(null)
+        sharedPickApartmentViewModel.setApartmentName(null)
         initialiseViews(view)
         return view
     }
@@ -93,6 +96,9 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
         sharedPickDriverViewModel.getName().observe(viewLifecycleOwner,
             { driverEditText.setText(it) })
 
+        sharedPickApartmentViewModel.getApartmentName().observe(viewLifecycleOwner,
+            { apartmentNameEditText.setText(it) })
+
         dateOfArrivalEditText.setOnClickListener {
             model.showDatePicker()
         }
@@ -101,6 +107,9 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
             model.showTimePicker()
         }
 
+        apartmentNameEditText.setOnClickListener {
+            model.goToPickApartmentFragment()
+        }
         cancelButton.setOnClickListener {
             compositeDisposable.dispose()
             model.goBack()

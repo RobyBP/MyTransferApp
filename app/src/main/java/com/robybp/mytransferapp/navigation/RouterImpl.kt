@@ -16,6 +16,7 @@ import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransportFragment
 import com.robybp.mytransferapp.screen.newapartment.NewApartmentFragment
 import com.robybp.mytransferapp.screen.newguest.airplanebus.NewGuestAirplaneBusFragment
 import com.robybp.mytransferapp.screen.newguest.shiptrain.NewGuestShipTrainFragment
+import com.robybp.mytransferapp.screen.pickapartment.PickApartmentFragment
 import com.robybp.mytransferapp.screen.pickdriver.PickDriverFragment
 import com.robybp.mytransferapp.screen.transfertype.TransferTypeFragment
 
@@ -200,10 +201,19 @@ class RouterImpl(private val fragmentManager: FragmentManager) : Router {
         }
     }
 
+    override fun goToPickApartment() {
+        fragmentManager.beginTransaction().apply {
+            applySlideAnimation()
+            add(MAIN_CONTAINER, PickApartmentFragment())
+            addToBackStack(PickApartmentFragment.TAG)
+            commit()
+        }
+    }
+
     override fun returnToHomeScreen() {
         val count = fragmentManager.backStackEntryCount
 
-        for(i in 0 until count){
+        for (i in 0 until count) {
             fragmentManager.popBackStack()
         }
     }

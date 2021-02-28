@@ -20,6 +20,7 @@ import com.robybp.mytransferapp.datamodels.Guest
 import com.robybp.mytransferapp.screen.dateandtimeofarrival.DateAndTimeViewModel
 import com.robybp.mytransferapp.screen.guestinfo.GuestInfoViewModel
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
+import com.robybp.mytransferapp.screen.pickapartment.PickApartmentViewModel
 import com.robybp.mytransferapp.screen.pickdriver.PickDriverViewModel
 import io.reactivex.disposables.CompositeDisposable
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -37,6 +38,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
     private val model: GuestInfoViewModel by viewModel()
     private val sharedPickDriverViewModel: PickDriverViewModel by sharedViewModel()
     private val sharedDateTimeViewModel: DateAndTimeViewModel by sharedViewModel()
+    private val sharedPickApartmentViewModel: PickApartmentViewModel by sharedViewModel()
     private lateinit var nameEditText: EditText
     private lateinit var flightNumberOrBusCompanyEditText: EditText
     private lateinit var arrivesFromEditText: EditText
@@ -81,6 +83,9 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
         sharedPickDriverViewModel.getName().observe(viewLifecycleOwner,
             { driverEditText.setText(it) })
 
+        sharedPickApartmentViewModel.getApartmentName().observe(viewLifecycleOwner,
+            { apartmentNameEditText.setText(it) })
+
         model.queryGuest(requireArguments().getInt("GuestId"))
             .doOnSuccess{
                 setInfo(it)
@@ -107,6 +112,10 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
 
         driverEditText.setOnClickListener {
             model.goToPickDriverFragment()
+        }
+
+        apartmentNameEditText.setOnClickListener {
+            model.goToPickApartmentFragment()
         }
 
         saveChangesButton.setOnClickListener {
@@ -185,6 +194,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
             model.sendMessage(messageBody, it)
             compositeDisposable.dispose()
             model.updateGuest(guest)
+            sharedPickApartmentViewModel.setApartmentName(null)
             model.goBack()
         }
     }
@@ -206,6 +216,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
 
         model.updateGuest(guest)
         sharedDateTimeViewModel.resetData()
+        sharedPickApartmentViewModel.setApartmentName(null)
         model.goBack()
     }
 

@@ -49,6 +49,8 @@ class GuestInfoViewModel(private val repository: GuestBookRepository, private va
         repository.updateGuestData(guest)
     }
 
+    fun goToPickApartmentFragment() = routingActionsSource.dispatch(Router::goToPickApartment)
+
     fun goToPickDriverFragment() = routingActionsSource.dispatch(Router::goToPickDriver)
 
     fun goBack() = routingActionsSource.dispatch(Router::goBack)

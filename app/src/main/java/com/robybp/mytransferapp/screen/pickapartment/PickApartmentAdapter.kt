@@ -1,4 +1,4 @@
-package com.robybp.mytransferapp.screen.apartmentsmenu
+package com.robybp.mytransferapp.screen.pickapartment
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,37 +8,31 @@ import androidx.recyclerview.widget.RecyclerView
 import com.robybp.mytransferapp.R
 import com.robybp.mytransferapp.datamodels.Apartment
 
-class ApartmentsAdapter(private val listener: ClickListener) : RecyclerView.Adapter<ApartmentsViewHolder>() {
+class PickApartmentAdapter(private val clickListener: ClickListener): RecyclerView.Adapter<PickApartmentViewHolder>() {
 
     private var apartments = listOf<Apartment>()
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ApartmentsViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.apartment_item, parent, false)
-        return ApartmentsViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PickApartmentViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.apartment_item, parent, false)
+        return PickApartmentViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ApartmentsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PickApartmentViewHolder, position: Int) {
         holder.apartmentName.text = apartments[position].name
         holder.address.text = apartments[position].address
         holder.city.text = apartments[position].city
         holder.owner.text = apartments[position].owner
         holder.ownerContact.text = apartments[position].ownerPhoneNumber
-
-        holder.settingsButton.setOnClickListener {
-            listener.onSettingsClicked(apartments[position].address)
-        }
+        holder.settingsButton.visibility = View.GONE
 
         holder.itemView.setOnClickListener {
-            listener.onItemClicked(apartments[position].name)
+            clickListener.onItemClicked(apartments[position].name)
         }
-
     }
 
-    override fun getItemCount(): Int = apartments.size
+    override fun getItemCount(): Int {
+        return apartments.size
+    }
 
     fun setApartments(apartments: List<Apartment>) {
         this.apartments = apartments
@@ -47,12 +41,10 @@ class ApartmentsAdapter(private val listener: ClickListener) : RecyclerView.Adap
 
     interface ClickListener {
         fun onItemClicked(apartmentName: String)
-        fun onSettingsClicked(apartmentAddress: String)
     }
-
 }
 
-class ApartmentsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class PickApartmentViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     val apartmentName: TextView = itemView.findViewById(R.id.apartmentsmenu_apartment_name)
     val address: TextView = itemView.findViewById(R.id.apartmentsmenu_apartment_address)
     val city: TextView = itemView.findViewById(R.id.apartmentsmenu_apartment_city)

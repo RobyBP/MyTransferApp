@@ -51,12 +51,16 @@ class ApartmentInfoFragment : Fragment() {
             validateFieldsAndUpdateApartment()
         }
 
+        apartmentNameEditText.setOnClickListener {
+            model.goToPickApartment()
+        }
+
         super.onViewCreated(view, savedInstanceState)
     }
 
     private fun validateFieldsAndUpdateApartment() {
         if (model.crucialFieldsEmpty(inputFields)) Toast.makeText(requireContext(), "Only note field can be empty", Toast.LENGTH_LONG).show()
-        else{
+        else {
             model.updateApartment(
                 Apartment(
                     apartmentId,

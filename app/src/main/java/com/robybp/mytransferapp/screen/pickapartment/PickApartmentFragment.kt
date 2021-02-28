@@ -1,4 +1,4 @@
-package com.robybp.mytransferapp.screen.apartmentsmenu
+package com.robybp.mytransferapp.screen.pickapartment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,20 +8,20 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.robybp.mytransferapp.R
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import io.reactivex.disposables.CompositeDisposable
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ApartmentsMenuFragment : Fragment(), ApartmentsAdapter.ClickListener {
+class PickApartmentFragment : Fragment(), PickApartmentAdapter.ClickListener {
 
     private lateinit var closeButton: View
     private lateinit var recyclerView: RecyclerView
     private lateinit var newApartmentButton: FloatingActionButton
-    private val model: ApartmentsMenuViewModel by viewModel()
-    private val adapter: ApartmentsAdapter = ApartmentsAdapter(this)
+    private val model: PickApartmentViewModel by sharedViewModel()
+    private val adapter: PickApartmentAdapter = PickApartmentAdapter(this)
     private val compositeDisposable = CompositeDisposable()
 
     companion object {
-        const val TAG = "ApartmentsMenuFragment"
+        const val TAG = "PickApartmentFragment"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -35,13 +35,6 @@ class ApartmentsMenuFragment : Fragment(), ApartmentsAdapter.ClickListener {
             model.apartments.subscribe { adapter.setApartments(it) }
         )
 
-        newApartmentButton.setOnClickListener {
-            model.goToNewApartment()
-        }
-
-        closeButton.setOnClickListener {
-            model.goBack()
-        }
         super.onViewCreated(view, savedInstanceState)
     }
 
@@ -53,16 +46,14 @@ class ApartmentsMenuFragment : Fragment(), ApartmentsAdapter.ClickListener {
 
     }
 
+    override fun onItemClicked(apartmentName: String) {
+        model.setApartmentName(apartmentName)
+        model.goBack()
+    }
+
     override fun onDestroyView() {
         compositeDisposable.dispose()
         super.onDestroyView()
     }
 
-    override fun onItemClicked(apartmentName: String) {
-        model.goToTransferType(apartmentName)
-    }
-
-    override fun onSettingsClicked(apartmentAddress: String) {
-        model.goToApartmentInfo(apartmentAddress)
-    }
 }

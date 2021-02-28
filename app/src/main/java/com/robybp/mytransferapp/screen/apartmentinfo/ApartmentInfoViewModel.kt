@@ -30,5 +30,7 @@ class ApartmentInfoViewModel(private val repository: GuestBookRepository, privat
         return false
     }
 
+    fun goToPickApartment() = routingActionsSource.dispatch(Router::goToPickApartment)
+
     fun goBack() = routingActionsSource.dispatch(Router::goBack)
 }
