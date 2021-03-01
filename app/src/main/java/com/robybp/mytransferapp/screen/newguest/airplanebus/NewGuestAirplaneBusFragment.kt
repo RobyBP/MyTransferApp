@@ -312,7 +312,8 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             dateOfArrivalEditText,
             arrivalTimeEditText,
             driverEditText,
-            flightNumberOrBusCompanyEditText
+            flightNumberOrBusCompanyEditText,
+            apartmentNameEditText
         )
     }
 

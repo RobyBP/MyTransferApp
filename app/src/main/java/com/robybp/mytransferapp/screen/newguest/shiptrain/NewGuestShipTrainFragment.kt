@@ -319,7 +319,8 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
             arrivesFromEditText,
             arrivalTimeEditText,
             dateOfArrivalEditText,
-            driverEditText
+            driverEditText,
+            apartmentNameEditText
         )
     }
 
