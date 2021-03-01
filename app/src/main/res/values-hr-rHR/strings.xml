@@ -55,4 +55,5 @@
     <string name="city">Grad:</string>
     <string name="owner">Vlasnik:</string>
     <string name="delete_apartment">Obrisati apartman?</string>
+    <string name="name_cannot_be_empty">Ime ne smije biti prazno</string>
 </resources>

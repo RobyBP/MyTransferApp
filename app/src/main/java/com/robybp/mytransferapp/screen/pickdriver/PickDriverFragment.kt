@@ -147,7 +147,9 @@ class PickDriverFragment : Fragment(), PickDriverAdapter.OnClickListener {
                 ).show()
                 isValid = false
                 return@setPositiveButton
-            } else {
+            } else if (et.text.toString().isEmpty() || et.text.toString().isBlank())
+                Toast.makeText(requireContext(), resources.getString(R.string.name_cannot_be_empty), Toast.LENGTH_LONG).show()
+            else {
                 model.saveDriver(Driver(0, et.text.toString(), phoneNumber))
             }
         }

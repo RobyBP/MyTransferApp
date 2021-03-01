@@ -64,7 +64,8 @@
     <string name="delete_driver_confirmation">Delete driver %s from driver list?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="driver_already_exists">Driver with that name already exists</string>
+    <string name="driver_already_exists">Driver already exists, choose different name:</string>
+    <string name="name_cannot_be_empty">Name can\'t be empty</string>
     <string name="delete_guest">Delete guest?</string>
     <string name="delete_apartment">Delete apartment?</string>
     <string name="send_info_to_driver">Send guest info to %s?</string>
