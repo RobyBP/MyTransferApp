@@ -102,7 +102,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
             { driverEditText.setText(it) })
 
         sharedPickApartmentViewModel.getApartmentName().observe(viewLifecycleOwner,
-            { apartmentNameEditText.setText(it) })
+            { if(it != null) apartmentNameEditText.setText(it) })
 
         cancelButton.setOnClickListener {
             sharedDateTimePickerViewModel.resetData()

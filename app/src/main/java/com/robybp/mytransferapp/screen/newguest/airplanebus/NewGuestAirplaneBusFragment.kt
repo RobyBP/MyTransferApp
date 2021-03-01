@@ -99,7 +99,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             { driverEditText.setText(it) })
 
         sharedPickApartmentViewModel.getApartmentName().observe(viewLifecycleOwner,
-            { apartmentNameEditText.setText(it) })
+            { if(it != null) apartmentNameEditText.setText(it) })
 
         dateOfArrivalEditText.setOnClickListener {
             model.showDatePicker()
