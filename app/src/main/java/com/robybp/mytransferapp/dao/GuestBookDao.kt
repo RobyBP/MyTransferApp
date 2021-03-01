@@ -44,8 +44,8 @@ interface GuestBookDao {
     @Delete
     suspend fun deleteDriver(driver: Driver)
 
-    @Delete
-    suspend fun deleteApartment(apartment: Apartment)
+    @Query("DELETE FROM apartments WHERE id = :apartmentId")
+    suspend fun deleteApartment(apartmentId: Int)
 
     @Update
     suspend fun updateGuestData(guest: Guest)

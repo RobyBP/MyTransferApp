@@ -22,6 +22,7 @@ NewApartmentFragment : Fragment() {
     private lateinit var noteEditText: EditText
     private lateinit var saveButton: View
     private lateinit var cancelButton: View
+    private lateinit var deleteButton: View
     private val model: NewApartmentViewModel by viewModel()
     private var inputFields = listOf<EditText>()
 
@@ -70,6 +71,8 @@ NewApartmentFragment : Fragment() {
         noteEditText = view.findViewById(R.id.newapartment_note_editText)
         saveButton = view.findViewById(R.id.newapartment_save_button)
         cancelButton = view.findViewById(R.id.newapartment_cancel_button)
+        deleteButton = view.findViewById(R.id.newapartment_delete_button)
+        deleteButton.visibility = View.GONE
         inputFields = listOf(apartmentNameEditText, apartmentCityEditText, apartmentAddressEditText, ownerEditText, ownerNumberEditText)
     }
 }

@@ -1,5 +1,6 @@
 package com.robybp.mytransferapp.screen.apartmentinfo
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,7 @@ class ApartmentInfoFragment : Fragment() {
     private lateinit var saveButton: View
     private lateinit var cancelButton: View
     private var inputFields = listOf<EditText>()
+    private lateinit var deleteButton: View
     private val compositeDisposable = CompositeDisposable()
     private val model: ApartmentInfoViewModel by viewModel()
     private var apartmentId by Delegates.notNull<Int>()
@@ -55,6 +57,10 @@ class ApartmentInfoFragment : Fragment() {
             model.goToPickApartment()
         }
 
+        deleteButton.setOnClickListener {
+            showAlertDialog()
+        }
+
         super.onViewCreated(view, savedInstanceState)
     }
 
@@ -76,6 +82,19 @@ class ApartmentInfoFragment : Fragment() {
         }
     }
 
+    private fun showAlertDialog() {
+        val dialog = AlertDialog.Builder(requireContext())
+        dialog.setTitle(resources.getString(R.string.delete_apartment))
+        dialog.setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
+            model.deleteApartment(apartmentId)
+            model.goBack()
+        }
+        dialog.setNegativeButton(resources.getString(R.string.no)) { _, _ ->
+            return@setNegativeButton
+        }
+        dialog.show()
+    }
+
     private fun initialiseViews(view: View) {
         apartmentNameEditText = view.findViewById(R.id.newapartment_apartmentName_editText)
         apartmentCityEditText = view.findViewById(R.id.newapartment_city_editText)
@@ -85,6 +104,7 @@ class ApartmentInfoFragment : Fragment() {
         noteEditText = view.findViewById(R.id.newapartment_note_editText)
         saveButton = view.findViewById(R.id.newapartment_save_button)
         cancelButton = view.findViewById(R.id.newapartment_cancel_button)
+        deleteButton = view.findViewById(R.id.newapartment_delete_button)
         inputFields = listOf(apartmentNameEditText, apartmentCityEditText, apartmentAddressEditText, ownerEditText, ownerNumberEditText)
     }
 

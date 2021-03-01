@@ -32,5 +32,9 @@ class ApartmentInfoViewModel(private val repository: GuestBookRepository, privat
 
     fun goToPickApartment() = routingActionsSource.dispatch(Router::goToPickApartment)
 
+    fun deleteApartment(apartmentId: Int) = viewModelScope.launch(Dispatchers.IO) {
+        repository.deleteApartment(apartmentId)
+    }
+
     fun goBack() = routingActionsSource.dispatch(Router::goBack)
 }

@@ -33,5 +33,5 @@ class GuestBookRepository(private val guestBookDao: GuestBookDao) {
 
     suspend fun removeDriver(driver: Driver) = guestBookDao.deleteDriver(driver)
 
-    suspend fun deleteApartment(apartment: Apartment) = guestBookDao.deleteApartment(apartment)
+    suspend fun deleteApartment(apartmentId: Int) = guestBookDao.deleteApartment(apartmentId)
 }

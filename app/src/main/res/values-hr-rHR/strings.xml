@@ -54,4 +54,5 @@
     <string name="note">Opaska:</string>
     <string name="city">Grad:</string>
     <string name="owner">Vlasnik:</string>
+    <string name="delete_apartment">Obrisati apartman?</string>
 </resources>
