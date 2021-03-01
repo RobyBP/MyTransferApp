@@ -154,6 +154,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
             transferType = transferTypeHint.text.toString(),
             apartmentName = apartmentNameEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
+            driverNotified = false,
             portOrStation = portOrStationEditText.text.toString()
         )
         val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
@@ -212,6 +213,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
             driverName = driverEditText.text.toString(),
             apartmentName = apartmentNameEditText.text.toString(),
             meansOfTransport = apartmentNameEditText.text.toString(),
+            driverNotified = true,
             portOrStation = portOrStationEditText.text.toString()
         )
 

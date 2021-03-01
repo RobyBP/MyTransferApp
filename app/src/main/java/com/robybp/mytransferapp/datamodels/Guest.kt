@@ -16,5 +16,6 @@ class Guest(
     val apartmentName: String?,
     val transferType: String,
     var driverName: String?,
+    var driverNotified: Boolean,
     val meansOfTransport: String
 )

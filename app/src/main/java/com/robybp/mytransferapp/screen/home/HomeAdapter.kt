@@ -1,9 +1,11 @@
 package com.robybp.mytransferapp.screen.home
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.robybp.mytransferapp.R
 import com.robybp.mytransferapp.datamodels.Guest
@@ -14,6 +16,7 @@ class HomeAdapter(private val clickListener: OnItemClicked) :
     RecyclerView.Adapter<HomeScreenViewHolder>() {
 
     private var guests = listOf<Guest>()
+    val drawables = mutableListOf<Drawable>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -21,6 +24,9 @@ class HomeAdapter(private val clickListener: OnItemClicked) :
     ): HomeScreenViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.homescreen_item, parent, false)
+        ResourcesCompat.getDrawable(parent.resources, R.drawable.ic__hourglass, null)?.let { drawables.add(it) }
+        ResourcesCompat.getDrawable(parent.resources, R.drawable.ic_checkgreen, null)?.let { drawables.add(it) }
+
         return HomeScreenViewHolder(view)
     }
 
@@ -54,6 +60,9 @@ class HomeAdapter(private val clickListener: OnItemClicked) :
         holder.deleteButton.setOnClickListener {
             clickListener.onTrashCanClicked(guests[position])
         }
+
+        if(guests[position].driverNotified) holder.notifiedStatus.background = drawables[1]
+        else holder.notifiedStatus.background = drawables[0]
     }
 
     override fun getItemCount(): Int = guests.size
@@ -79,4 +88,5 @@ class HomeScreenViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val deleteButton: View = itemView.findViewById(R.id.homescreen_delete_guest)
     val transferTypeHint: TextView = itemView.findViewById(R.id.homescreen_transferType_hint)
     val apartmentName: TextView = itemView.findViewById(R.id.homescreen_apartmentName)
+    val notifiedStatus: View = itemView.findViewById(R.id.homescreen_notifiedStatus_icon)
 }

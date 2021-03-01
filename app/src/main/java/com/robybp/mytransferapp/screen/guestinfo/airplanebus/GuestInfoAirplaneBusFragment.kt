@@ -54,6 +54,8 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
     private lateinit var bottomIcon: ImageView
     private lateinit var topIcon: ImageView
     private var guestId: Int? = null
+    private var driverName: String? = null
+    private var driverNotified: Boolean? = null
     private var listOfInputFields = listOf<EditText>()
 
     override fun onCreateView(
@@ -90,6 +92,8 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
         model.queryGuest(requireArguments().getInt("GuestId"))
             .doOnSuccess{
                 setInfo(it)
+                driverName = it.driverName
+                driverNotified = it.driverNotified
             }
             .subscribe()
 
@@ -160,6 +164,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
             driverName = driverEditText.text.toString(),
             apartmentName = apartmentNameEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
+            driverNotified = true,
             portOrStation = null
         )
 
@@ -212,6 +217,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
             driverName = driverEditText.text.toString(),
             apartmentName = apartmentNameEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
+            driverNotified = if(driverEditText.text.toString() == driverName) driverNotified!! else false,
             portOrStation = null
         )
 

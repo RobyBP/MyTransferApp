@@ -9,7 +9,7 @@ import com.robybp.mytransferapp.datamodels.Apartment
 import com.robybp.mytransferapp.datamodels.Driver
 import com.robybp.mytransferapp.datamodels.Guest
 
-@Database(entities = [Guest::class, Driver::class, Apartment::class], version = 3, exportSchema = false)
+@Database(entities = [Guest::class, Driver::class, Apartment::class], version = 4, exportSchema = false)
 abstract class GuestBookDatabase : RoomDatabase() {
 
     abstract fun guestBookDao(): GuestBookDao

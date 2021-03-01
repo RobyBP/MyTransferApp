@@ -124,4 +124,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="Roby" />
 
+    <View
+        android:id="@+id/homescreen_notifiedStatus_icon"
+        android:layout_height="35dp"
+        android:layout_width="35dp"
+        app:layout_constraintEnd_toStartOf="@+id/homescreen_delete_guest"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="5dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

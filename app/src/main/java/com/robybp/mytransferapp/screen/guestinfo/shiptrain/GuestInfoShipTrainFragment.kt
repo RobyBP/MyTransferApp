@@ -56,6 +56,8 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
     private lateinit var apartmentNameEditText: EditText
     private lateinit var sendInfoButton: View
     private var guestId: Int? = null
+    private var driverName: String? = null
+    private var driverNotified: Boolean? = null
 
     private var inputFields = listOf<EditText>()
 
@@ -90,6 +92,8 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
         model.queryGuest(requireArguments().getInt("GuestId"))
             .doOnSuccess {
                 setInfo(it)
+                driverName = it.driverName
+                driverNotified = it.driverNotified
             }
             .subscribe()
 
@@ -164,6 +168,7 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
             transferType = transferTypeHint.text.toString(),
             apartmentName = apartmentNameEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
+            driverNotified = true,
             portOrStation = portOrStationEditText.text.toString()
         )
 
@@ -222,6 +227,7 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
             driverName = driverEditText.text.toString(),
             apartmentName = apartmentNameEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
+            driverNotified = if(driverName == driverEditText.text.toString()) driverNotified!! else false,
             portOrStation = portOrStationEditText.text.toString()
         )
 

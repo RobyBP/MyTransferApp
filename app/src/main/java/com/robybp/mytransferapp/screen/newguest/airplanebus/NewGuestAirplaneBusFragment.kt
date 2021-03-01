@@ -164,6 +164,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             driverName = driverEditText.text.toString(),
             apartmentName = apartmentNameEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
+            driverNotified = false,
             portOrStation = null
         )
 
@@ -213,6 +214,7 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
             transferType = transferTypeHint.text.toString(),
             apartmentName = apartmentNameEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
+            driverNotified = true,
             portOrStation = null
         )
 
@@ -271,12 +273,12 @@ class NewGuestAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListen
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onTimeSet(p0: TimePicker?, hours: Int, minutes: Int) {
-        val formater = SimpleDateFormat("HH:mm")
+        val formatter = SimpleDateFormat("HH:mm")
         val time = "$hours:$minutes"
-        val date = formater.parse(time)
+        val date = formatter.parse(time)
         sharedDateTimePickerViewModel.hours = hours
         sharedDateTimePickerViewModel.minutes = minutes
-        arrivalTimeEditText.setText(formater.format(date))
+        arrivalTimeEditText.setText(formatter.format(date))
     }
 
     private fun initialiseViews(view: View) {
