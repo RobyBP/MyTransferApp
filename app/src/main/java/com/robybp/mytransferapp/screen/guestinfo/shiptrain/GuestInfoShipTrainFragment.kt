@@ -149,7 +149,7 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
     private fun sendInfo() {
 
         if (model.crucialFieldsEmpty(inputFields)) {
-            Toast.makeText(requireContext(), "Only note field can be empty", Toast.LENGTH_LONG)
+            Toast.makeText(requireContext(), "No field can be empty", Toast.LENGTH_LONG)
                 .show()
             return
         }

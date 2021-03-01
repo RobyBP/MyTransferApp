@@ -1,5 +1,6 @@
 package com.robybp.mytransferapp.screen.pickdriver
 
+import android.telephony.SmsManager
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,15 +18,18 @@ class PickDriverViewModel(
     private val repository: GuestBookRepository,
     private val routingActionsSource: RoutingActionsSource
 ) : ViewModel() {
-    private val name = MutableLiveData<String>()
+    private val name = MutableLiveData<String?>()
     val allDrivers: Flowable<List<Driver>> = repository.allDrivers
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
 
     fun setName(driverName: String?){
-        driverName.let {
-            name.value = it
-        }
+        name.value = driverName
+    }
+
+    fun sendMessage(messageBody: String, phoneNumber: String){
+        val smsManager = SmsManager.getDefault()
+        smsManager.sendTextMessage(phoneNumber, null, messageBody, null, null)
     }
 
     fun getName() = name
