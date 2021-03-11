@@ -77,6 +77,17 @@ class MyTransferApplication : Application() {
                 )
             }
 
+            viewModel {
+                GuestInfoViewModel(
+                    repository = get(),
+                    routingActionsSource = get(),
+                    findPhoneNumberUseCase = get(),
+                    formatMessageUseCase = get(),
+                    sendSmsUseCase = get(),
+                    scheduleNotificationUseCase = get()
+                )
+            }
+
             viewModel { DriversMenuViewModel(repository = get(), routingActionsSource = get()) }
 
             viewModel { DateAndTimeViewModel() }
@@ -89,7 +100,6 @@ class MyTransferApplication : Application() {
 
             viewModel { PickDriverViewModel(repository = get(), routingActionsSource = get()) }
 
-            viewModel { GuestInfoViewModel(repository = get(), routingActionsSource = get()) }
 
             viewModel { ApartmentsMenuViewModel(repository = get(), routingActionsSource = get()) }
 

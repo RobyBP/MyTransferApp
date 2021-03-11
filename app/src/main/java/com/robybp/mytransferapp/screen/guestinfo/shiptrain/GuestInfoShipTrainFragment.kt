@@ -7,7 +7,6 @@ import android.app.TimePickerDialog
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -172,47 +171,7 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
             portOrStation = portOrStationEditText.text.toString()
         )
 
-        compositeDisposable.add(
-            model.getDriverByName(guest.driverName!!)
-                .doOnSuccess { Log.d("driver", it.name + it.phoneNumber) }
-                .subscribe { formatMessage(it.phoneNumber, guest) }
-        )
-    }
-
-    private fun formatMessage(phoneNumber: String, guest: Guest) {
-        val shipOrTrainNumber =
-            if (guest.meansOfTransport == MeansOfTransport.SHIP.toString()) getString(R.string.messageInfo_shipNumber_hint) else getString(
-                R.string.messageInfo_trainNumber_hint
-            )
-
-        val portOrStation =
-            if (guest.meansOfTransport == MeansOfTransport.SHIP.toString()) getString(R.string.newGuest_shipOnPort_hint) else getString(
-                R.string.newGuest_trainOnStation_hint
-            )
-
-        val messageBody = getString(
-            R.string.shipOrTrain_messageBody,
-            getString(R.string.messageInfo_guestName_hint),
-            guest.name,
-            shipOrTrainNumber,
-            guest.vehicleInfo,
-            portOrStation,
-            guest.portOrStation,
-            getString(R.string.messageInfo_arrival_hint),
-            guest.countryOfArrival,
-            getString(R.string.messageInfo_dateAndTimeOfArrival),
-            guest.dateOfArrival,
-            guest.timeOfArrival,
-            guest.transferType,
-            guest.apartmentName
-        )
-
-        phoneNumber.let {
-            model.sendMessage(messageBody, it)
-            compositeDisposable.dispose()
-            model.updateGuest(guest)
-            model.goBack()
-        }
+        model.sendMessage(guest)
     }
 
     private fun updateGuest() {
@@ -227,10 +186,9 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
             driverName = driverEditText.text.toString(),
             apartmentName = apartmentNameEditText.text.toString(),
             meansOfTransport = requireArguments()["Vehicle"].toString(),
-            driverNotified = if(driverName == driverEditText.text.toString()) driverNotified!! else false,
+            driverNotified = if (driverName == driverEditText.text.toString()) driverNotified!! else false,
             portOrStation = portOrStationEditText.text.toString()
         )
-
 
         model.updateGuest(guest)
         sharedDateTimeViewModel.resetData()
@@ -256,12 +214,12 @@ class GuestInfoShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListene
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onTimeSet(p0: TimePicker?, hours: Int, minutes: Int) {
-        val formater = SimpleDateFormat("HH:mm")
+        val formatter = SimpleDateFormat("HH:mm")
         val time = "$hours:$minutes"
-        val date = formater.parse(time)
+        val date = formatter.parse(time)
         sharedDateTimeViewModel.hours = hours
         sharedDateTimeViewModel.minutes = minutes
-        arrivalTimeEditText.setText(formater.format(date))
+        arrivalTimeEditText.setText(formatter.format(date))
     }
 
     private fun initialiseViews(view: View) {

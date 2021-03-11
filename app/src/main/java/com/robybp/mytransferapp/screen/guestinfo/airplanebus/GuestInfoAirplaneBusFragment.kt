@@ -7,7 +7,6 @@ import android.app.TimePickerDialog
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -168,41 +167,7 @@ class GuestInfoAirplaneBusFragment : Fragment(), DatePickerDialog.OnDateSetListe
             portOrStation = null
         )
 
-        compositeDisposable.add(
-            model.getDriverByName(guest.driverName!!)
-                .doOnSuccess { Log.d("driver", it.name + it.phoneNumber) }
-                .subscribe { formatMessage(it.phoneNumber, guest) }
-        )
-    }
-
-    private fun formatMessage(phoneNumber: String, guest: Guest) {
-
-        val flightNumberOrBusCompany =
-            if (guest.meansOfTransport == MeansOfTransport.BUS.toString()) getString(R.string.messageInfo_busCompany_hint) else getString(
-                R.string.messageInfo_flightNumber_hint
-            )
-        val messageBody = getString(
-            R.string.airplaneOrBus_messageBody,
-            getString(R.string.messageInfo_guestName_hint),
-            guest.name,
-            flightNumberOrBusCompany,
-            guest.vehicleInfo,
-            getString(R.string.messageInfo_arrival_hint),
-            guest.countryOfArrival,
-            getString(R.string.messageInfo_dateAndTimeOfArrival),
-            guest.dateOfArrival,
-            guest.timeOfArrival,
-            guest.transferType,
-            guest.apartmentName
-        )
-
-        phoneNumber.let {
-            model.sendMessage(messageBody, it)
-            compositeDisposable.dispose()
-            model.updateGuest(guest)
-            sharedPickApartmentViewModel.setApartmentName(null)
-            model.goBack()
-        }
+        model.sendMessage(guest)
     }
 
     private fun updateGuest(){
