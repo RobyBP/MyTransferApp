@@ -7,7 +7,6 @@ import android.app.TimePickerDialog
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,9 +14,6 @@ import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
-import androidx.work.WorkRequest
 import com.robybp.mytransferapp.R
 import com.robybp.mytransferapp.datamodels.Guest
 import com.robybp.mytransferapp.screen.dateandtimeofarrival.DateAndTimeViewModel
@@ -25,15 +21,10 @@ import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
 import com.robybp.mytransferapp.screen.newguest.NewGuestViewModel
 import com.robybp.mytransferapp.screen.pickapartment.PickApartmentViewModel
 import com.robybp.mytransferapp.screen.pickdriver.PickDriverViewModel
-import com.robybp.mytransferapp.util.NotificationWorker
 import io.reactivex.disposables.CompositeDisposable
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.temporal.ChronoUnit
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
@@ -157,29 +148,10 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
             driverNotified = false,
             portOrStation = portOrStationEditText.text.toString()
         )
-        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-        val date = LocalDate.parse(guest.dateOfArrival, formatter)
-        val diff = ChronoUnit.DAYS.between(LocalDate.now().plusDays(2), date) * 12
-        val uploadWorkRequest: WorkRequest =
-            if (ChronoUnit.DAYS.between(
-                    LocalDate.now(),
-                    date
-                ) in 2..3
-            ) OneTimeWorkRequestBuilder<NotificationWorker>().setInitialDelay(
-                12,
-                TimeUnit.HOURS
-            ).build()
-            else OneTimeWorkRequestBuilder<NotificationWorker>().setInitialDelay(
-                diff,
-                TimeUnit.HOURS
-            ).build()
-
-        WorkManager
-            .getInstance(requireContext())
-            .enqueue(uploadWorkRequest)
 
         model.saveGuest(guest)
         sharedDateTimePickerViewModel.resetData()
+        sharedPickApartmentViewModel.setApartmentName(null)
         model.goToHomeScreen()
     }
 
@@ -217,47 +189,7 @@ class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListen
             portOrStation = portOrStationEditText.text.toString()
         )
 
-        compositeDisposable.add(
-            model.getDriverByName(guest.driverName!!)
-                .doOnSuccess { Log.d("driver", it.name + it.phoneNumber) }
-                .subscribe { formatMessage(it.phoneNumber, guest) }
-        )
-    }
-
-    private fun formatMessage(phoneNumber: String, guest: Guest) {
-        val shipOrTrainNumber =
-            if (guest.meansOfTransport == MeansOfTransport.SHIP.toString()) getString(R.string.messageInfo_shipNumber_hint) else getString(
-                R.string.messageInfo_trainNumber_hint
-            )
-
-        val portOrStation =
-            if (guest.meansOfTransport == MeansOfTransport.SHIP.toString()) getString(R.string.newGuest_shipOnPort_hint) else getString(
-                R.string.newGuest_trainOnStation_hint
-            )
-
-        val messageBody = getString(
-            R.string.shipOrTrain_messageBody,
-            getString(R.string.messageInfo_guestName_hint),
-            guest.name,
-            shipOrTrainNumber,
-            guest.vehicleInfo,
-            portOrStation,
-            guest.portOrStation,
-            getString(R.string.messageInfo_arrival_hint),
-            guest.countryOfArrival,
-            getString(R.string.messageInfo_dateAndTimeOfArrival),
-            guest.dateOfArrival,
-            guest.timeOfArrival,
-            guest.transferType,
-            guest.apartmentName
-        )
-
-        phoneNumber.let {
-            model.sendMessage(messageBody, it)
-            compositeDisposable.dispose()
-            model.saveGuest(guest)
-            model.returnToHOmeScreen()
-        }
+        model.sendMessage(guest)
     }
 
     @SuppressLint("SimpleDateFormat")
