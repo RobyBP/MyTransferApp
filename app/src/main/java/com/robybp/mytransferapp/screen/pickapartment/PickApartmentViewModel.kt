@@ -10,13 +10,13 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class PickApartmentViewModel(private val repository: GuestBookRepository, private val routingActionsSource: RoutingActionsSource) : ViewModel() {
+class PickApartmentViewModel(repository: GuestBookRepository, private val routingActionsSource: RoutingActionsSource) : ViewModel() {
 
     val apartments: Flowable<List<Apartment>> = repository.allApartments
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
 
-    private val apartmentName = MutableLiveData<String>()
+    private val apartmentName = MutableLiveData<String?>()
 
     fun setApartmentName(name: String?) {
         apartmentName.value = name

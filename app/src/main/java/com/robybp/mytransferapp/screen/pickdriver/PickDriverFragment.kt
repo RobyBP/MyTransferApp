@@ -105,7 +105,7 @@ class PickDriverFragment : Fragment(), PickDriverAdapter.OnClickListener {
                     )
 
                     if (hasPhone == ("1")) {
-                        val phones: Cursor? = requireActivity().getContentResolver().query(
+                        val phones: Cursor? = requireActivity().contentResolver.query(
                             ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                             null,
                             ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + id,

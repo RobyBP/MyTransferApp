@@ -102,7 +102,15 @@ class MyTransferApplication : Application() {
 
             viewModel { ApartmentsMenuViewModel(repository = get(), routingActionsSource = get()) }
 
-            viewModel { NewApartmentViewModel(repository = get(), routingActionsSource = get()) }
+            viewModel {
+                NewApartmentViewModel(
+                    repository = get(),
+                    routingActionsSource = get(),
+                    findPhoneNumberUseCase = get(),
+                    formatMessageUseCase = get(),
+                    sendSmsUseCase = get()
+                )
+            }
 
             viewModel { TransferTypeViewModel(routingActionsSource = get()) }
 

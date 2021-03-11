@@ -9,7 +9,7 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class ApartmentsMenuViewModel(private val repository: GuestBookRepository, private val routingActionsSource: RoutingActionsSource) : ViewModel() {
+class ApartmentsMenuViewModel(repository: GuestBookRepository, private val routingActionsSource: RoutingActionsSource) : ViewModel() {
 
     val apartments: Flowable<List<Apartment>> = repository.allApartments
         .subscribeOn(Schedulers.io())

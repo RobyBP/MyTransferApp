@@ -5,7 +5,6 @@ import android.util.Log
 import android.widget.EditText
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.robybp.mytransferapp.datamodels.Driver
 import com.robybp.mytransferapp.datamodels.Guest
 import com.robybp.mytransferapp.db.repository.GuestBookRepository
 import com.robybp.mytransferapp.navigation.Router
@@ -14,7 +13,6 @@ import com.robybp.mytransferapp.notificationscheduler.ScheduleNotificationUseCas
 import com.robybp.mytransferapp.sms.FindPhoneNumberUseCase
 import com.robybp.mytransferapp.sms.FormatMessageUseCase
 import com.robybp.mytransferapp.sms.SendSmsUseCase
-import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
@@ -42,11 +40,6 @@ class GuestInfoViewModel(
         }
         return false
     }
-
-    fun getDriverByName(name: String): Maybe<Driver> =
-        repository.getDriver(name)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
 
     @SuppressLint("CheckResult")
     fun sendMessage(guest: Guest) {

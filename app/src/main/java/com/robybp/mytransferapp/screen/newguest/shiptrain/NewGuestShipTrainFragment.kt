@@ -26,7 +26,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
-class NewGuestShipTrainFragment() : Fragment(), DatePickerDialog.OnDateSetListener,
+class NewGuestShipTrainFragment : Fragment(), DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener {
 
     companion object {

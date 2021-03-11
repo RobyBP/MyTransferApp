@@ -11,12 +11,11 @@ import com.robybp.mytransferapp.R
 import com.robybp.mytransferapp.datamodels.Guest
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
 
-// TODO: ListAdapter instead of RecyclerView.Adapter
 class HomeAdapter(private val clickListener: OnItemClicked) :
     RecyclerView.Adapter<HomeScreenViewHolder>() {
 
     private var guests = listOf<Guest>()
-    val drawables = mutableListOf<Drawable>()
+    private val drawables = mutableListOf<Drawable>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

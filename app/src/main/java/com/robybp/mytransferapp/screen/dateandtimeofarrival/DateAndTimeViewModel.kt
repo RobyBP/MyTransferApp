@@ -4,7 +4,7 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import androidx.lifecycle.ViewModel
 
-class DateAndTimeViewModel() : ViewModel() {
+class DateAndTimeViewModel : ViewModel() {
 
     var dateSetListener: DatePickerDialog.OnDateSetListener? = null
     var year: Int? = null

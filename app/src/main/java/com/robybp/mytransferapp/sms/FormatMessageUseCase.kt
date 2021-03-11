@@ -16,7 +16,7 @@ class FormatMessageUseCase(private val context: Context) {
 
     fun formatMessage(apartment: Apartment): String {
 
-        var note: String = ""
+        var note = ""
 
         if (!apartment.note.isNullOrBlank()) note = "\n" + apartment.note
 

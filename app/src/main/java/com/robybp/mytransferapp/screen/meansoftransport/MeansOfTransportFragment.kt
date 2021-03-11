@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.robybp.mytransferapp.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MeansOfTransportFragment() : Fragment() {
+class MeansOfTransportFragment : Fragment() {
 
     companion object {
         const val TAG = "MeansOfTransportFragment"
@@ -26,7 +26,7 @@ class MeansOfTransportFragment() : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_means_of_transport, container, false);
+        val view = inflater.inflate(R.layout.fragment_means_of_transport, container, false)
         initialiseViews(view)
         return view
     }
