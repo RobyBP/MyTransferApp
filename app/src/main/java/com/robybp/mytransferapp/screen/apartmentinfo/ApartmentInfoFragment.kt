@@ -2,7 +2,6 @@ package com.robybp.mytransferapp.screen.apartmentinfo
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -79,6 +78,7 @@ class ApartmentInfoFragment : Fragment() {
 
     private fun validateFieldsAndUpdateApartment() {
         if (model.crucialFieldsEmpty(inputFields)) Toast.makeText(requireContext(), "Only note field can be empty", Toast.LENGTH_LONG).show()
+
         else {
             model.updateApartment(
                 Apartment(
@@ -141,38 +141,7 @@ class ApartmentInfoFragment : Fragment() {
             note = noteEditText.text.toString()
         )
 
-        compositeDisposable.add(
-            model.getDriverByName(sharedPickDriverViewModel.getName().value!!)
-                .doOnSuccess { Log.d("driver", it.name + it.phoneNumber) }
-                .subscribe { formatMessage(it.phoneNumber, apartment) }
-        )
-    }
-
-    private fun formatMessage(phoneNumber: String, apartment: Apartment) {
-
-        var note: String = ""
-
-        if (!apartment.note.isNullOrBlank()) note = "\n" + apartment.note
-
-        val messageBody = resources.getString(
-            R.string.apartmentInfo_messageBody,
-            resources.getString(R.string.apartment_name),
-            apartment.name,
-            resources.getString(R.string.apartment_city_hint),
-            apartment.city,
-            resources.getString(R.string.address),
-            apartment.address,
-            resources.getString(R.string.owner),
-            apartment.owner,
-            resources.getString(R.string.phone),
-            apartment.ownerPhoneNumber,
-            note
-        )
-
-        model.sendMessage(messageBody, phoneNumber)
-        model.updateApartment(apartment)
-        sharedPickDriverViewModel.setName(null)
-        model.goBack()
+        model.sendMessage(apartment, sharedPickDriverViewModel.getName().value!!)
     }
 
     private fun initialiseViews(view: View) {

@@ -2,6 +2,7 @@ package com.robybp.mytransferapp.sms
 
 import android.content.Context
 import com.robybp.mytransferapp.R
+import com.robybp.mytransferapp.datamodels.Apartment
 import com.robybp.mytransferapp.datamodels.Guest
 import com.robybp.mytransferapp.screen.meansoftransport.MeansOfTransport
 
@@ -11,6 +12,28 @@ class FormatMessageUseCase(private val context: Context) {
         return if (guest.meansOfTransport == MeansOfTransport.AIRPLANE.toString() || guest.meansOfTransport == MeansOfTransport.BUS.toString()) airplaneBusMessageFormat(
             guest
         ) else shipTrainMessageFormat(guest)
+    }
+
+    fun formatMessage(apartment: Apartment): String {
+
+        var note: String = ""
+
+        if (!apartment.note.isNullOrBlank()) note = "\n" + apartment.note
+
+        return context.resources.getString(
+            R.string.apartmentInfo_messageBody,
+            context.resources.getString(R.string.apartment_name),
+            apartment.name,
+            context.resources.getString(R.string.apartment_city_hint),
+            apartment.city,
+            context.resources.getString(R.string.address),
+            apartment.address,
+            context.resources.getString(R.string.owner),
+            apartment.owner,
+            context.resources.getString(R.string.phone),
+            apartment.ownerPhoneNumber,
+            note
+        )
     }
 
     private fun airplaneBusMessageFormat(guest: Guest): String {
@@ -46,7 +69,7 @@ class FormatMessageUseCase(private val context: Context) {
                 R.string.newGuest_trainOnStation_hint
             )
 
-        val messageBody = context.resources.getString(
+        return context.resources.getString(
             R.string.shipOrTrain_messageBody,
             context.resources.getString(R.string.messageInfo_guestName_hint),
             guest.name,
@@ -62,7 +85,5 @@ class FormatMessageUseCase(private val context: Context) {
             guest.transferType,
             guest.apartmentName
         )
-
-        return messageBody
     }
 }

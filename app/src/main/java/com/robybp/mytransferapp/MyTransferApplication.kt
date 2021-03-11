@@ -42,7 +42,6 @@ class MyTransferApplication : Application() {
     private fun createModule(application: Application) =
         module {
 
-
             single<RoutingActionsSource> { RoutingActionsMediator() }
 
             factory<Router> { (activity: AppCompatActivity) ->
@@ -107,7 +106,15 @@ class MyTransferApplication : Application() {
 
             viewModel { TransferTypeViewModel(routingActionsSource = get()) }
 
-            viewModel { ApartmentInfoViewModel(repository = get(), routingActionsSource = get()) }
+            viewModel {
+                ApartmentInfoViewModel(
+                    repository = get(),
+                    routingActionsSource = get(),
+                    sendSmsUseCase = get(),
+                    formatMessageUseCase = get(),
+                    findPhoneNumberUseCase = get()
+                )
+            }
 
             viewModel { PickApartmentViewModel(repository = get(), routingActionsSource = get()) }
         }
