@@ -57,7 +57,6 @@
         \n%s %s
         %s
     </string>
-    <string name="add_new">Add new</string>
 
     <string name="notification_description">You have one or more guests arriving in 2 days or less, did you notify the driver?</string>
     <string name="phone_number">Phone number:</string>
@@ -73,7 +72,7 @@
     <string name="enter_different_name">Please enter different driver name:</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
-    
+
     <string name="apartment_name_hint">Apartment:</string>
     <string name="apartment_city_hint">City:</string>
     <string name="apartment_address_hint">Address:</string>
@@ -88,5 +87,6 @@
     <string name="note">Note:</string>
     <string name="city">City:</string>
     <string name="owner">Owner</string>
+    <string name="add_new">Add new</string>
 
 </resources>
