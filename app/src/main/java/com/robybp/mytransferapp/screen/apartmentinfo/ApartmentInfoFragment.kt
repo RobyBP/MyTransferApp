@@ -33,6 +33,7 @@ class ApartmentInfoFragment : Fragment() {
     private val model: ApartmentInfoViewModel by viewModel()
     private val sharedPickDriverViewModel: PickDriverViewModel by sharedViewModel()
     private var apartmentId by Delegates.notNull<Int>()
+    private lateinit var apartment: Apartment
 
     companion object {
         const val TAG = "ApartmentInfoFragment"
@@ -42,17 +43,18 @@ class ApartmentInfoFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_new_apartment, container, false)
         sharedPickDriverViewModel.setName(null)
         initialiseViews(view)
+        compositeDisposable.add(
+            model.queryApartmentByAddress(requireArguments().getString("Address")!!).subscribe {
+                apartment = it
+                apartmentId = it.id
+            }
+        )
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        compositeDisposable.add(
-            model.queryApartmentByAddress(requireArguments().getString("Address")!!).subscribe {
-                setInfo(it)
-                apartmentId = it.id
-            }
-        )
+        setInfo(apartment)
 
         sharedPickDriverViewModel.getName().observe(viewLifecycleOwner,
             { if (it != null) showSendInfoDialog() })
