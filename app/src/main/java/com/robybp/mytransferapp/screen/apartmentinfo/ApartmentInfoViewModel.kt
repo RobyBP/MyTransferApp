@@ -28,6 +28,7 @@ class ApartmentInfoViewModel(
     fun queryApartmentByAddress(address: String): Maybe<Apartment> {
         return repository.getApartment(address)
             .subscribeOn(Schedulers.io())
+            .doOnError { it.message?.let { it1 -> Log.d("ApartmentInfo", it1) } }
     }
 
     fun updateApartment(apartment: Apartment) = viewModelScope.launch(Dispatchers.IO) {
