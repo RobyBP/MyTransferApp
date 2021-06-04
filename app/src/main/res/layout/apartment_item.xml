@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/homescreen_itemBorder_margin_horizontal"
+    android:layout_marginVertical="11dp"
+    android:background="@drawable/ic_item_border_ripple">
+
+    <View
+        android:id="@+id/apartmentsmenu_house_ic"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/ic_house"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/apartmentsmenu_apartment_name_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingHorizontal="5dp"
+        android:text="@string/apartment_name_hint"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@id/apartmentsmenu_house_ic"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/apartmentsmenu_apartment_city_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="5dp"
+        android:text="@string/apartment_city_hint"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/apartmentsmenu_apartment_name_hint"
+        app:layout_constraintTop_toBottomOf="@id/apartmentsmenu_apartment_name_hint" />
+
+    <TextView
+        android:id="@+id/apartmentsmenu_apartment_address_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="5dp"
+        android:text="@string/apartment_address_hint"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/apartmentsmenu_apartment_name_hint"
+        app:layout_constraintTop_toBottomOf="@id/apartmentsmenu_apartment_city_hint" />
+
+    <TextView
+        android:id="@+id/apartmentsmenu_apartment_owner_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="5dp"
+        android:text="@string/apartment_owner_hint"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/apartmentsmenu_apartment_name_hint"
+        app:layout_constraintTop_toBottomOf="@id/apartmentsmenu_apartment_address_hint" />
+
+    <TextView
+        android:id="@+id/apartmentsmenu_apartment_owner_contact_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:paddingHorizontal="5dp"
+        android:text="@string/apartment_owner_contact_hint"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/apartmentsmenu_apartment_name_hint"
+        app:layout_constraintTop_toBottomOf="@id/apartmentsmenu_apartment_owner_hint" />
+
+    <TextView
+        android:id="@+id/apartmentsmenu_apartment_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/apartmentsmenu_apartment_name_hint"
+        app:layout_constraintStart_toEndOf="@id/apartmentsmenu_apartment_name_hint"
+        tools:text="Placeholder" />
+
+    <TextView
+        android:id="@+id/apartmentsmenu_apartment_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/apartmentsmenu_apartment_city_hint"
+        app:layout_constraintStart_toEndOf="@id/apartmentsmenu_apartment_city_hint"
+        app:layout_constraintTop_toBottomOf="@id/apartmentsmenu_apartment_owner_hint"
+        tools:text="Placeholder" />
+
+    <TextView
+        android:id="@+id/apartmentsmenu_apartment_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/apartmentsmenu_apartment_address_hint"
+        app:layout_constraintStart_toEndOf="@id/apartmentsmenu_apartment_address_hint"
+        app:layout_constraintTop_toBottomOf="@id/apartmentsmenu_apartment_owner_hint"
+        tools:text="Placeholder" />
+
+    <TextView
+        android:id="@+id/apartmentsmenu_apartment_owner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/apartmentsmenu_apartment_owner_hint"
+        app:layout_constraintStart_toEndOf="@id/apartmentsmenu_apartment_owner_hint"
+        app:layout_constraintTop_toBottomOf="@id/apartmentsmenu_apartment_owner_hint"
+        tools:text="Placeholder" />
+
+    <TextView
+        android:id="@+id/apartmentsmenu_apartment_owner_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@id/apartmentsmenu_apartment_owner_contact_hint"
+        app:layout_constraintTop_toBottomOf="@id/apartmentsmenu_apartment_owner_hint"
+        tools:text="Placeholder" />
+
+    <View
+        android:id="@+id/apartmentsmenu_settings_button"
+        android:layout_width="34dp"
+        android:layout_height="35dp"
+        android:layout_margin="4dp"
+        android:focusableInTouchMode="true"
+        android:background="@drawable/ic_settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="true"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

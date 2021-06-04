@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "569468105821",
+    "project_id": "my-transfer-app",
+    "storage_bucket": "my-transfer-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:569468105821:android:2d1b821ebb0c80c3b609b4",
+        "android_client_info": {
+          "package_name": "com.robybp.mytransferapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "569468105821-scuuf8hp24us2ni2j6jnr3vpcdta7mjj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcQA7djtEqy0zoSmV_T7kZZdcb4wdtqVw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "569468105821-scuuf8hp24us2ni2j6jnr3vpcdta7mjj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

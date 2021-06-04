@@ -5,30 +5,32 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.robybp.mytransferapp.dao.GuestBookDao
-import com.robybp.mytransferapp.models.datamodels.Driver
-import com.robybp.mytransferapp.models.datamodels.Guest
+import com.robybp.mytransferapp.datamodels.Apartment
+import com.robybp.mytransferapp.datamodels.Driver
+import com.robybp.mytransferapp.datamodels.Guest
 
-@Database(entities = [Guest::class, Driver::class], version = 1, exportSchema = false)
-abstract class GuestBookDatabase: RoomDatabase() {
+@Database(entities = [Guest::class, Driver::class, Apartment::class], version = 4, exportSchema = false)
+abstract class GuestBookDatabase : RoomDatabase() {
 
     abstract fun guestBookDao(): GuestBookDao
 
     companion object {
 
         @Volatile
-        private var INSTANCE : GuestBookDatabase? = null
+        private var INSTANCE: GuestBookDatabase? = null
 
-        fun getDatabase(context: Context) : GuestBookDatabase? {
+        fun getDatabase(context: Context): GuestBookDatabase? {
             val tempInstance = INSTANCE
-            if (INSTANCE != null){
+            if (INSTANCE != null) {
                 return tempInstance
             }
-            synchronized(this){
+            synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     GuestBookDatabase::class.java,
                     "user_task_database"
-                ).build()
+                ).fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 return instance
             }

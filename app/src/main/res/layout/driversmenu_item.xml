@@ -11,41 +11,50 @@
     android:background="@drawable/ic_item_border"
     android:paddingVertical="12dp">
 
+    <View
+        android:id="@+id/delete_icon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        app:layout_constraintEnd_toEndOf="@id/newguestshiptrainscreen_driverName_editText"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/newguestshiptrainscreen_driverName_editText"
+        android:background="@drawable/ic_trash_can"/>
+
     <TextView
         android:id="@+id/driversmenuscreen_driverName_hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/newguestshiptrainscreen_driverName_editText"
         app:layout_constraintTop_toTopOf="parent"
-        android:paddingHorizontal="10dp"
-        android:text="Driver: "
+        app:layout_constraintBottom_toTopOf="@id/newguestshiptrainscreen_driverName_editText"
+        android:text="@string/newGuest_driver_hint"
         style="@style/homescreen_items_guest_information_hint_text"
         />
 
     <EditText
-        android:id="@+id/driversmenuscreen_driverName_editText"
+        android:id="@+id/newguestshiptrainscreen_driverName_editText"
         style="@style/transferpal_edittext"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="11dp"
         android:layout_marginEnd="13dp"
         android:imeOptions="actionNext"
         android:paddingHorizontal="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/driversmenuscreen_driverName_hint"
-        android:layout_marginVertical="3dp"
+        app:layout_constraintTop_toBottomOf="@id/delete_icon"
+        android:layout_marginBottom="3dp"
         />
 
     <TextView
         android:id="@+id/driversmenuscreen_driverPhoneNumber_hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/driversmenuscreen_driverName_editText"
+        app:layout_constraintStart_toStartOf="@id/driversmenuscreen_driverPhoneNumber_editText"
+        app:layout_constraintTop_toBottomOf="@id/newguestshiptrainscreen_driverName_editText"
         android:paddingTop="7dp"
-        android:paddingHorizontal="10dp"
-        android:text="Phone number: "
+        android:text="@string/phone_number"
         style="@style/homescreen_items_guest_information_hint_text"
         />
 

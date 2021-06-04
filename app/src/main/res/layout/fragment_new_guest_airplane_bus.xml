@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="Autofill">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#391864">
+
+        <ImageView
+            android:id="@+id/newguestbusairplanescreen_top_icon"
+            android:layout_width="88dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="15dp"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_app_icon"
+            tools:ignore="ContentDescription" />
+
+
+        <ImageView
+            android:id="@+id/newguestbusairplanescreen_app_icon"
+            android:layout_width="0dp"
+            android:layout_height="67dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="26dp"
+            android:src="@drawable/app_icon"
+            app:layout_constraintBottom_toTopOf="@id/newguestbusairplanescreen_top_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/newguestbusairplanescreen_top_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <View
+            android:id="@+id/newguestbusairplanescreen_cancel_button"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/ic_close"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_app_icon" />
+
+        <View
+            android:id="@+id/newguestbusairplanescreen_save_button"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/ic_check"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/newguestbusairplanescreen_cancel_button"
+            app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_app_icon" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#391864">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/newguestbusairplanescreen_constraint_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:background="@drawable/new_guest_info_background"
+                android:paddingVertical="20dp">
+
+                <TextView
+                    android:id="@+id/newguestbusairplanescreen_guestName_hint"
+                    style="@style/homescreen_items_guest_information_hint_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="11dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/messageInfo_guestName_hint"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/newguestbusairplanescreen_guestName_editText"
+                    style="@style/transferpal_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginEnd="13dp"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords"
+                    android:paddingHorizontal="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_guestName_hint"
+                    tools:ignore="LabelFor" />
+
+                <TextView
+                    android:id="@+id/newguestbusairplanescreen_flightNumberOrBusCompany_hint"
+                    style="@style/homescreen_items_guest_information_hint_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="11dp"
+                    android:paddingTop="5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_guestName_editText" />
+
+                <EditText
+                    android:id="@+id/newguestbusairplanescreen_flightNumber_editText"
+                    style="@style/transferpal_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginEnd="13dp"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapSentences"
+                    android:paddingHorizontal="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_flightNumberOrBusCompany_hint"
+                    tools:ignore="LabelFor,TextFields" />
+
+                <TextView
+                    android:id="@+id/newguestbusairplanescreen_arrivesFrom_hint"
+                    style="@style/homescreen_items_guest_information_hint_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="11dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/newGuest_arrivesFrom_hint"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_flightNumber_editText" />
+
+                <EditText
+                    android:id="@+id/newguestbusairplanescreen_arrivesFrom_editText"
+                    style="@style/transferpal_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginEnd="13dp"
+                    android:imeOptions="actionDone"
+                    android:inputType="textCapSentences"
+                    android:paddingHorizontal="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_arrivesFrom_hint"
+                    tools:ignore="LabelFor" />
+
+                <TextView
+                    android:id="@+id/newguestbusairplanescreen_dateAndTimeOfArrival_hint"
+                    style="@style/homescreen_items_guest_information_hint_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="11dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/newGuest_dateAndTimeOfArrival_hint"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_arrivesFrom_editText" />
+
+                <EditText
+                    android:id="@+id/newguestbusairplanescreen_dateOfArrival_editText"
+                    style="@style/transferpal_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginEnd="13dp"
+                    android:focusableInTouchMode="false"
+                    android:paddingHorizontal="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/newguestbusairplanescreen_timeOfArrival_editText"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_dateAndTimeOfArrival_hint"
+                    tools:ignore="LabelFor,TextFields" />
+
+                <EditText
+                    android:id="@+id/newguestbusairplanescreen_timeOfArrival_editText"
+                    style="@style/transferpal_edittext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginEnd="13dp"
+                    android:focusableInTouchMode="false"
+                    android:inputType="time"
+                    android:paddingHorizontal="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/newguestbusairplanescreen_dateOfArrival_editText"
+                    app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_dateAndTimeOfArrival_hint"
+                    tools:ignore="LabelFor" />
+
+                <TextView
+                    android:id="@+id/newguestbusairplanescreen_driver_hint"
+                    style="@style/homescreen_items_guest_information_hint_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="11dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/newGuest_driver_hint"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_dateOfArrival_editText" />
+
+
+                <EditText
+                    android:id="@+id/newguestbusairplanescreen_driver_editText"
+                    style="@style/transferpal_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginEnd="13dp"
+                    android:focusableInTouchMode="false"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords"
+                    android:paddingHorizontal="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_driver_hint"
+                    tools:ignore="LabelFor" />
+
+                <TextView
+                    android:id="@+id/newguestbusairplanescreen_transferType_hint"
+                    style="@style/homescreen_items_guest_information_hint_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="11dp"
+                    android:paddingTop="5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_driver_editText" />
+
+                <EditText
+                    android:id="@+id/newguestbusairplanescreen_transferType_editText"
+                    style="@style/transferpal_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginEnd="13dp"
+                    android:focusableInTouchMode="false"
+                    android:imeOptions="actionDone"
+                    android:inputType="textCapSentences"
+                    android:paddingHorizontal="10dp"
+                    app:layout_constraintBottom_toTopOf="@id/newguestbusairplanescreen_sendinfo_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/newguestbusairplanescreen_transferType_hint"
+                    tools:ignore="LabelFor" />
+
+                <View
+                    android:id="@+id/newguestbusairplanescreen_sendinfo_button"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/ic_outgoing_call"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/newguestbusairplanescreen_sendinfo_hint"
+                    app:layout_constraintTop_toBottomOf="@+id/newguestbusairplanescreen_transferType_editText" />
+
+                <TextView
+                    android:id="@+id/newguestbusairplanescreen_sendinfo_hint"
+                    style="@style/homescreen_items_guest_information_hint_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="5dp"
+                    android:text="@string/newGuest_sendInfo_hint"
+                    app:layout_constraintBottom_toBottomOf="@id/newguestbusairplanescreen_sendinfo_button"
+                    app:layout_constraintEnd_toStartOf="@id/newguestbusairplanescreen_sendinfo_button"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/newguestbusairplanescreen_sendinfo_button" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/newguestbusairplanescreen_icon_bottom"
+                android:layout_width="82dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

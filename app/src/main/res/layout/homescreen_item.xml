@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/homescreen_itemBorder_margin_horizontal"
-    android:layout_marginTop="@dimen/homescreen_itemBorder_margin_vertical"
-    android:layout_marginEnd="@dimen/homescreen_itemBorder_margin_horizontal"
-    android:layout_marginBottom="@dimen/homescreen_itemBorder_margin_vertical"
-    android:background="@drawable/ic_item_border">
+    android:layout_marginHorizontal="19dp"
+    android:layout_marginVertical="5dp"
+    android:background="@drawable/ic_item_border_ripple"
+    android:paddingHorizontal="5dp">
 
     <TextView
         android:id="@+id/homescreen_name"
@@ -27,83 +26,91 @@
         style="@style/homescreen_items_guest_information_hint_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/homescreen_hintText_padding_horizontal"
         android:paddingTop="14dp"
         android:paddingBottom="@dimen/homescreen_hintText_padding_bottom"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homescreen_name" />
-
-    <TextView
-        android:id="@+id/homescreen_city_hint"
-        style="@style/homescreen_items_guest_information_hint_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/homescreen_hintText_padding_horizontal"
-        android:paddingBottom="@dimen/homescreen_hintText_padding_bottom"
-        android:text="@string/homescreen_city_hint"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homescreen_transport_info_hint" />
-
-    <TextView
-        android:id="@+id/homescreen_date_and_time_hint"
-        style="@style/homescreen_items_guest_information_hint_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/homescreen_hintText_padding_horizontal"
-        android:paddingBottom="@dimen/homescreen_hintText_padding_bottom"
-        android:text="@string/homescreen_date_and_time_hint"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homescreen_city_hint" />
+        app:layout_constraintTop_toBottomOf="@+id/homescreen_name"
+        tools:text="Fl. number: " />
 
     <TextView
         android:id="@+id/homescreen_transport_info"
         style="@style/homescreen_items_guest_information_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="46dp"
-        android:paddingBottom="1dp"
-        app:layout_constraintBottom_toBottomOf="@+id/homescreen_transport_info_hint"
+        android:paddingHorizontal="5dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/homescreen_transport_info_hint"
         app:layout_constraintStart_toEndOf="@id/homescreen_transport_info_hint"
-        tools:text="asdfafsadf" />
+        tools:text="12345" />
+
+    <TextView
+        android:id="@+id/homescreen_city_hint"
+        style="@style/homescreen_items_guest_information_hint_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/homescreen_hintText_padding_bottom"
+        android:text="@string/homescreenItem_city_hint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homescreen_transport_info_hint" />
 
     <TextView
         android:id="@+id/homescreen_city"
         style="@style/homescreen_items_guest_information_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="46dp"
+        android:paddingHorizontal="5dp"
         android:paddingBottom="1dp"
-        app:layout_constraintBottom_toBottomOf="@+id/homescreen_city_hint"
-        app:layout_constraintStart_toStartOf="@id/homescreen_transport_info"
+        app:layout_constraintBaseline_toBaselineOf="@id/homescreen_city_hint"
+        app:layout_constraintStart_toEndOf="@id/homescreen_city_hint"
         tools:text="asdfafsadf" />
+
+    <TextView
+        android:id="@+id/homescreen_date_and_time_hint"
+        style="@style/homescreen_items_guest_information_hint_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/homescreen_hintText_padding_bottom"
+        android:text="@string/homescreenItem_date_and_time_hint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homescreen_city_hint" />
 
     <TextView
         android:id="@+id/homescreen_date_and_time"
         style="@style/homescreen_items_guest_information_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="46dp"
+        android:paddingHorizontal="5dp"
         android:paddingBottom="1dp"
-        app:layout_constraintBottom_toBottomOf="@+id/homescreen_date_and_time_hint"
-        app:layout_constraintStart_toStartOf="@id/homescreen_transport_info"
-        tools:text="asdfafsadf" />
+        app:layout_constraintBaseline_toBaselineOf="@id/homescreen_date_and_time_hint"
+        app:layout_constraintStart_toEndOf="@id/homescreen_date_and_time_hint"
+        tools:text="20/2/2020 20:30" />
+
+    <TextView
+        android:id="@+id/homescreen_transferType_hint"
+        style="@style/homescreen_items_guest_information_hint_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/homescreen_hintText_padding_bottom"
+        tools:text="To apartment:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homescreen_date_and_time_hint" />
+
+    <TextView
+        android:id="@+id/homescreen_apartmentName"
+        style="@style/homescreen_items_guest_information_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="5dp"
+        android:paddingBottom="1dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/homescreen_transferType_hint"
+        app:layout_constraintStart_toEndOf="@id/homescreen_transferType_hint"
+        tools:text="Paciflora" />
 
     <View
-        android:layout_width="@dimen/homescreen_check_icon_width"
-        android:layout_height="@dimen/homescreen_check_icon_height"
-        android:layout_marginTop="@dimen/homescreen_check_icon_margin_top"
-        android:layout_marginEnd="22dp"
-        android:background="@drawable/ic_checkgreen"
-        app:layout_constraintEnd_toStartOf="@+id/homescreen_edit_guest"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/homescreen_edit_guest"
-        android:layout_width="@dimen/homescreen_settings_icon_width"
-        android:layout_height="@dimen/homescreen_settings_icon_height"
+        android:id="@+id/homescreen_delete_guest"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="@dimen/homescreen_item_editButton_margin_top"
-        android:layout_marginEnd="@dimen/homescreen_item_editButton_margin_end"
-        android:background="@drawable/ic_settings"
+        android:background="@drawable/ic_trash_can"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -111,10 +118,18 @@
         android:id="@+id/homescreen_driver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/homescreen_transport_info"
-        android:paddingHorizontal="6dp"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
-        tools:text="Roby"/>
+        app:layout_constraintBaseline_toBaselineOf="@id/homescreen_transport_info_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Roby" />
+
+    <View
+        android:id="@+id/homescreen_notifiedStatus_icon"
+        android:layout_height="35dp"
+        android:layout_width="35dp"
+        app:layout_constraintEnd_toStartOf="@+id/homescreen_delete_guest"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="5dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
